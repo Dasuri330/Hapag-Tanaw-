@@ -1,0 +1,9 @@
+Flexbox: display: flex; justify-content; align-items; gap; flex-direction;
+
+Grid: display: grid; grid-template-columns; grid-template-rows; gap;
+
+Positioning: position; top; left; transform;
+
+Text & font: font-size; font-weight; text-align; color;
+
+Box & spacing: padding; margin; width; height; border; border-radius;

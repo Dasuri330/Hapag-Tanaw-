@@ -1,0 +1,7 @@
+footer size 
+
+Y= 987
+W = 1453
+H = 37
+
+Timeless Filipino flavors, beautifully reimagined

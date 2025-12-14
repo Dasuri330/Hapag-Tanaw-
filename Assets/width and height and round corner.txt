@@ -1,0 +1,3 @@
+Width = 234 
+Height = 297
+Corner Radius = 20

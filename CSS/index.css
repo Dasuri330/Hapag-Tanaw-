@@ -1,0 +1,117 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.navbar {
+    background-color: #D27D2D;
+    opacity: 0.8;
+}
+
+footer {
+    margin-top: auto;
+    background-color: #D27D2D;
+
+    /*opacity: 0.8;*/
+}
+
+
+/* Ensure container-fluid elements get the same background only inside main */
+main .container-fluid {
+    background-color: #F5F5DC;
+}
+
+p {
+    font-size: 20px;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+/* Larger, more padded buttons when using btn-lg */
+.btn-custom {
+    background-color: #D27D2D !important;
+    /* override Bootstrap */
+    border-color: #D27D2D !important;
+    color: #fff !important;
+    border-radius: 5;
+    padding: 12px 28px;
+
+}
+
+.btn-custom:hover {
+    background-color: #b86723;
+    border-color: #b86723;
+    color: #fff;
+}
+
+.btn-custom:active {
+    transform: scale(0.97);
+}
+
+
+.navbar-brand {
+    color: black;
+    font-weight: bolder;
+}
+
+.navbar .nav-link {
+    color: black !important;
+    font-weight: 500;
+}
+
+.navbar .nav-link:hover,
+.navbar .nav-link.active {
+    color: black !important;
+}
+
+.navbar-toggler {
+    border-color: black;
+    transition: border-color 0.3s ease;
+}
+
+/* Hover */
+.navbar-toggler:hover {
+    border-color: #D27D2D;
+}
+
+/* Click / Active */
+.navbar-toggler:focus,
+.navbar-toggler:active {
+    border-color: #D27D2D;
+    box-shadow: none;
+    /* remove blue glow */
+}
+
+.food-images {
+    margin-top: 0;
+}
+
+@media (max-width: 991px) {
+    .food-images {
+        margin-top: 3rem;
+    }
+}
+
+.food-images img {
+    width: 100%;
+    height: 65vh;
+    /* Responsive */
+    min-height: 180px;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .food-images img {
+        height: 200px;
+        /* Fixed on mobile for better control */
+        max-width: 100%;
+    }
+}

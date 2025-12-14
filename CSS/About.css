@@ -1,0 +1,31 @@
+html,
+body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+.navbar {
+    background-color: #D27D2D;
+}
+
+main {
+    flex: 1;
+    background-color: lightblue;
+    /* Temporary - to verify CSS is working */
+}
+
+main h1 {
+    color: red;
+    /* Temporary - to verify CSS is working */
+    font-size: 48px;
+}
+
+footer {
+    background-color: #D27D2D;
+    opacity: 0.8;
+}
