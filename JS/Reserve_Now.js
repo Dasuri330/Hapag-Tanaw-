@@ -29,7 +29,7 @@ function createValidationModal() {
     </div>
     `;
 
-    // Add modal to body if it doesn't exist
+    // Add modal to body 
     if (!document.getElementById('validationModal')) {
         document.body.insertAdjacentHTML('beforeend', modalHTML);
     }
@@ -288,11 +288,8 @@ if (minuteSelectStart) minuteSelectStart.addEventListener('change', updateDispla
 if (hourSelectEnd) hourSelectEnd.addEventListener('change', updateDisplay);
 if (minuteSelectEnd) minuteSelectEnd.addEventListener('change', updateDisplay);
 
-// ============================================
-// FORM VALIDATION BEFORE NEXT
-// ============================================
 
-// Optional: Add form validation before allowing next
+// Add form validation function before allowing next
 const nextButton = document.querySelector('a[href="food_package.html"]');
 if (nextButton) {
     nextButton.addEventListener('click', function (e) {
