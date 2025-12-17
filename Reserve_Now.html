@@ -1,336 +1,301 @@
 <!DOCTYPE html>
 <html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Reserve Now - Hapag Tanaw</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-    <link rel="stylesheet" href="CSS/Reserve_Now.css">
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Reserve Now - Hapag Tanaw</title>
+
+  <!-- Bootstrap CSS -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
+    integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+
+  <!-- Bootstrap Icons -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
+
+  <!-- Custom CSS -->
+  <link rel="stylesheet" href="CSS/Reserve_Now.css">
+
+  <!-- Bootstrap JS Bundle -->
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
+    crossorigin="anonymous"></script>
 </head>
 
+
 <body>
-<!-- Navbar Area -->
-<nav class="navbar navbar-expand-md bg-white px-4 mt-3">
-  <div class="container-fluid position-relative">
-    
-    <!-- Brand (Left) - NOW LINKS TO index.html -->
-    <a href="index.html" class="navbar-brand fw-bold ms-5">
-      Hapag Tanaw
-    </a>
-
-    <!-- Mobile Toggle -->
-    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-      data-bs-target="#main-nav" aria-controls="main-nav"
-      aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-
-    <!-- Navbar Links (Centered) - FIXED LINKS -->
-    <div class="collapse navbar-collapse justify-content-center" id="main-nav">
-      <ul class="navbar-nav">
-        <li class="nav-item mx-3">
-          <a class="nav-link" href="index.html">Home</a>
-        </li>
-        <li class="nav-item mx-3">
-          <a class="nav-link" href="About.html">About</a>
-        </li>
-        <li class="nav-item mx-3">
-          <a class="nav-link" href="index.html#Menu">Menu</a>
-        </li>
-        <li class="nav-item mx-3">
-          <a class="nav-link" href="index.html#Contact">Contact</a>
-        </li>
-      </ul>
+  <!-- Navbar -->
+  <nav class="navbar navbar-expand-md bg-white px-4 mt-3">
+    <div class="container-fluid position-relative">
+      <a href="index.html" class="navbar-brand fw-bold ms-5">Hapag Tanaw</a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
+        aria-controls="main-nav" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse justify-content-center" id="main-nav">
+        <ul class="navbar-nav">
+          <li class="nav-item mx-3"><a class="nav-link" href="index.html">Home</a></li>
+          <li class="nav-item mx-3"><a class="nav-link" href="About.html">About</a></li>
+          <li class="nav-item mx-3"><a class="nav-link" href="Menu.html">Menu</a></li>
+          <li class="nav-item mx-3"><a class="nav-link" href="Contact.html">Contact</a></li>
+        </ul>
+      </div>
     </div>
-  </div>
-</nav>
+  </nav>
 
-<!--Main Content-->
-<main>
-  <section class="reservation-section">
-
-    <!-- Title / Banner -->
-    <div class="container-fluid reservation-header text-center py-4"
-     style="background-color: #D27D2D;">
-      <h3 class="mb-0">
-        <span class="title">Reserve Your Table</span><br>
-        <span class="subtitle">Timeless Filipino flavors, beautifully reimagined</span>
-      </h3>
-    </div>
-
-    <!-- Background area -->
-    <div class="container-fluid reservation-bg pt-3 pb-5">
-
-      <!-- stepper -->
-    <div class="container mt-0 mb-4">
-  <div class="d-flex justify-content-center align-items-center stepper">
-
-    <div class="step active">
-      <div class="step-circle">1</div>
-      <small>Details</small>
-    </div>
-
-    <div class="step-line"></div>
-
-    <div class="step">
-      <div class="step-circle">2</div>
-      <small>Food Package</small>
-    </div>
-
-    <div class="step-line"></div>
-
-    <div class="step">
-      <div class="step-circle">3</div>
-      <small>Payment</small>
-    </div>
-
-    <div class="step-line"></div>
-
-    <div class="step">
-      <div class="step-circle">4</div>
-      <small>Confirm</small>
-    </div>
-
-  </div>
-</div>
-
-<!-- Title / Banner -->
-<div class="container reservation-header text-start py-3 rounded-top-4"
- style="background-color: #D27D2D; position: relative; z-index: 2;">
-  <h3 class="mb-0">
-    <span class="title text-white p-3">Reservation Details</span>
-  </h3>
-</div>
-
-<!-- Form Container with Scroll -->
-<div class="container rounded-bottom shadow-lg" 
-     style="background-color: #F5F5DC; margin-top: -10px; position: relative; z-index: 1; max-height: 550px; overflow-y: auto; padding: 0;">
-  
-  <div class="p-4">
-    <form>
-      <!-- Full Name -->
-      <div class="mb-3">
-        <label class="form-label">
-          <i class="bi bi-person"></i> Full Name
-          <span class="text-danger">*</span>
-        </label>
-        <input type="text" class="form-control" placeholder="Juan Dela Cruz" required>
+  <!-- Main Content -->
+  <main>
+    <section class="reservation-section">
+      <!-- Header -->
+      <div class="container-fluid reservation-header text-center py-4" style="background-color: #D27D2D;">
+        <h3 class="mb-0">
+          <span class="title">Reserve Your Table</span><br>
+          <span class="subtitle">Timeless Filipino flavors, beautifully reimagined</span>
+        </h3>
       </div>
 
-      <!-- Email Address -->
-      <div class="mb-3">
-        <label class="form-label">
-          <i class="bi bi-envelope"></i> Email Address
-          <span class="text-danger">*</span>
-        </label>
-        <input type="email" class="form-control" placeholder="juandelacruz@gmail.com" required>
-      </div>
-
-      <!-- Phone Number -->
-      <div class="mb-3">
-        <label class="form-label">
-          <i class="bi bi-telephone"></i> Phone Number
-          <span class="text-danger">*</span>
-        </label>
-        <input type="tel" class="form-control" placeholder="+63 912 345 6789" required>
-      </div>
-
-      <!-- Date -->
-      <div class="mb-3">
-        <label class="form-label">
-          <i class="bi bi-calendar"></i> Date
-          <span class="text-danger">*</span>
-        </label>
-        <input type="date" class="form-control" id="dateInput" required>
-      </div>
-
-      <!-- Time Range - Start and End Time -->
-      <div class="mb-3">
-        <label class="form-label">
-          <i class="bi bi-clock"></i> Reservation Time
-          <span class="text-danger">*</span>
-        </label>
-        
-        <!-- Display Selected Time Range -->
-        <div class="time-picker-display" id="timeDisplay">
-          <i class="bi bi-clock-fill me-2"></i>
-          <span id="displayTimeRange">-- : -- -- <span class="time-range-arrow">→</span> -- : -- --</span>
-        </div>
-
-        <!-- Time Picker Controls -->
-        <div class="time-picker-container">
-          <div class="row">
-            <!-- START TIME -->
-            <div class="col-md-6">
-              <div class="time-section-label">Start Time</div>
-              <div class="time-inputs">
-                <!-- Hour Selection -->
-                <div class="time-input-group">
-                  <label>Hour</label>
-                  <select id="hourSelectStart" class="form-select">
-                    <option value="">--</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="01">01</option>
-                    <option value="02">02</option>
-                    <option value="03">03</option>
-                    <option value="04">04</option>
-                    <option value="05">05</option>
-                    <option value="06">06</option>
-                    <option value="07">07</option>
-                    <option value="08">08</option>
-                    <option value="09">09</option>
-                  </select>
-                </div>
-
-                <div class="time-separator">:</div>
-
-                <!-- Minute Selection -->
-                <div class="time-input-group">
-                  <label>Min</label>
-                  <select id="minuteSelectStart" class="form-select">
-                    <option value="">--</option>
-                    <option value="00">00</option>
-                    <option value="15">15</option>
-                    <option value="30">30</option>
-                    <option value="45">45</option>
-                  </select>
-                </div>
-              </div>
-
-              <!-- AM/PM Selector for Start -->
-              <div class="period-selector">
-                <button type="button" class="period-btn active" data-period="AM" id="amBtnStart">
-                  <i class="bi bi-sunrise-fill me-1"></i> AM
-                </button>
-                <button type="button" class="period-btn" data-period="PM" id="pmBtnStart">
-                  <i class="bi bi-sunset-fill me-1"></i> PM
-                </button>
-              </div>
-            </div>
-
-            <!-- END TIME -->
-            <div class="col-md-6">
-              <div class="time-section-label">End Time</div>
-              <div class="time-inputs">
-                <!-- Hour Selection -->
-                <div class="time-input-group">
-                  <label>Hour</label>
-                  <select id="hourSelectEnd" class="form-select">
-                    <option value="">--</option>
-                    <option value="10">10</option>
-                    <option value="11">11</option>
-                    <option value="12">12</option>
-                    <option value="01">01</option>
-                    <option value="02">02</option>
-                    <option value="03">03</option>
-                    <option value="04">04</option>
-                    <option value="05">05</option>
-                    <option value="06">06</option>
-                    <option value="07">07</option>
-                    <option value="08">08</option>
-                    <option value="09">09</option>
-                  </select>
-                </div>
-
-                <div class="time-separator">:</div>
-
-                <!-- Minute Selection -->
-                <div class="time-input-group">
-                  <label>Min</label>
-                  <select id="minuteSelectEnd" class="form-select">
-                    <option value="">--</option>
-                    <option value="00">00</option>
-                    <option value="15">15</option>
-                    <option value="30">30</option>
-                    <option value="45">45</option>
-                  </select>
-                </div>
-              </div>
-
-              <!-- AM/PM Selector for End -->
-              <div class="period-selector">
-                <button type="button" class="period-btn" data-period="AM" id="amBtnEnd">
-                  <i class="bi bi-sunrise-fill me-1"></i> AM
-                </button>
-                <button type="button" class="period-btn active" data-period="PM" id="pmBtnEnd">
-                  <i class="bi bi-sunset-fill me-1"></i> PM
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div class="time-hint">
-            Operating hours: 10:00 AM - 9:00 PM
+      <!-- Reservation Form Area -->
+      <div class="container-fluid reservation-bg pt-3 pb-5">
+        <!-- Stepper -->
+        <div class="container mt-0 mb-4">
+          <div class="d-flex justify-content-center align-items-center stepper">
+            <div class="step active"><div class="step-circle">1</div><small>Details</small></div>
+            <div class="step-line"></div>
+            <div class="step"><div class="step-circle">2</div><small>Food Package</small></div>
+            <div class="step-line"></div>
+            <div class="step"><div class="step-circle">3</div><small>Payment</small></div>
+            <div class="step-line"></div>
+            <div class="step"><div class="step-circle">4</div><small>Confirm</small></div>
           </div>
         </div>
 
-        <!-- Hidden inputs to store the actual time values -->
-        <input type="hidden" id="timeValueStart" name="timeStart" required>
-        <input type="hidden" id="timeValueEnd" name="timeEnd" required>
-      </div>
-
-      <!-- Number of Guests -->
-      <div class="mb-3">
-        <label class="form-label">
-          <i class="bi bi-people"></i> Number of Guests
-          <span class="text-danger">*</span>
-        </label>
-        <input type="number" class="form-control" placeholder="7" min="1" required>
-      </div>
-
-       <!-- Special Occasion (Optional) -->
-      <div class="mb-3">
-        <label class="form-label">
-         Special Occasion (Optional)
-        </label>
-        <input type="text" class="form-control">
-      </div>
-
-        <!-- Special Requests or Dietary Restrictions-->
-      <div class="mb-3">
-        <label class="form-label">
-        Special Requests or Dietary Restrictions (Optional)
-        </label>
-        <input type="text" class="form-control">
-      </div>
-
-<div class="d-flex justify-content-between gap-3 mt-2">
-  <div class="d-flex gap-2">
-    <a href="FAQs.html" class="btn btn-custom p-3">
-      <i class="bi bi-chevron-left"></i> Back
-    </a>
-    <a href="index.html" class="btn btn-danger p-3">
-      <i class="bi bi-x-circle"></i> Cancel
-    </a>
-  </div>
-  <a href="food_package.html" class="btn btn-custom p-3" id="nextBtn">
-    Next <i class="bi bi-chevron-right"></i>
-  </a>
-</div>
-    </form>
-  </div>
-</div>
-
+        <!-- Form Header -->
+        <div class="container reservation-header text-start py-3 rounded-top-4"
+          style="background-color: #D27D2D; position: relative; z-index: 2;">
+          <h3 class="mb-0"><span class="title text-white p-3">Reservation Details</span></h3>
         </div>
-  </form>
-</div>
+
+        <!-- Form Container -->
+        <div class="container rounded-bottom shadow-lg"
+          style="background-color: #F5F5DC; margin-top: -10px; position: relative; z-index: 1; max-height: 550px; overflow-y: auto; padding: 0;">
+          <div class="p-4">
+            <form id="reservationForm">
+              <!-- Full Name -->
+              <div class="mb-3">
+                <label class="form-label" for="fullName"><i class="bi bi-person"></i> Full Name <span class="text-danger">*</span></label>
+                <input type="text" class="form-control" id="fullName" placeholder="Juan Dela Cruz" required>
+              </div>
+
+              <!-- Email -->
+              <div class="mb-3">
+                <label class="form-label" for="email"><i class="bi bi-envelope"></i> Email Address <span class="text-danger">*</span></label>
+                <input type="email" class="form-control" id="email" placeholder="juandelacruz@gmail.com" required>
+              </div>
+
+              <!-- Phone -->
+              <div class="mb-3">
+                <label class="form-label" for="phoneNumber"><i class="bi bi-telephone"></i> Phone Number <span class="text-danger">*</span></label>
+                <input type="tel" class="form-control" id="phoneNumber" placeholder="+63 912 345 6789" required>
+              </div>
+
+              <!-- Date -->
+              <div class="mb-3">
+                <label class="form-label" for="dateInput"><i class="bi bi-calendar"></i> Date <span class="text-danger">*</span></label>
+                <input type="date" class="form-control" id="dateInput" required>
+              </div>
+
+              <!-- Reservation Time -->
+              <div class="mb-3">
+                <label class="form-label" for="reservation">
+                  <i class="bi bi-clock"></i> Reservation Time
+                  <span class="text-danger">*</span>
+                </label>
+
+                <!-- Display Selected Time -->
+                <div class="time-picker-display" id="timeDisplay">
+                  <i class="bi bi-clock-fill me-2"></i>
+                  <span id="displayTimeRange">
+                    -- : -- -- <span class="time-range-arrow">→</span> -- : -- --
+                  </span>
+                </div>
+
+               <div class="time-picker-container">
+  <div class="row">
+    <!-- Start Time -->
+    <div class="col-md-6">
+      <div class="time-section-label">Start Time</div>
+      <div class="time-inputs d-flex align-items-end gap-2">
+        <div class="time-input-group d-flex flex-column">
+          <label class="form-label">Hour</label>
+          <select id="hourSelectStart" class="form-select">
+            <option value="">--</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="01">01</option>
+            <option value="02">02</option>
+            <option value="03">03</option>
+            <option value="04">04</option>
+            <option value="05">05</option>
+            <option value="06">06</option>
+            <option value="07">07</option>
+            <option value="08">08</option>
+            <option value="09">09</option>
+          </select>
+        </div>
+        <div class="time-separator align-self-center">:</div>
+        <div class="time-input-group d-flex flex-column">
+          <label class="form-label">Min</label>
+          <select id="minuteSelectStart" class="form-select">
+            <option value="">--</option>
+            <option value="00">00</option>
+            <option value="15">15</option>
+            <option value="30">30</option>
+            <option value="45">45</option>
+          </select>
+        </div>
+      </div>
+      <div class="period-selector mt-2">
+        <button type="button" class="period-btn active" data-period="AM" id="amBtnStart">
+          <i class="bi bi-sunrise-fill me-1"></i> AM
+        </button>
+        <button type="button" class="period-btn" data-period="PM" id="pmBtnStart">
+          <i class="bi bi-sunset-fill me-1"></i> PM
+        </button>
+      </div>
     </div>
 
-  </section>
-</main>
+    <!-- End Time -->
+    <div class="col-md-6">
+      <div class="time-section-label">End Time</div>
+      <div class="time-inputs d-flex align-items-end gap-2">
+        <div class="time-input-group d-flex flex-column">
+          <label class="form-label">Hour</label>
+          <select id="hourSelectEnd" class="form-select">
+            <option value="">--</option>
+            <option value="10">10</option>
+            <option value="11">11</option>
+            <option value="12">12</option>
+            <option value="01">01</option>
+            <option value="02">02</option>
+            <option value="03">03</option>
+            <option value="04">04</option>
+            <option value="05">05</option>
+            <option value="06">06</option>
+            <option value="07">07</option>
+            <option value="08">08</option>
+            <option value="09">09</option>
+          </select>
+        </div>
+        <div class="time-separator align-self-center">:</div>
+        <div class="time-input-group d-flex flex-column">
+          <label class="form-label">Min</label>
+          <select id="minuteSelectEnd" class="form-select">
+            <option value="">--</option>
+            <option value="00">00</option>
+            <option value="15">15</option>
+            <option value="30">30</option>
+            <option value="45">45</option>
+          </select>
+        </div>
+      </div>
+      <div class="period-selector mt-2">
+        <button type="button" class="period-btn" data-period="AM" id="amBtnEnd">
+          <i class="bi bi-sunrise-fill me-1"></i> AM
+        </button>
+        <button type="button" class="period-btn active" data-period="PM" id="pmBtnEnd">
+          <i class="bi bi-sunset-fill me-1"></i> PM
+        </button>
+      </div>
+    </div>
+  </div>
+  <div class="time-hint mt-2">Operating hours: 10:00 AM - 9:00 PM</div>
+</div>
 
+<!-- Hidden Inputs -->
+<input type="hidden" id="timeValueStart" name="timeStart" required>
+<input type="hidden" id="timeValueEnd" name="timeEnd" required>
 
-<!--Footer Area-->
-<footer class="container-fluid text-white">
-  <div class="text-center">Copyright &copy; Hapag Tanaw, All rights reserved.</div>
-</footer>
+              <!-- Number of Guests -->
+              <div class="mb-3 mt-4">
+                <label class="form-label" for="numGuests"><i class="bi bi-people"></i> Number of Guests <span class="text-danger">*</span></label>
+                <select id="numGuests" class="form-select" required>
+                  <option value="" selected disabled>Select number of guests</option>
+                  <option value="1">1 Guest</option>
+                  <option value="2">2 Guests</option>
+                  <option value="3">3 Guests</option>
+                  <option value="4">4 Guests</option>
+                  <option value="5">5 Guests</option>
+                  <option value="6">6 Guests</option>
+                  <option value="7">7 Guests</option>
+                  <option value="8">8 Guests</option>
+                  <option value="9">9 Guests</option>
+                  <option value="10">10 Guests</option>
+                  <option value="10+">10 or more Guests</option>
+                </select>
+              </div>
 
-<script src="JS/Reserve_Now.js"></script>
+                 <!-- Special Occasion -->
+              <div class="mb-3">
+                <label class="form-label" for="specialOccasion">Special Occasion (Optional)</label>
+                <input type="text" id="specialOccasion" class="form-control">
+              </div>
+
+              <!-- Special Requests / Dietary Restrictions -->
+              <div class="mb-3">
+                <label class="form-label" for="specialRequests">Special Requests or Dietary Restrictions (Optional)</label>
+                <input type="text" id="specialRequests" class="form-control">
+              </div>
+
+              <!-- Buttons -->
+              <div class="d-flex justify-content-between gap-3 mt-2">
+                <div class="d-flex gap-2">
+                  <a href="FAQs.html" class="btn btn-custom p-3"><i class="bi bi-chevron-left"></i> Back</a>
+                  <button type="button" class="btn btn-danger p-3" data-bs-toggle="modal" data-bs-target="#cancelModal">
+                    Cancel
+                  </button>
+                </div>
+                <button type="button" class="btn btn-custom p-3" id="nextBtn">Next <i class="bi bi-chevron-right"></i></button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Cancel Confirmation Modal -->
+  <div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-warning">
+          <h5 class="modal-title" id="cancelModalLabel"><i class="bi bi-exclamation-triangle-fill"></i> Warning</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to cancel? Your changes won't be saved.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+          <button type="button" class="btn btn-danger" onclick="confirmCancel()">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Footer -->
+  <footer class="container-fluid text-white">
+    <div class="text-center">Copyright &copy; Hapag Tanaw, All rights reserved.</div>
+  </footer>
+
+  <!-- Custom JS -->
+  <script src="JS/Reserve_Now.js"></script>
+  <script>
+    function confirmCancel() {
+      // Redirect to homepage when confirmed
+      window.location.href = "index.html";
+    }
+  </script>
 </body>
 
 </html>

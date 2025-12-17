@@ -6,7 +6,7 @@
     <title>Reserve Now - Hapag Tanaw</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous"/>
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css"/>
-    <link rel="stylesheet" href="CSS/Payment.css"/>
+    <link rel="stylesheet" href="CSS/Gcash.css"/>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
   </head>
 
@@ -113,81 +113,103 @@
               <span class="title text-white p-3">Payment Method</span>
             </h3>
           </div>
+          <!-- Form Container -->
+<!-- Form Container -->
+<div class="container rounded-bottom shadow-lg"
+     style="background-color: #f5f5dc; margin-top: -10px; position: relative; padding: 0;">
 
-          <!-- Form Container-->
-          <div
-            class="container rounded-bottom shadow-lg"
-            style="background-color: #f5f5dc; margin-top: -10px; position: relative; max-height: 550px; padding: 0;">
-           <div class="d-grid gap-2 m-2 p-3">
-            
-              <button class="btn text-start p-3 button-custom shadow-lg" type="button" id="creditCardBtn">
-                <i class="bi bi-credit-card-fill me-2" style="color:#D27D2D;"></i><span>Credit/Debit Card (Pay with Visa, MasterCard or AMEX)</span>
-              </button>
-              <button id="gcashBtn"class="btn text-start p-3 button-custom shadow-lg d-flex align-items-center" type="button">
-                 <i class="bi bi-wallet2 me-2" style="color:#D27D2D;"></i><span>Gcash (Quick and Secured mobile payment)</span></button>
-                
+  <!-- FORM with action to Confirm.html -->
+  <form id="paymentForm" action="Confirm.html" method="get">
+
+    <div class="d-flex justify-content-between align-items-center p-4">
+      <h4 class="mb-0">Maya</h4>
+      <a href="Payment.html" class="list-group-item list-group-item-action mb-0 text-end">Change Method</a>
+    </div>
+
+    <div class="d-flex justify-content-center align-items-center pt-1">
+      <img src="Assets/mayanobg.png" alt="Gcash Logo" class="img-fluid" style="max-width: 300px;">
+    </div>
+
+    <div class="d-flex justify-content-center align-items-center" style="margin-top: -20px;">
+      <img src="Assets/QR.jpg" class="rounded img-fluid" style="max-width: 200px;" alt="Gcash QR">
+    </div>
+
+    <div class="d-flex justify-content-center align-items-center flex-column mt-2">
+      <p>QR Code will appear here</p>
       
-              <button id="mayaBtn" class="btn text-start p-3 button-custom shadow-lg d-flex align-items-center" type="button">
-                <i class="bi bi-wallet me-2" style="color:#D27D2D;"></i><span>Maya (Digital Walllet Payment)</span>
-              </button>
-              
-              <button class="btn p-3 button-custom shadow-lg d-flex align-items-center"type="button"  id="banktransferbtn" data-bs-toggle="modal" data-bs-target="#banktransfermodal"><i class="bi bi-bank me-2" style="color:#D27D2D;"></i>
-                <span>Bank Transfer (Direct Bank Deposit Transfer)</span>
-              </button>
-          </div>
-          </div>
-
-<!-- Modal for payment credit/debit buttons-->
-<div class="modal fade" id="creditCardModal" tabindex="-1" aria-labelledby="creditCardModalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header text-white" style="background-color: #D27D2D;">
-                <h5 class="modal-title" id="creditCardModalLabel">
-                    <i class="bi bi-exclamation-circle-fill me-2"></i>
-                    Payment Method Unavailable
-                </h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p class="mb-0">Oops! Paying with Credit/Debit Card is not available at the moment. Please choose any alternative payment method.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
-                    <i class="bi bi-check-circle me-1"></i>
-                    OK
-                </button>
-            </div>
-        </div>
+      <ol style="padding-left: 20px; margin-top: 0;">
+        <li>Open your GCash app on your mobile device.</li>
+        <li>Tap "Pay QR" or scan the QR code using the app.</li>
+        <li>Enter the amount to pay and confirm the payment.</li>
+        <li>Confirm Payment 30% Deposit.</li>
+        <li>Save the receipt or screenshot for reference.</li>
+      </ol>
     </div>
+
+    <div class="d-flex justify-content-between align-items-center p-1"></div>
+    
+    <!-- Reference Number-->
+    <div class="p-3">
+      <label class="form-label mb-1 ms-1" style="margin-bottom: 2px;">
+        Reference Number<span class="text-danger">*</span>
+      </label>
+      <input type="number" id="mayaReferenceNumber" name="mayaReferenceNumber" class="form-control" placeholder="Enter Reference Number" required>
+      
+      <!-- Payment Policy-->
+      <div class="container p-4 shadow-lg rounded-3 my-3">
+        <h5 class="policy">Payment Policy</h5>
+        <ul>
+          <li>A 30% deposit is required to confirm your reservation</li>
+          <li>Full payment can be settled upon arrival or through your chosen method</li>
+          <li>Cancellations made 48 hours before the reservation date are fully refundable</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Button Group -->
+    <div class="d-flex justify-content-between gap-3 mt-1 px-3 mb-3 p-3">
+      <div class="d-flex gap-2">
+        <a href="FAQs.html" class="btn btn-custom p-3">
+          <i class="bi bi-chevron-left"></i> Back
+        </a>
+        <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#cancelModal">Cancel</button>
+      </div>
+      <!-- Changed to type="submit" to use native form validation -->
+      <button type="submit" id="confirmMayaBtn"class="btn btn-custom p-3">
+        Next <i class="bi bi-chevron-right"></i>
+      </button>
+    </div>
+
+  </form>
+      </div>
+    </section>
+  </main>
+
+  <!-- Cancel Modal -->
+  <div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header bg-warning">
+          <h5 class="modal-title" id="cancelModalLabel">
+            <i class="bi bi-exclamation-triangle-fill"></i> Warning
+          </h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body">
+          Are you sure you want to cancel? Your changes won’t be saved.
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">No</button>
+          <button type="button" class="btn btn-danger" onclick="confirmCancel()">Yes</button>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
 
-
-<!--Modal for bank transfer button-->
-<div class="modal fade" id="banktransfermodal" tabindex="-1" aria-labelledby="banktransfermodalLabel" aria-hidden="true">
-    <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-            <div class="modal-header text-white" style="background-color: #D27D2D;">
-                <h5 class="modal-title" id="banktransfermodalLabel">
-                    <i class="bi bi-exclamation-circle-fill me-2"></i>
-                    Payment Method Unavailable
-                </h5>
-                <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p class="mb-0">Sorry! Bank Transfer payment is temporarily unavailable. Kindly select another payment option.</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-primary" data-bs-dismiss="modal">
-                    <i class="bi bi-check-circle me-1"></i>
-                    OK
-                </button>
-            </div>
-        </div>
-    </div>
 </div>
-        </div>
-      </section>
-    </main>
+</section>
+</main>
 
     <!--Footer Area-->
     <footer class="container-fluid text-white">

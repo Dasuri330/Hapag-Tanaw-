@@ -406,6 +406,23 @@ h1 {
     border-color: #D27D2D;
 }
 
+/*For customize payment button*/
+.button-custom {
+    background-color: #F5F5DC;
+    border-color: #F5F5DC;
+    color: #333;
+    /* adjust text color as needed */
+}
+
+.bank-btn i {
+    color: #fff;
+}
+
+
+/*.button-custom:hover {
+    background-color: #E5E5CC;
+    border-color: #E5E5CC;
+}*/
 
 /* Responsive */
 @media (max-width: 768px) {

@@ -29,7 +29,7 @@ function createValidationModal() {
     </div>
     `;
 
-    // Add modal to body if it doesn't exist
+    // Add modal to body 
     if (!document.getElementById('validationModal')) {
         document.body.insertAdjacentHTML('beforeend', modalHTML);
     }
@@ -69,9 +69,11 @@ function getCurrentPageStep() {
             return 0;
         case 'food_package.html':
             return 1;
-        case 'Payment.html':
+        case 'payment.html':
             return 2;
-        case 'Confirm.html':
+        case 'Gcash.html':
+            return 2;
+        case 'confirm.html':
             return 3;
         default:
             return 0;
@@ -85,37 +87,52 @@ updateStepper(currentStep);
 // Create the validation modal
 createValidationModal();
 
-// Package selection afterwards redirect to payment
 
-const packageButtons = document.querySelectorAll('.select-btn');
+// Add form validation function before allowing next
+const nextButton = document.querySelector('a[href="food_package.html"]');
+if (nextButton) {
+    nextButton.addEventListener('click', function (e) {
+        const form = document.querySelector('form');
+        const inputs = form.querySelectorAll('input[required]');
+        let isValid = true;
 
-packageButtons.forEach(button => {
-    button.addEventListener('click', function () {
-        const selectedPackage = this.getAttribute('data-package');
-        const selectedPrice = this.getAttribute('data-price');
+        inputs.forEach(input => {
+            if (!input.value) {
+                isValid = false;
+                input.classList.add('is-invalid');
+            } else {
+                input.classList.remove('is-invalid');
+            }
+        });
 
-        // Get existing reservation data from Reserve_Now.html
-        const reservationData = JSON.parse(localStorage.getItem('reservationData')) || {};
+        // Check if time range is filled (hidden inputs)
+        if (timeValueStart && timeValueEnd) {
+            if (!timeValueStart.value || !timeValueEnd.value) {
+                isValid = false;
+                if (displayTimeRange) {
+                    document.getElementById('timeDisplay').style.borderColor = '#dc3545';
+                }
+            }
+        }
 
-        // Add package info to reservation data
-        reservationData.foodPackage = selectedPackage;
-        reservationData.packagePrice = selectedPrice || 'Varies';
-
-        // Save updated reservation data back to localStorage
-        localStorage.setItem('reservationData', JSON.stringify(reservationData));
-
-        console.log('Package saved to reservationData:', reservationData); // For debugging
-
-        // Update stepper before redirect
-        updateStepper(2);
-
-        // Redirect to payment page
-        window.location.href = 'Payment.html';
+        if (!isValid) {
+            e.preventDefault();
+            // Show Bootstrap modal instead of alert
+            const validationModal = new bootstrap.Modal(document.getElementById('validationModal'));
+            validationModal.show();
+        }
     });
-});
+    // Select the button
+    const nextBtn = document.getElementById('nextBtn');
 
-//Cancel button function
-function confirmCancel() {
-    localStorage.removeItem('reservationData'); 
-    window.location.href = 'index.html';
+    nextBtn.addEventListener('click', function (event) {
+        // Get the input fields
+        const email = document.getElementById('email').value.trim();
+
+        // Check if any field is empty
+        if (!name || !email) {
+            event.preventDefault(); 
+            alert('Please fill in all required fields!'); 
+        }
+    });
 }

@@ -78,6 +78,25 @@ function getCurrentPageStep() {
     }
 }
 
+// Function to complete all stepper steps with checkmark
+function completeAllSteps() {
+    steps.forEach((step, index) => {
+        step.classList.add('completed');
+        step.classList.remove('active');
+
+        // Replace the number with a checkmark for the last step
+        if (index === steps.length - 1) {
+            const stepCircle = step.querySelector('.step-circle');
+            stepCircle.innerHTML = '<i class="bi bi-check"></i>';
+        }
+    });
+
+    // Make all lines active/completed
+    stepLines.forEach(line => {
+        line.classList.add('active');
+    });
+}
+
 // Initialize stepper based on current page
 currentStep = getCurrentPageStep();
 updateStepper(currentStep);
@@ -85,7 +104,9 @@ updateStepper(currentStep);
 // Create the validation modal
 createValidationModal();
 
+
 // Package selection afterwards redirect to payment
+
 
 const packageButtons = document.querySelectorAll('.select-btn');
 
@@ -94,19 +115,11 @@ packageButtons.forEach(button => {
         const selectedPackage = this.getAttribute('data-package');
         const selectedPrice = this.getAttribute('data-price');
 
-        // Get existing reservation data from Reserve_Now.html
-        const reservationData = JSON.parse(localStorage.getItem('reservationData')) || {};
+        // Save selected package info
+        localStorage.setItem('selectedPackage', selectedPackage);
+        localStorage.setItem('selectedPrice', selectedPrice);
 
-        // Add package info to reservation data
-        reservationData.foodPackage = selectedPackage;
-        reservationData.packagePrice = selectedPrice || 'Varies';
 
-        // Save updated reservation data back to localStorage
-        localStorage.setItem('reservationData', JSON.stringify(reservationData));
-
-        console.log('Package saved to reservationData:', reservationData); // For debugging
-
-        // Update stepper before redirect
         updateStepper(2);
 
         // Redirect to payment page
@@ -114,8 +127,59 @@ packageButtons.forEach(button => {
     });
 });
 
-//Cancel button function
+
+// Confirm Page function
+
 function confirmCancel() {
-    localStorage.removeItem('reservationData'); 
-    window.location.href = 'index.html';
+    localStorage.removeItem("reservationData");
+    window.location.href = "index.html";
 }
+
+function goToHome() {
+    localStorage.removeItem("reservationData");
+    window.location.href = "index.html";
+}
+function confirmCancel() {
+    localStorage.removeItem("reservationData");
+    window.location.href = "index.html";
+}
+
+function goToHome() {
+    localStorage.removeItem("reservationData");
+    window.location.href = "index.html";
+}
+// Retrieve stored data from Reserve_Now.html and populate summary
+const data = JSON.parse(localStorage.getItem('reservationData'));
+if (data) {
+    document.getElementById("summaryName").textContent = data.fullName;
+    document.getElementById("summaryEmail").textContent = data.email;
+    document.getElementById("summaryPhone").textContent = data.phoneNumber;
+    document.getElementById("summaryDate").textContent = data.date;
+    document.getElementById("summaryTime").textContent = `${data.timeStart} → ${data.timeEnd}`;
+    document.getElementById("summaryGuests").textContent = data.numGuests;
+    document.getElementById("summaryOccasion").textContent = data.specialOccasion || "-";
+    document.getElementById("summaryRequests").textContent = data.specialRequests || "-";
+
+    document.getElementById("detailsDate").textContent = data.date;
+    document.getElementById("detailsTime").textContent = `${data.timeStart} → ${data.timeEnd}`;
+    document.getElementById("selectedPackage").textContent = data.foodPackage || "-";
+    document.getElementById("packagePrice").textContent = data.packagePrice ? `₱ ${data.packagePrice}` : "-";
+    document.getElementById("paymentMethod").textContent = data.paymentMethod || "-";
+    document.getElementById("referenceNumber").textContent = data.referenceNumber || "-";
+}
+
+// Confirm Reservation Button Handler
+document.getElementById('confirmReservationBtn').addEventListener('click', function () {
+    const data = JSON.parse(localStorage.getItem('reservationData'));
+    if (data && data.email) {
+        // Set the email in the success modal
+        document.getElementById('confirmationEmail').textContent = data.email;
+
+        // Show the success modal
+        const successModal = new bootstrap.Modal(document.getElementById('successModal'));
+        successModal.show();
+    } else {
+        alert('Error: No reservation data found. Please start over.');
+        window.location.href = 'Reserve_Now.html';
+    }
+});

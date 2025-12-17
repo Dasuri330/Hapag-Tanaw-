@@ -256,93 +256,126 @@ h1 {
     font-size: 20px;
 }
 
-.time-picker-container {
-    background: white;
-    border: 1px solid #ddd;
-    border-radius: 8px;
-    padding: 15px;
-    margin-top: 10px;
+.food-package-card {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    margin-bottom: 30px;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.time-picker-display {
-    background-color: #f8f9fa;
-    border: 2px solid #D27D2D;
-    border-radius: 8px;
-    padding: 15px;
-    font-size: 18px;
-    font-weight: bold;
-    text-align: center;
-    color: #D27D2D;
-    cursor: pointer;
-    transition: all 0.3s ease;
+.food-package-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
 }
 
-.time-picker-display:hover {
-    background-color: #fff5e6;
-    box-shadow: 0 2px 8px rgba(210, 125, 45, 0.2);
-}
-
-.time-inputs {
+.package-content {
     display: flex;
-    gap: 10px;
-    align-items: center;
-    justify-content: center;
-    margin-top: 15px;
+    flex-direction: row;
 }
 
-.time-input-group {
+.package-info {
+    flex: 0 0 35%;
+    padding: 30px 25px;
     display: flex;
     flex-direction: column;
-    align-items: center;
+    justify-content: space-between;
 }
 
-.time-input-group label {
-    font-size: 11px;
-    color: #666;
-    margin-bottom: 5px;
-    font-weight: 600;
-}
-
-.time-input-group select {
-    width: 70px;
-    /* you can increase to 75-80px if needed */
-    padding: 8px 12px;
-    /* more horizontal space */
-    border: 2px solid #ddd;
-    border-radius: 8px;
-    font-size: 16px;
-    font-weight: bold;
-    text-align: center;
-    /* center the number */
-    cursor: pointer;
-    appearance: none;
-    /* remove OS default arrow */
-    -webkit-appearance: none;
-    -moz-appearance: none;
-    background: white url("data:image/svg+xml;charset=US-ASCII,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12'><polygon points='0,0 12,0 6,6' fill='%23000'/></svg>") no-repeat right 10px center;
-    /* custom arrow */
-    background-size: 12px;
-    transition: all 0.3s ease;
-}
-
-
-.time-input-group select:focus {
-    outline: none;
-    border-color: #D27D2D;
-    box-shadow: 0 0 0 0.2rem rgba(210, 125, 45, 0.25);
-}
-
-/* Optional: hide default arrow for IE/Edge */
-.time-input-group select::-ms-expand {
-    display: none;
-}
-
-.time-separator {
-    font-size: 28px;
-    font-weight: bold;
+.package-title {
     color: #D27D2D;
-    margin: 0 5px;
-    padding-top: 15px;
+    font-weight: 700;
+    font-size: 22px;
+    margin-bottom: 15px;
+}
+
+.package-persons {
+    color: #666;
+    font-size: 14px;
+    margin-bottom: 20px;
+    font-weight: 500;
+}
+
+.package-menu-list {
+    list-style: none;
+    padding: 0;
+    margin: 0 0 20px 0;
+}
+
+.package-menu-list li {
+    padding: 8px 0;
+    color: #333;
+    font-size: 15px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+.package-menu-list li:last-child {
+    border-bottom: none;
+}
+
+.package-menu-list li::before {
+    content: "•";
+    color: #D27D2D;
+    font-weight: bold;
+    display: inline-block;
+    width: 15px;
+    margin-right: 8px;
+}
+
+.package-price {
+    color: #D27D2D;
+    font-weight: 700;
+    font-size: 32px;
+    margin-top: auto;
+}
+
+.package-images {
+    display: flex;
+    justify-content: flex-end;
+    /* Align to right */
+    align-items: center;
+    /* Vertically center */
+}
+
+.package-image {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+
+}
+
+.select-btn {
+    background-color: #D27D2D;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 15px;
+    width: 100%;
+}
+
+.select-btn:hover {
+    background-color: #b86723;
+    transform: scale(1.02);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .package-content {
+        flex-direction: column;
+    }
+
+    .package-info {
+        flex: 1;
+    }
+
+    .package-images {
+        grid-template-columns: repeat(2, 1fr);
+        min-height: 250px;
+    }
 }
 
 .period-selector {
@@ -373,36 +406,19 @@ h1 {
     border-color: #D27D2D;
 }
 
-.time-hint {
-    text-align: center;
-    font-size: 11px;
-    color: #666;
-    margin-top: 10px;
-    font-style: italic;
+/*For customize payment button*/
+.button-custom {
+    background-color: #F5F5DC;
+    border-color: #F5F5DC;
+    color: #333;
+    /* adjust text color as needed */
 }
 
-.time-range-arrow {
-    font-size: 20px;
-    color: #D27D2D;
-    margin: 0 10px;
-}
-
-.time-section-label {
-    font-size: 12px;
-    font-weight: 600;
-    color: #D27D2D;
-    margin-bottom: 5px;
-    text-align: center;
-}
-
-.btn-custom {
-    background-color: #007bff;
-    color: white;
-}
-
-.btn-custom:hover {
-    background-color: #0056b3;
-    color: white;
+p {
+    text-decoration: underline;
+    text-decoration-color: #D27D2D;
+    text-underline-offset: 5px;
+    font-weight: 500;
 }
 
 /* Responsive */

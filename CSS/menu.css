@@ -1,8 +1,7 @@
 html,
 body {
     height: 100%;
-    overflow-x: hidden;
-
+    scroll-behavior: smooth;
 }
 
 body {
@@ -58,7 +57,6 @@ h1 {
     transform: scale(0.97);
 }
 
-
 .navbar-brand {
     color: black;
     font-weight: bolder;
@@ -84,66 +82,64 @@ h1 {
     border-color: #D27D2D;
 }
 
-
-.foodbg {
-    height: 75vh;
-    /* 50% ng viewport height, pwede mo i-adjust */
-    overflow: hidden;
-
+/* Click / Active */
+.navbar-toggler:focus,
+.navbar-toggler:active {
+    border-color: #D27D2D;
+    box-shadow: none;
+    /* remove blue glow */
 }
 
-.foodbg .img-cover {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    /* Para ma-cover yung buong container */
+h3 {
+    font-weight: 400;
+    text-align: center;
+    text-decoration: underline;
+    text-decoration-color: #D27D2D;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 9px;
 }
 
-.custom-hr {
-    width: 95%;
-    /* Adjust width */
-    margin-top: 6rem;
-    /* Adjust top spacing */
-    margin-bottom: 1rem;
-    /* Adjust bottom spacing */
-    margin-left: auto;
-    margin-right: auto;
-    border-width: 2px;
-    opacity: 0.75;
-    color: #D27D2D;
+.card-group .card {
+    margin: 0 10px;
+    display: flex;
+    flex-direction: column;
 }
 
-.square-img {
-    width: 350px;
-    height: 350px;
-    object-fit: cover;
-    border-radius: 8px;
-    margin-left: 10px;
-    margin-bottom: 10px;
+.card-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
 }
 
-.text-justify {
-    text-align: justify;
-    margin-right: 50px;
+.card-text:last-child {
+    margin-top: auto;
+    padding-top: 10px;
 }
 
-/* Responsive */
-@media (max-width: 768px) {
-    .step {
-        min-width: 70px;
-    }
+.menu-section {
+    padding: 20px 0;
+}
 
-    .step-circle {
-        width: 35px;
-        height: 35px;
-        font-size: 14px;
-    }
+.badge {
+    background-color: #D27D2D;
+    color: white;
+    padding: 8px 15px;
+    font-size: 1rem;
+    font-weight: bold;
+}
 
-    .step small {
-        font-size: 10px;
-    }
+#Breakfast {
+    margin-top: -50px;
+}
 
-    .step-line {
-        margin-top: -30px;
-    }
+#Lunch {
+    margin-top: -50px;
+}
+
+#Dinner {
+    margin-top: -50px;
+}
+
+#Drinks {
+    margin-top: -50px;
 }
