@@ -116,6 +116,6 @@ packageButtons.forEach(button => {
 
 //Cancel button function
 function confirmCancel() {
-    localStorage.removeItem('reservationData'); 
+    localStorage.removeItem('reservationData');
     window.location.href = 'index.html';
 }

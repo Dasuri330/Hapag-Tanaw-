@@ -3,6 +3,17 @@ const steps = document.querySelectorAll('.step');
 const stepLines = document.querySelectorAll('.step-line');
 let currentStep = 0;
 
+// Email validation function
+function isValidEmail(email) {
+    const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+    return emailPattern.test(email);
+}
+
+// phone number validation function
+function isValidPhoneNumber(phone) {
+    const phonePattern = /^(09\d{9}|\+639\d{9})$/;
+    return phonePattern.test(phone);
+}
 // Function to create validation modal if not already in DOM
 function createValidationModal() {
     if (!document.getElementById('validationModal')) {
@@ -102,7 +113,6 @@ document.addEventListener("DOMContentLoaded", function () {
         let end = hourEnd.value && minuteEnd.value ? `${hourEnd.value}:${minuteEnd.value} ${selectedPeriodEnd}` : '-- : -- --';
         displayTimeRange.innerHTML = `${start} <span class="time-range-arrow">→</span> ${end}`;
 
-        // Validate
         if (hourStart.value && minuteStart.value && hourEnd.value && minuteEnd.value) {
             const result = validateTimeRange(hourStart.value, minuteStart.value, selectedPeriodStart, hourEnd.value, minuteEnd.value, selectedPeriodEnd);
             if (!result.valid) {
@@ -139,7 +149,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <div class="modal fade" id="timeValidationModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                    <div class="modal-header" style="background-color: #D27D2D; color: white;>
+                    <div class="modal-header" style="background-color: #D27D2D; color: white;">
                         <h5 class="modal-title"><i class="bi bi-clock-fill me-2"></i>Invalid Time Range</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>
@@ -154,7 +164,6 @@ document.addEventListener("DOMContentLoaded", function () {
         new bootstrap.Modal(document.getElementById('timeValidationModal')).show();
     }
 
-    // Period buttons
     if (amBtnStart) amBtnStart.addEventListener('click', () => { selectedPeriodStart = 'AM'; amBtnStart.classList.add('active'); pmBtnStart.classList.remove('active'); updateDisplay(); });
     if (pmBtnStart) pmBtnStart.addEventListener('click', () => { selectedPeriodStart = 'PM'; pmBtnStart.classList.add('active'); amBtnStart.classList.remove('active'); updateDisplay(); });
     if (amBtnEnd) amBtnEnd.addEventListener('click', () => { selectedPeriodEnd = 'AM'; amBtnEnd.classList.add('active'); pmBtnEnd.classList.remove('active'); updateDisplay(); });
@@ -184,6 +193,23 @@ document.addEventListener("DOMContentLoaded", function () {
                 }
             });
 
+            // Email format validation
+            const emailInput = document.getElementById("email");
+            if (emailInput && emailInput.value) {
+                if (!isValidEmail(emailInput.value)) {
+                    isValid = false;
+                    emailInput.classList.add("is-invalid");
+                }
+            }
+            // Phone number format validation
+            const phoneInput = document.getElementById("phoneNumber");
+            if (phoneInput && phoneInput.value) {
+                if (!isValidPhoneNumber(phoneInput.value)) {
+                    isValid = false;
+                    phoneInput.classList.add("is-invalid");
+                }
+            }
+
             // Validate time fields
             if (!timeValueStart.value || !timeValueEnd.value) {
                 isValid = false;
@@ -211,7 +237,6 @@ document.addEventListener("DOMContentLoaded", function () {
             localStorage.setItem("reservationData", JSON.stringify(formData));
             console.log("Reservation data saved:", formData);
 
-            // Navigate to next page
             window.location.href = "food_package.html";
         });
     }

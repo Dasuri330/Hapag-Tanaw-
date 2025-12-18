@@ -42,8 +42,18 @@ function getCurrentPageStep() {
 currentStep = getCurrentPageStep();
 updateStepper(currentStep);
 
+// Validate reference numbers
+function isValidGcashRef(ref) {
+    const refStr = String(ref).replace(/\D/g, '');
+    return refStr.length === 13;
+}
 
-//Payment method buttons
+function isValidMayaRef(ref) {
+    const refStr = String(ref).replace(/\D/g, '');
+    return refStr.length === 16;
+}
+
+// Payment method buttons
 
 // Credit/Debit Card
 const creditCardBtn = document.getElementById('creditCardBtn');
@@ -82,19 +92,16 @@ document.addEventListener('DOMContentLoaded', () => {
     const banktransfermodalEl = document.getElementById('banktransfermodal');
 
     if (banktransferBtn && banktransfermodalEl) {
-        // Initialize the modal once
         const banktransfermodal = new bootstrap.Modal(banktransfermodalEl, {
             backdrop: 'static',
             keyboard: true
         });
 
-        // Show modal on button click
         banktransferBtn.addEventListener('click', (e) => {
             e.preventDefault();
             banktransfermodal.show();
         });
 
-        // Handle OK button click to close modal safely
         const okBtn = banktransfermodalEl.querySelector('.btn-primary');
         if (okBtn) {
             okBtn.addEventListener('click', (e) => {
@@ -110,9 +117,28 @@ const confirmGcashBtn = document.getElementById('confirmGcashBtn');
 if (confirmGcashBtn) {
     confirmGcashBtn.addEventListener('click', function (e) {
         e.preventDefault();
-        const referenceNumber = document.getElementById('gcashReferenceNumber').value;
+        const referenceNumberInput = document.getElementById('gcashReferenceNumber');
+        const referenceNumber = referenceNumberInput.value;
+
+        // Remove previous error message
+        let errorEl = document.getElementById('gcashRefError');
+        if (errorEl) errorEl.remove();
+
         if (!referenceNumber) {
-            alert('Please enter reference number');
+            errorEl = document.createElement('div');
+            errorEl.id = 'gcashRefError';
+            errorEl.className = 'text-danger mt-1';
+            errorEl.textContent = 'Please enter reference number';
+            referenceNumberInput.insertAdjacentElement('afterend', errorEl);
+            return;
+        }
+
+        if (!isValidGcashRef(referenceNumber)) {
+            errorEl = document.createElement('div');
+            errorEl.id = 'gcashRefError';
+            errorEl.className = 'text-danger mt-1';
+            errorEl.textContent = 'GCash reference number must be exactly 13 digits';
+            referenceNumberInput.insertAdjacentElement('afterend', errorEl);
             return;
         }
 
@@ -129,9 +155,28 @@ const confirmMayaBtn = document.getElementById('confirmMayaBtn');
 if (confirmMayaBtn) {
     confirmMayaBtn.addEventListener('click', function (e) {
         e.preventDefault();
-        const referenceNumber = document.getElementById('mayaReferenceNumber').value;
+        const referenceNumberInput = document.getElementById('mayaReferenceNumber');
+        const referenceNumber = referenceNumberInput.value;
+
+        // Remove previous error message
+        let errorEl = document.getElementById('mayaRefError');
+        if (errorEl) errorEl.remove();
+
         if (!referenceNumber) {
-            alert('Please enter reference number');
+            errorEl = document.createElement('div');
+            errorEl.id = 'mayaRefError';
+            errorEl.className = 'text-danger mt-1';
+            errorEl.textContent = 'Please enter reference number';
+            referenceNumberInput.insertAdjacentElement('afterend', errorEl);
+            return;
+        }
+
+        if (!isValidMayaRef(referenceNumber)) {
+            errorEl = document.createElement('div');
+            errorEl.id = 'mayaRefError';
+            errorEl.className = 'text-danger mt-1';
+            errorEl.textContent = 'Maya reference number must be exactly 16 digits';
+            referenceNumberInput.insertAdjacentElement('afterend', errorEl);
             return;
         }
 
@@ -149,7 +194,6 @@ if (confirmBankBtn) {
     confirmBankBtn.addEventListener('click', function (e) {
         e.preventDefault();
 
-        // Optional: get bank account/reference input if any
         const bankAccountNumberEl = document.getElementById('bankAccountNumber');
         const bankAccountNumber = bankAccountNumberEl ? bankAccountNumberEl.value : '';
 
@@ -163,18 +207,16 @@ if (confirmBankBtn) {
         if (bankAccountNumber) reservationData.bankAccountNumber = bankAccountNumber;
         localStorage.setItem('reservationData', JSON.stringify(reservationData));
 
-        // Close modal
         const banktransfermodalEl = document.getElementById('banktransfermodal');
         const banktransfermodal = bootstrap.Modal.getInstance(banktransfermodalEl);
         banktransfermodal.hide();
 
-        // Move to confirmation page
         updateStepper(3);
         window.location.href = 'Confirm.html';
     });
 }
 
-//Display data function
+// Display data function
 window.addEventListener('DOMContentLoaded', () => {
     const reservationData = JSON.parse(localStorage.getItem('reservationData')) || {};
     const displayRef = document.getElementById('displayReferenceNumber');
@@ -183,6 +225,7 @@ window.addEventListener('DOMContentLoaded', () => {
     }
 });
 
+// Save payment method helper
 function savePaymentMethod(paymentMethod) {
     const reservationData = JSON.parse(localStorage.getItem('reservationData')) || {};
     reservationData.paymentMethod = paymentMethod;

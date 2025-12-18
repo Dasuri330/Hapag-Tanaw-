@@ -80,7 +80,7 @@
         <div class="container rounded-bottom shadow-lg"
           style="background-color: #F5F5DC; margin-top: -10px; position: relative; z-index: 1; max-height: 550px; overflow-y: auto; padding: 0;">
           <div class="p-4">
-            <form id="reservationForm">
+            <form id="reservationForm" class="needs-validation" novalidate>
               <!-- Full Name -->
               <div class="mb-3">
                 <label class="form-label" for="fullName"><i class="bi bi-person"></i> Full Name <span class="text-danger">*</span></label>
@@ -91,12 +91,20 @@
               <div class="mb-3">
                 <label class="form-label" for="email"><i class="bi bi-envelope"></i> Email Address <span class="text-danger">*</span></label>
                 <input type="email" class="form-control" id="email" placeholder="juandelacruz@gmail.com" required>
+              
+                <div class="invalid-feedback">
+                 Please enter a valid email address.
+                </div>
               </div>
 
               <!-- Phone -->
               <div class="mb-3">
                 <label class="form-label" for="phoneNumber"><i class="bi bi-telephone"></i> Phone Number <span class="text-danger">*</span></label>
                 <input type="tel" class="form-control" id="phoneNumber" placeholder="+63 912 345 6789" required>
+             
+                <div class="invalid-feedback">
+                 Please enter a valid phone number.
+                </div>
               </div>
 
               <!-- Date -->

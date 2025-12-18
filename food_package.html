@@ -75,7 +75,7 @@
           style="background-color: #F5F5DC; margin-top: -10px; position: relative; z-index: 1; max-height: 550px; overflow-y: auto; padding: 0;">
 
           <!-- Food Package Card -->
-          <div class="package-content mb-5">
+          <div class="package-content mb-3">
             <div class="package-info">
               <div>
                 <h3 class="package-title">Classic Kamayan</h3>
@@ -180,10 +180,12 @@
           </div>
 
           <!-- Button Group -->
-          <div class="d-grid gap-2">
-             <button class="btn btn-primary" type="button" style="background-color: #D27D2D; border-color: #D27D2D;">Back</button>
-             <button class="btn btn-danger" type="button" data-bs-toggle="modal" data-bs-target="#cancelModal">Cancel</button>
-          </div>
+        <div class="d-flex gap-2 p-3 w-100">
+           <button class="btn btn-primary flex-fill" type="button" style="background-color: #D27D2D; border-color: #D27D2D;">Back</button>
+           <button class="btn btn-danger flex-fill" type="button" data-bs-toggle="modal" data-bs-target="#cancelModal">Cancel</button>
+        </div>
+
+  
         </div>
       </div>
     </section>
@@ -193,7 +195,7 @@
   <div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header bg-warning">
+        <div class="modal-header" style="background-color: #D27D2D; color: #FFFF">
           <h5 class="modal-title" id="cancelModalLabel">
             <i class="bi bi-exclamation-triangle-fill"></i> Warning
           </h5>

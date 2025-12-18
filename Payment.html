@@ -120,7 +120,7 @@
             style="background-color: #f5f5dc; margin-top: -10px; position: relative; max-height: 550px; padding: 0;">
            <div class="d-grid gap-2 m-2 p-3">
             
-              <button class="btn text-start p-3 button-custom shadow-lg" type="button" id="creditCardBtn">
+              <button class="btn text-start p-3 button-custom shadow-lg border-0" type="button" id="creditCardBtn" aria-label="Disabled Credit/Debit Card" disabled style="background-color: #e9ecef;">
                 <i class="bi bi-credit-card-fill me-2" style="color:#D27D2D;"></i><span>Credit/Debit Card (Pay with Visa, MasterCard or AMEX)</span>
               </button>
               <button id="gcashBtn"class="btn text-start p-3 button-custom shadow-lg d-flex align-items-center" type="button">
@@ -131,7 +131,8 @@
                 <i class="bi bi-wallet me-2" style="color:#D27D2D;"></i><span>Maya (Digital Walllet Payment)</span>
               </button>
               
-              <button class="btn p-3 button-custom shadow-lg d-flex align-items-center"type="button"  id="banktransferbtn" data-bs-toggle="modal" data-bs-target="#banktransfermodal"><i class="bi bi-bank me-2" style="color:#D27D2D;"></i>
+              <button class="btn p-3 button-custom shadow-lg border-0 d-flex align-items-center" type="button" id="banktransferbtn" arial-label="Disble Bank Transfer" disabled style="background-color: #e9ecef;">
+                <i class="bi bi-bank me-2" style="color:#D27D2D;"></i>
                 <span>Bank Transfer (Direct Bank Deposit Transfer)</span>
               </button>
           </div>

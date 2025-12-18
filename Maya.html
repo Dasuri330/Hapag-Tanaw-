@@ -138,7 +138,7 @@
       <p>QR Code will appear here</p>
       
       <ol style="padding-left: 20px; margin-top: 0;">
-        <li>Open your GCash app on your mobile device.</li>
+        <li>Open your Maya app on your mobile device.</li>
         <li>Tap "Pay QR" or scan the QR code using the app.</li>
         <li>Enter the amount to pay and confirm the payment.</li>
         <li>Confirm Payment 30% Deposit.</li>
@@ -154,7 +154,9 @@
         Reference Number<span class="text-danger">*</span>
       </label>
       <input type="number" id="mayaReferenceNumber" name="mayaReferenceNumber" class="form-control" placeholder="Enter Reference Number" required>
-      
+      <div class="invalid-feedback ms-5">
+      Reference number must be exactly 16 digits.
+      </div>
       <!-- Payment Policy-->
       <div class="container p-4 shadow-lg rounded-3 my-3">
         <h5 class="policy">Payment Policy</h5>
