@@ -49,9 +49,11 @@ function isValidGcashRef(ref) {
 }
 
 function isValidMayaRef(ref) {
-    const refStr = String(ref).replace(/\D/g, '');
-    return refStr.length === 16;
+    const refStr = String(ref).trim();
+    const mayaPattern = /^[A-Za-z0-9]{12}$/; // exactly 12 alphanumeric
+    return mayaPattern.test(refStr);
 }
+
 
 // Payment method buttons
 
@@ -85,6 +87,18 @@ if (mayaBtn) {
         window.location.href = 'Maya.html';
     });
 }
+// Maya reference auto all caps
+const mayaInput = document.getElementById('mayaReferenceNumber');
+
+if (mayaInput) {
+    mayaInput.addEventListener('input', function () {
+        this.value = this.value
+            .toUpperCase()
+            .replace(/[^A-Z0-9]/g, '')
+            .slice(0, 12);
+    });
+}
+
 
 // Bank Transfer - show modal
 document.addEventListener('DOMContentLoaded', () => {
@@ -175,7 +189,7 @@ if (confirmMayaBtn) {
             errorEl = document.createElement('div');
             errorEl.id = 'mayaRefError';
             errorEl.className = 'text-danger mt-1';
-            errorEl.textContent = 'Maya reference number must be exactly 16 digits';
+            errorEl.textContent = 'Maya reference number must be exactly 12 alphanumeric characters';
             referenceNumberInput.insertAdjacentElement('afterend', errorEl);
             return;
         }
@@ -185,6 +199,7 @@ if (confirmMayaBtn) {
         localStorage.setItem('reservationData', JSON.stringify(reservationData));
 
         window.location.href = 'Confirm.html';
+
     });
 }
 

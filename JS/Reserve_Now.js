@@ -88,8 +88,11 @@ document.addEventListener("DOMContentLoaded", function () {
     // Set minimum date
     const dateInput = document.getElementById("dateInput");
     if (dateInput) {
-        const today = new Date().toISOString().split('T')[0];
-        dateInput.setAttribute('min', today);
+        const today = new Date();
+        today.setHours(0, 0, 0, 0);
+
+        const localDate = today.toLocaleDateString('en-CA'); // YYYY-MM-DD
+        dateInput.setAttribute('min', localDate);
     }
 
     // Time picker elements

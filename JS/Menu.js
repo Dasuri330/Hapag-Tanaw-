@@ -24,3 +24,13 @@ navLinks.forEach(link => {
     });
 });
 
+const menuNavbar = document.getElementById('menuNav');
+
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 50) {
+        menuNavbar.classList.add('scrolled');
+    } else {
+        menuNavbar.classList.remove('scrolled');
+    }
+});
+

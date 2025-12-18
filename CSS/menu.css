@@ -1,4 +1,5 @@
-@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
 
 html,
 body {
@@ -71,10 +72,15 @@ h1 {
 }
 
 .navbar-brand {
-    color: black;
-    font-family: "Playfair Display", serif;
-    font-style: italic;
+    color: #D27D2D !important;
+    font-family: "Montserrat Alternates", sans-serif;
     font-weight: 800;
+}
+
+.navbar-brand:hover,
+.navbar-brand:focus {
+    color: #D27D2D !important;
+    text-decoration: none;
 }
 
 
@@ -82,7 +88,6 @@ h1 {
     color: black !important;
     font-weight: 500;
 }
-
 
 
 h3 {
@@ -137,4 +142,44 @@ h3 {
 
 #Drinks {
     margin-top: -50px;
+}
+
+/*for second navbar*/
+#menuNav {
+    width: 100%;
+    /* full width */
+    background-color: #F5F5DC;
+    /* initial background color, no opacity */
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    position: sticky;
+    /* keep it on top */
+    top: 0;
+    z-index: 1000;
+}
+
+/* Change background on scroll */
+#menuNav.scrolled {
+    background-color: #F5F5DC;
+    /* same solid color */
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Nav links default */
+#menuNav .nav-link {
+    color: black !important;
+    font-weight: 500;
+}
+
+/* Nav links on scroll */
+#menuNav.scrolled .nav-link {
+    color: black !important;
+    /* readable against beige background */
+}
+
+/* Make navbar content responsive */
+#menuNav .navbar-nav {
+    flex-wrap: wrap;
+    /* wrap links on smaller screens */
+    justify-content: center;
+    /* center links */
 }
