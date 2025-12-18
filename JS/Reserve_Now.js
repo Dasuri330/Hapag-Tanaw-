@@ -10,7 +10,7 @@ function createValidationModal() {
         <div class="modal fade" id="validationModal" tabindex="-1" aria-labelledby="validationModalLabel" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                    <div class="modal-header bg-danger text-white">
+                    <div class="modal-header text-white" style="background-color: #D27D2D; color: white;">
                         <h5 class="modal-title" id="validationModalLabel">
                             <i class="bi bi-exclamation-triangle-fill me-2"></i>
                             Incomplete Information
@@ -139,7 +139,7 @@ document.addEventListener("DOMContentLoaded", function () {
         <div class="modal fade" id="timeValidationModal" tabindex="-1" aria-hidden="true">
             <div class="modal-dialog modal-dialog-centered">
                 <div class="modal-content">
-                    <div class="modal-header bg-warning text-dark">
+                    <div class="modal-header" style="background-color: #D27D2D; color: white;>
                         <h5 class="modal-title"><i class="bi bi-clock-fill me-2"></i>Invalid Time Range</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
                     </div>

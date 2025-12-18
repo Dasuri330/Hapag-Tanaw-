@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
+
 html,
 body {
     height: 100%;
@@ -12,6 +15,10 @@ body {
 .navbar {
     background-color: #D27D2D;
     opacity: 0.8;
+}
+
+.user-icon {
+    color: #D27D2D;
 }
 
 footer {
@@ -59,7 +66,9 @@ h1 {
 
 .navbar-brand {
     color: black;
-    font-weight: bolder;
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-weight: 800;
 }
 
 .navbar .nav-link {
@@ -67,45 +76,31 @@ h1 {
     font-weight: 500;
 }
 
-.navbar .nav-link:hover,
-.navbar .nav-link.active {
-    color: black !important;
+.nav-link.active {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-decoration-color: #D27D2D;
+    text-underline-offset: 4px;
+    font-weight: 500;
 }
 
-.navbar-toggler {
-    border-color: black;
-    transition: border-color 0.3s ease;
-}
-
-/* Hover */
-.navbar-toggler:hover {
-    border-color: #D27D2D;
-}
-
-/* Click / Active */
-.navbar-toggler:focus,
-.navbar-toggler:active {
-    border-color: #D27D2D;
-    box-shadow: none;
-    /* remove blue glow */
-}
 
 .location-section {
     background-color: #f5f5dc;
-    padding: 50px 0;
+    padding: 20px 0;
     min-height: 80vh;
 }
 
 .location-title {
     text-align: center;
     font-size: 2rem;
-    font-weight: 600;
+    font-weight: 400;
     margin-bottom: 40px;
     text-decoration: underline;
-    text-underline-offset: 8px;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 9px;
     text-decoration-color: #D27D2D;
     display: inline-block;
-
 }
 
 .contact-info {
@@ -155,9 +150,14 @@ h1 {
 
 .social-title {
     font-size: 1.3rem;
-    font-weight: 600;
+    font-weight: 400;
     margin-bottom: 20px;
+    display: inline-block;
+    border-bottom: 1px solid #D27D2D;
+    padding-bottom: 4px;
+
 }
+
 
 .social-icons {
     display: flex;
@@ -181,6 +181,10 @@ h1 {
     color: white;
     transition: transform 0.3s ease;
     text-decoration: none;
+}
+
+.custom-border {
+    border-radius: 15px;
 }
 
 .social-icon:hover {

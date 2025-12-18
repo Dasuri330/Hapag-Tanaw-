@@ -1,7 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap');
+
 html,
 body {
     height: 100%;
     overflow-x: hidden;
+    scroll-behavior: smooth;
 
 }
 
@@ -15,6 +18,11 @@ body {
     background-color: #D27D2D;
     opacity: 0.8;
 }
+
+.user-icon {
+    color: #D27D2D;
+}
+
 
 footer {
     margin-top: auto;
@@ -61,42 +69,62 @@ h1 {
 
 .navbar-brand {
     color: black;
-    font-weight: bolder;
+    font-family: "Playfair Display", serif;
+    font-style: italic;
+    font-weight: 800;
 }
+
 
 .navbar .nav-link {
     color: black !important;
     font-weight: 500;
 }
 
-.navbar .nav-link:hover,
-.navbar .nav-link.active {
-    color: black !important;
+.nav-link.active {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-decoration-color: #D27D2D;
+    text-underline-offset: 4px;
+    font-weight: 500;
 }
 
-.navbar-toggler {
-    border-color: black;
-    transition: border-color 0.3s ease;
-}
-
-/* Hover */
-.navbar-toggler:hover {
-    border-color: #D27D2D;
-}
 
 
 .foodbg {
-    height: 75vh;
-    /* 50% ng viewport height, pwede mo i-adjust */
+    width: 100%;
     overflow: hidden;
-
+    position: relative;
 }
 
 .foodbg .img-cover {
     width: 100%;
-    height: 100%;
+    height: auto;
+    /* Let image maintain aspect ratio on mobile */
     object-fit: cover;
-    /* Para ma-cover yung buong container */
+    display: block;
+}
+
+/* Responsive heights for different screen sizes */
+@media (min-width: 576px) {
+    .foodbg {
+        height: 50vh;
+    }
+
+    .foodbg .img-cover {
+        height: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    .foodbg {
+        height: 60vh;
+    }
+}
+
+@media (min-width: 992px) {
+    .foodbg {
+        height: 75vh;
+    }
 }
 
 .custom-hr {
@@ -129,21 +157,19 @@ h1 {
 
 /* Responsive */
 @media (max-width: 768px) {
-    .step {
-        min-width: 70px;
+
+    .square-img {
+        width: 100%;
+        height: auto;
+        max-width: 350px;
+        margin-left: 0;
     }
 
-    .step-circle {
-        width: 35px;
-        height: 35px;
-        font-size: 14px;
+    .text-justify {
+        margin-right: 20px;
     }
 
-    .step small {
-        font-size: 10px;
-    }
-
-    .step-line {
-        margin-top: -30px;
+    p {
+        font-size: 16px;
     }
 }

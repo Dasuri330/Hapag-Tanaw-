@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Hapag Tanaw</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <link rel="stylesheet" href="CSS/index.css">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
 
@@ -12,10 +13,10 @@
 
 <body>
 <!-- Navbar Area -->
-<nav class="navbar navbar-expand-md bg-white px-4 mt-3">
+<nav class="navbar navbar-expand-md bg-white px-4 mt-1">
   <div class="container-fluid position-relative">
-    <!-- Brand (Left) -->
-    <a href="index.html" class="navbar-brand fw-bold ms-5">
+    <!-- Brand -->
+    <a href="index.html" class="navbar-brand  ms-5">
       Hapag Tanaw
     </a>
 
@@ -26,22 +27,32 @@
       <span class="navbar-toggler-icon"></span>
     </button>
 
-    <!-- Navbar Links (Centered) -->
+    <!-- Navbar Links -->
     <div class="collapse navbar-collapse justify-content-center ms-2" id="main-nav">
-      <ul class="navbar-nav">
-        <li class="nav-item mx-3">
-          <a class="nav-link" href="index.html">Home</a>
-        </li>
-        <li class="nav-item mx-3">
-          <a class="nav-link" href="About.html">About</a>
-        </li>
-        <li class="nav-item mx-3">
-          <a class="nav-link" href="Menu.html">Menu</a>
-        </li>
-        <li class="nav-item mx-3">
-          <a class="nav-link" href="Contact.html">Contact</a>
-        </li>
-      </ul>
+    <!-- Center Menu -->
+  <ul class="navbar-nav mx-auto">
+    <li class="nav-item mx-3">
+      <a class="nav-link active" href="index.html">Home</a>
+    </li>
+    <li class="nav-item mx-3">
+      <a class="nav-link" href="About.html">About</a>
+    </li>
+    <li class="nav-item mx-3">
+      <a class="nav-link" href="Menu.html">Menu</a>
+    </li>
+    <li class="nav-item mx-3">
+      <a class="nav-link" href="Contact.html">Contact</a>
+    </li>
+  </ul>
+
+  <!-- Right User Icon -->
+  <ul class="navbar-nav">
+    <li class="nav-item">
+      <a class="nav-link" href="#">
+        <i class="bi bi-person-fill fs-4 user-icon"></i>
+      </a>
+    </li>
+  </ul>
     </div>
   </div>
 </nav>
@@ -50,7 +61,7 @@
 <main>
   <!-- Hero Section -->
   <section class="hero-section">
-    <div class="container-fluid my-1 p-5 text-dark shadow-5 mt-4">
+    <div class="container-fluid  p-5 text-dark shadow-5 mt-n1">
       <div class="row align-items-center">
         
         <!-- Left side: Text content (6 columns) -->
@@ -60,8 +71,8 @@
           <p>Welcome to the Hapag Tanaw a place where<br>Filipino tradition meets modern taste.</p>
 
           <div class="d-flex flex-row gap-3 mt-2">
-            <a href="FAQs.html" class="btn btn-lg btn-custom">FAQs</a>
             <a href="Reserve_Now.html" class="btn btn-lg btn-custom">Reserve Now</a>
+            <a href="FAQs.html" class="btn btn-lg btn-custom">FAQs</a>
           </div>
         </div>
         

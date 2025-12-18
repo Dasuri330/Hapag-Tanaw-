@@ -5,18 +5,10 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Reserve Now - Hapag Tanaw</title>
-
-  <!-- Bootstrap CSS -->
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet"
     integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-
-  <!-- Bootstrap Icons -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css">
-
-  <!-- Custom CSS -->
   <link rel="stylesheet" href="CSS/Reserve_Now.css">
-
-  <!-- Bootstrap JS Bundle -->
   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js"
     integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI"
     crossorigin="anonymous"></script>
@@ -25,7 +17,7 @@
 
 <body>
   <!-- Navbar -->
-  <nav class="navbar navbar-expand-md bg-white px-4 mt-3">
+  <nav class="navbar navbar-expand-md bg-white px-4 mt-1">
     <div class="container-fluid position-relative">
       <a href="index.html" class="navbar-brand fw-bold ms-5">Hapag Tanaw</a>
       <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#main-nav"
@@ -40,6 +32,15 @@
           <li class="nav-item mx-3"><a class="nav-link" href="Contact.html">Contact</a></li>
         </ul>
       </div>
+
+         <!-- Right User Icon -->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="bi bi-person-fill fs-4 user-icon"></i>
+          </a>
+        </li>
+      </ul>
     </div>
   </nav>
 
@@ -268,7 +269,7 @@
   <div class="modal fade" id="cancelModal" tabindex="-1" aria-labelledby="cancelModalLabel" aria-hidden="true">
     <div class="modal-dialog modal-dialog-centered">
       <div class="modal-content">
-        <div class="modal-header bg-warning">
+        <div class="modal-header" style="background-color: #D27D2D; color: white;">
           <h5 class="modal-title" id="cancelModalLabel"><i class="bi bi-exclamation-triangle-fill"></i> Warning</h5>
           <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
         </div>
