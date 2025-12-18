@@ -64,10 +64,10 @@ h1 {
 
 
 .navbar-brand {
-    color: black;
+    color: #D27D2D;
     font-family: "Playfair Display", serif;
-    font-style: italic;
     font-weight: 800;
+
 }
 
 .navbar .nav-link {
