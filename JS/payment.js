@@ -50,21 +50,21 @@ function isValidGcashRef(ref) {
 
 function isValidMayaRef(ref) {
     const refStr = String(ref).trim();
-    const mayaPattern = /^[A-Za-z0-9]{12}$/; // exactly 12 alphanumeric
+    const mayaPattern = /^[A-Za-z0-9]{12}$/; 
     return mayaPattern.test(refStr);
 }
 
 
 // Payment method buttons
 
-// Credit/Debit Card
+/* Credit/Debit Card
 const creditCardBtn = document.getElementById('creditCardBtn');
 if (creditCardBtn) {
     creditCardBtn.addEventListener('click', () => {
         const creditCardModal = new bootstrap.Modal(document.getElementById('creditCardModal'));
         creditCardModal.show();
     });
-}
+}*/
 
 // GCash
 const gcashBtn = document.getElementById('gcashBtn');
@@ -100,7 +100,7 @@ if (mayaInput) {
 }
 
 
-// Bank Transfer - show modal
+/*Bank Transfer - show modal
 document.addEventListener('DOMContentLoaded', () => {
     const banktransferBtn = document.getElementById('banktransferbtn');
     const banktransfermodalEl = document.getElementById('banktransfermodal');
@@ -124,14 +124,58 @@ document.addEventListener('DOMContentLoaded', () => {
             });
         }
     }
-});
+});*/
+
+// Restrict GCash reference number input to 13 digits only
+const referenceNumberInput = document.getElementById('gcashReferenceNumber');
+
+if (referenceNumberInput) {
+    // Prevent input beyond 13 digits and allow only numbers
+    referenceNumberInput.addEventListener('input', function (e) {
+        // Remove any non-digit characters
+        let value = e.target.value.replace(/\D/g, '');
+
+        // Limit to 13 digits
+        if (value.length > 13) {
+            value = value.slice(0, 13);
+        }
+
+        e.target.value = value;
+    });
+
+    // Prevent paste of invalid content
+    referenceNumberInput.addEventListener('paste', function (e) {
+        e.preventDefault();
+        const pastedData = (e.clipboardData || window.clipboardData).getData('text');
+        const digitsOnly = pastedData.replace(/\D/g, '').slice(0, 13);
+        e.target.value = digitsOnly;
+    });
+
+    // Prevent non-numeric keys 
+    referenceNumberInput.addEventListener('keypress', function (e) {
+        // Allow backspace, delete, tab, escape, enter
+        if ([46, 8, 9, 27, 13].indexOf(e.keyCode) !== -1 ||
+            // Allow Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X
+            (e.keyCode === 65 && e.ctrlKey === true) ||
+            (e.keyCode === 67 && e.ctrlKey === true) ||
+            (e.keyCode === 86 && e.ctrlKey === true) ||
+            (e.keyCode === 88 && e.ctrlKey === true)) {
+            return;
+        }
+
+        // Ensure that it is a number and stop the keypress if not
+        if ((e.shiftKey || (e.keyCode < 48 || e.keyCode > 57)) &&
+            (e.keyCode < 96 || e.keyCode > 105)) {
+            e.preventDefault();
+        }
+    });
+}
 
 // Save GCash reference number
 const confirmGcashBtn = document.getElementById('confirmGcashBtn');
 if (confirmGcashBtn) {
     confirmGcashBtn.addEventListener('click', function (e) {
         e.preventDefault();
-        const referenceNumberInput = document.getElementById('gcashReferenceNumber');
         const referenceNumber = referenceNumberInput.value;
 
         // Remove previous error message
@@ -164,13 +208,61 @@ if (confirmGcashBtn) {
     });
 }
 
+// Restrict Maya reference number input to 12 alphanumeric characters only
+const mayaReferenceNumberInput = document.getElementById('mayaReferenceNumber');
+
+if (mayaReferenceNumberInput) {
+    // Prevent input beyond 12 characters and allow only alphanumeric
+    mayaReferenceNumberInput.addEventListener('input', function (e) {
+        // Remove any non-alphanumeric characters (keep letters and numbers only)
+        let value = e.target.value.replace(/[^a-zA-Z0-9]/g, '');
+
+        // Limit to 12 characters
+        if (value.length > 12) {
+            value = value.slice(0, 12);
+        }
+
+        // Convert to uppercase (Maya reference numbers are typically uppercase)
+        e.target.value = value.toUpperCase();
+    });
+
+    // Prevent paste of invalid content
+    mayaReferenceNumberInput.addEventListener('paste', function (e) {
+        e.preventDefault();
+        const pastedData = (e.clipboardData || window.clipboardData).getData('text');
+        const alphanumericOnly = pastedData.replace(/[^a-zA-Z0-9]/g, '').slice(0, 12);
+        e.target.value = alphanumericOnly.toUpperCase();
+    });
+
+    // Prevent non-alphanumeric keys
+    mayaReferenceNumberInput.addEventListener('keypress', function (e) {
+        // Allow backspace, delete, tab, escape, enter
+        if ([46, 8, 9, 27, 13].indexOf(e.keyCode) !== -1 ||
+            // Allow Ctrl+A, Ctrl+C, Ctrl+V, Ctrl+X
+            (e.keyCode === 65 && e.ctrlKey === true) ||
+            (e.keyCode === 67 && e.ctrlKey === true) ||
+            (e.keyCode === 86 && e.ctrlKey === true) ||
+            (e.keyCode === 88 && e.ctrlKey === true)) {
+            return;
+        }
+
+        // Get the character code
+        const charCode = e.which || e.keyCode;
+        const char = String.fromCharCode(charCode);
+
+        // Allow only alphanumeric characters 
+        if (!/[a-zA-Z0-9]/.test(char)) {
+            e.preventDefault();
+        }
+    });
+}
+
 // Save Maya reference number
 const confirmMayaBtn = document.getElementById('confirmMayaBtn');
 if (confirmMayaBtn) {
     confirmMayaBtn.addEventListener('click', function (e) {
         e.preventDefault();
-        const referenceNumberInput = document.getElementById('mayaReferenceNumber');
-        const referenceNumber = referenceNumberInput.value;
+        const referenceNumber = mayaReferenceNumberInput.value;
 
         // Remove previous error message
         let errorEl = document.getElementById('mayaRefError');
@@ -181,7 +273,7 @@ if (confirmMayaBtn) {
             errorEl.id = 'mayaRefError';
             errorEl.className = 'text-danger mt-1';
             errorEl.textContent = 'Please enter reference number';
-            referenceNumberInput.insertAdjacentElement('afterend', errorEl);
+            mayaReferenceNumberInput.insertAdjacentElement('afterend', errorEl);
             return;
         }
 
@@ -190,7 +282,7 @@ if (confirmMayaBtn) {
             errorEl.id = 'mayaRefError';
             errorEl.className = 'text-danger mt-1';
             errorEl.textContent = 'Maya reference number must be exactly 12 alphanumeric characters';
-            referenceNumberInput.insertAdjacentElement('afterend', errorEl);
+            mayaReferenceNumberInput.insertAdjacentElement('afterend', errorEl);
             return;
         }
 
@@ -202,8 +294,7 @@ if (confirmMayaBtn) {
 
     });
 }
-
-// Save Bank Transfer payment
+/*Save Bank Transfer payment
 const confirmBankBtn = document.getElementById('confirmBankBtn');
 if (confirmBankBtn) {
     confirmBankBtn.addEventListener('click', function (e) {
@@ -229,7 +320,7 @@ if (confirmBankBtn) {
         updateStepper(3);
         window.location.href = 'Confirm.html';
     });
-}
+}*/
 
 // Display data function
 window.addEventListener('DOMContentLoaded', () => {

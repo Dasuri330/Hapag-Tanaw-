@@ -24,11 +24,8 @@ footer {
     margin-top: auto;
     background-color: #D27D2D;
 
-    /*opacity: 0.8;*/
 }
 
-
-/* Ensure container-fluid elements get the same background only inside main */
 main .container-fluid {
     background-color: #F5F5DC;
 }
@@ -41,10 +38,8 @@ h1 {
     font-size: 50px;
 }
 
-/* Larger, more padded buttons when using btn-lg */
 .btn-custom {
     background-color: #D27D2D !important;
-    /* override Bootstrap */
     border-color: #D27D2D !important;
     color: #fff !important;
     border-radius: 5;
@@ -101,7 +96,6 @@ h1 {
 .navbar-toggler:active {
     border-color: #D27D2D;
     box-shadow: none;
-    /* remove blue glow */
 }
 
 .subtitle {
@@ -121,7 +115,6 @@ h1 {
     font-size: 0.95rem;
 }
 
-/* Beige background section */
 .reservation-bg {
     background-color: #F5F5DC;
 }
@@ -132,7 +125,7 @@ h1 {
 
 .stepper-container {
     margin-top: 10px;
-    /* adjust this to move stepper closer/farther from top */
+   
 }
 
 
@@ -140,22 +133,16 @@ h1 {
 .stepper {
     display: flex;
     align-items: center;
-    /* vertically center circles and lines */
     justify-content: center;
-    /* center horizontally */
     margin-top: 20px;
-    /* distance from top */
     gap: 0;
-    /* spacing handled by line margins */
 }
 
 /* Step wrapper */
 .step {
     display: flex;
     flex-direction: column;
-    /* stack circle and label vertically */
     align-items: center;
-    /* center horizontally */
     min-width: 90px;
     position: relative;
     z-index: 2;
@@ -174,7 +161,6 @@ h1 {
     font-weight: bold;
     transition: all 0.3s ease;
     z-index: 1;
-    /* sit above lines */
     border: 3px solid #ccc;
 }
 
@@ -183,7 +169,6 @@ h1 {
     display: block;
     text-align: center;
     margin-top: 8px;
-    /* space below circle */
     color: #666;
     transition: all 0.3s ease;
 }
@@ -228,7 +213,6 @@ h1 {
     height: 4px;
     background-color: #ccc;
     margin: 0 -2px;
-    /* overlap circles slightly */
     margin-top: -35px;
     position: relative;
     z-index: 0;
@@ -346,9 +330,7 @@ h1 {
 .package-images {
     display: flex;
     justify-content: flex-end;
-    /* Align to right */
     align-items: center;
-    /* Vertically center */
 }
 
 .package-image {
@@ -425,18 +407,11 @@ h1 {
     background-color: #F5F5DC;
     border-color: #F5F5DC;
     color: #333;
-    /* adjust text color as needed */
 }
 
 .bank-btn i {
     color: #fff;
 }
-
-
-/*.button-custom:hover {
-    background-color: #E5E5CC;
-    border-color: #E5E5CC;
-}*/
 
 /* Responsive */
 @media (max-width: 768px) {

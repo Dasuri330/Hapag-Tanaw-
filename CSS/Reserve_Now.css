@@ -1,7 +1,5 @@
 @import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
 
-
-
 html,
 body {
     height: 100%;
@@ -26,7 +24,6 @@ footer {
     margin-top: auto;
     background-color: #D27D2D;
 
-    /*opacity: 0.8;*/
 }
 
 
@@ -300,7 +297,6 @@ h1 {
     -webkit-appearance: none;
     -moz-appearance: none;
     background: white url("data:image/svg+xml;charset=US-ASCII,<svg xmlns='http://www.w3.org/2000/svg' width='12' height='12'><polygon points='0,0 12,0 6,6' fill='%23000'/></svg>") no-repeat right 10px center;
-    /* custom arrow */
     background-size: 12px;
     transition: all 0.3s ease;
 }
@@ -312,7 +308,6 @@ h1 {
     box-shadow: 0 0 0 0.2rem rgba(210, 125, 45, 0.25);
 }
 
-/* Optional: hide default arrow for IE/Edge */
 .time-input-group select::-ms-expand {
     display: none;
 }

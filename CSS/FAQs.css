@@ -24,12 +24,8 @@ body {
 footer {
     margin-top: auto;
     background-color: #D27D2D;
-
-    /*opacity: 0.8;*/
 }
 
-
-/* Ensure container-fluid elements get the same background only inside main */
 main .container-fluid {
     background-color: #F5F5DC;
 }
@@ -42,10 +38,8 @@ h1 {
     font-size: 50px;
 }
 
-/* Larger, more padded buttons when using btn-lg */
 .btn-custom {
     background-color: #D27D2D !important;
-    /* override Bootstrap */
     border-color: #D27D2D !important;
     color: #fff !important;
     border-radius: 5;

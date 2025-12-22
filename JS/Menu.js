@@ -17,10 +17,16 @@ window.addEventListener('scroll', setActiveLink);
 
 navLinks.forEach(link => {
     link.addEventListener('click', (e) => {
-        e.preventDefault();
-        const targetId = link.getAttribute('href').substring(1);
-        const target = document.getElementById(targetId);
-        target.scrollIntoView({ behavior: 'smooth' });
+        const href = link.getAttribute('href');
+        if (href.startsWith('#')) {
+            e.preventDefault();
+            const targetId = href.substring(1);
+            const target = document.getElementById(targetId);
+            if (target) {
+                target.scrollIntoView({ behavior: 'smooth' });
+            }
+        }
+        // If href doesn't start with #, it will navigate normally (Reserve_Now.html)
     });
 });
 
@@ -33,4 +39,3 @@ window.addEventListener('scroll', () => {
         menuNavbar.classList.remove('scrolled');
     }
 });
-

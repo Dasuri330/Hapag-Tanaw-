@@ -106,8 +106,6 @@ createValidationModal();
 
 
 // Package selection afterwards redirect to payment
-
-
 const packageButtons = document.querySelectorAll('.select-btn');
 
 packageButtons.forEach(button => {
@@ -119,7 +117,6 @@ packageButtons.forEach(button => {
         localStorage.setItem('selectedPackage', selectedPackage);
         localStorage.setItem('selectedPrice', selectedPrice);
 
-
         updateStepper(2);
 
         // Redirect to payment page
@@ -129,7 +126,6 @@ packageButtons.forEach(button => {
 
 
 // Confirm Page function
-
 function confirmCancel() {
     localStorage.removeItem("reservationData");
     window.location.href = "index.html";
@@ -139,15 +135,7 @@ function goToHome() {
     localStorage.removeItem("reservationData");
     window.location.href = "index.html";
 }
-function confirmCancel() {
-    localStorage.removeItem("reservationData");
-    window.location.href = "index.html";
-}
 
-function goToHome() {
-    localStorage.removeItem("reservationData");
-    window.location.href = "index.html";
-}
 // Retrieve stored data from Reserve_Now.html and populate summary
 const data = JSON.parse(localStorage.getItem('reservationData'));
 if (data) {
@@ -172,10 +160,8 @@ if (data) {
 document.getElementById('confirmReservationBtn').addEventListener('click', function () {
     const data = JSON.parse(localStorage.getItem('reservationData'));
     if (data && data.email) {
-        // Set the email in the success modal
+        completeAllSteps();
         document.getElementById('confirmationEmail').textContent = data.email;
-
-        // Show the success modal
         const successModal = new bootstrap.Modal(document.getElementById('successModal'));
         successModal.show();
     } else {
@@ -183,3 +169,218 @@ document.getElementById('confirmReservationBtn').addEventListener('click', funct
         window.location.href = 'Reserve_Now.html';
     }
 });
+
+// Automated function for food package
+const packagePrices = {
+    "Classic Kamayan": 2500,
+    "Deluxe Fiesta": 4500,
+    "Premium Celebration": 6800
+};
+
+const editPackageInput = document.getElementById('editPackage');
+const autoPrice = document.getElementById('autoPrice');
+const selectedPackageEl = document.getElementById('selectedPackage');
+const packagePriceEl = document.getElementById('packagePrice');
+
+
+function normalizePackageName(name) {
+    return name
+        .trim()
+        .split(' ')
+        .map(word => word.charAt(0).toUpperCase() + word.slice(1).toLowerCase())
+        .join(' ');
+}
+
+editPackageInput.addEventListener('input', function () {
+    const normalized = normalizePackageName(this.value);
+
+    if (packagePrices[normalized] !== undefined) {
+        autoPrice.textContent = packagePrices[normalized];
+    } else {
+        autoPrice.textContent = '0';
+    }
+});
+
+function editFoodPackage() {
+    const reservationData = JSON.parse(localStorage.getItem('reservationData')) || {};
+
+    editPackageInput.value = reservationData.foodPackage || '';
+    autoPrice.textContent = reservationData.packagePrice || '0';
+
+    document.getElementById('foodPackageView').style.display = 'none';
+    document.getElementById('foodPackageEdit').style.display = 'block';
+}
+
+function saveFoodPackage() {
+    const selectedPackage = normalizePackageName(editPackageInput.value);
+
+    if (!packagePrices[selectedPackage]) {
+        alert("Please enter a valid package name!");
+        return;
+    }
+
+    const price = packagePrices[selectedPackage];
+    const reservationData = {
+        ...(JSON.parse(localStorage.getItem('reservationData')) || {}),
+        foodPackage: selectedPackage,
+        packagePrice: price
+    };
+
+    localStorage.setItem('reservationData', JSON.stringify(reservationData));
+    selectedPackageEl.textContent = selectedPackage;
+    packagePriceEl.textContent = `₱ ${price.toLocaleString()}`;
+
+    document.getElementById('foodPackageView').style.display = 'block';
+    document.getElementById('foodPackageEdit').style.display = 'none';
+}
+
+// Cancel button
+function cancelEditFoodPackage() {
+    const reservationData = JSON.parse(localStorage.getItem('reservationData')) || {};
+
+    selectedPackageEl.textContent = reservationData.foodPackage || "-";
+    packagePriceEl.textContent = reservationData.packagePrice
+        ? `₱ ${reservationData.packagePrice.toLocaleString()}`
+        : "-";
+
+    document.getElementById('foodPackageView').style.display = 'block';
+    document.getElementById('foodPackageEdit').style.display = 'none';
+}
+
+// On page load 
+document.addEventListener('DOMContentLoaded', () => {
+    const reservationData = JSON.parse(localStorage.getItem('reservationData'));
+
+    if (reservationData) {
+        selectedPackageEl.textContent = reservationData.foodPackage || "-";
+        packagePriceEl.textContent = reservationData.packagePrice
+            ? `₱ ${reservationData.packagePrice.toLocaleString()}`
+            : "-";
+    }
+});
+
+// Edit function For pencil icons
+
+// Customer Information Edit Functions
+function editCustomerInfo() {
+    const reservationData = JSON.parse(localStorage.getItem('reservationData')) || {};
+
+    // Populate edit fields
+    document.getElementById('editName').value = reservationData.fullName || '';
+    document.getElementById('editEmail').value = reservationData.email || '';
+    document.getElementById('editPhone').value = reservationData.phoneNumber || '';
+    document.getElementById('editGuests').value = reservationData.numGuests || '';
+    document.getElementById('editOccasion').value = reservationData.specialOccasion || '';
+    document.getElementById('editRequests').value = reservationData.specialRequests || '';
+
+    // Toggle view/edit
+    document.getElementById('customerInfoView').style.display = 'none';
+    document.getElementById('customerInfoEdit').style.display = 'block';
+}
+
+function saveCustomerInfo() {
+    const reservationData = JSON.parse(localStorage.getItem('reservationData')) || {};
+
+    // Get edited values
+    reservationData.fullName = document.getElementById('editName').value;
+    reservationData.email = document.getElementById('editEmail').value;
+    reservationData.phoneNumber = document.getElementById('editPhone').value;
+    reservationData.numGuests = document.getElementById('editGuests').value;
+    reservationData.specialOccasion = document.getElementById('editOccasion').value;
+    reservationData.specialRequests = document.getElementById('editRequests').value;
+
+    // Save to localStorage
+    localStorage.setItem('reservationData', JSON.stringify(reservationData));
+
+    // Update display
+    document.getElementById('summaryName').textContent = reservationData.fullName;
+    document.getElementById('summaryEmail').textContent = reservationData.email;
+    document.getElementById('summaryPhone').textContent = reservationData.phoneNumber;
+    document.getElementById('summaryGuests').textContent = reservationData.numGuests;
+    document.getElementById('summaryOccasion').textContent = reservationData.specialOccasion || '-';
+    document.getElementById('summaryRequests').textContent = reservationData.specialRequests || '-';
+
+    // Toggle back to view
+    document.getElementById('customerInfoView').style.display = 'block';
+    document.getElementById('customerInfoEdit').style.display = 'none';
+}
+
+function cancelEditCustomerInfo() {
+    // Just toggle back without saving
+    document.getElementById('customerInfoView').style.display = 'block';
+    document.getElementById('customerInfoEdit').style.display = 'none';
+}
+
+// Reservation Details Edit Functions
+function editReservationDetails() {
+    const reservationData = JSON.parse(localStorage.getItem('reservationData')) || {};
+
+    document.getElementById('editDate').value = reservationData.date || '';
+    document.getElementById('editTimeStart').value = reservationData.timeStart || '';
+    document.getElementById('editTimeEnd').value = reservationData.timeEnd || '';
+
+    document.getElementById('reservationDetailsView').style.display = 'none';
+    document.getElementById('reservationDetailsEdit').style.display = 'block';
+}
+
+function saveReservationDetails() {
+    const reservationData = JSON.parse(localStorage.getItem('reservationData')) || {};
+
+    reservationData.date = document.getElementById('editDate').value;
+    reservationData.timeStart = document.getElementById('editTimeStart').value;
+    reservationData.timeEnd = document.getElementById('editTimeEnd').value;
+
+    localStorage.setItem('reservationData', JSON.stringify(reservationData));
+
+    // Update both displays
+    const timeDisplay = `${reservationData.timeStart} → ${reservationData.timeEnd}`;
+    document.getElementById('detailsDate').textContent = reservationData.date;
+    document.getElementById('detailsTime').textContent = timeDisplay;
+    document.getElementById('summaryDate').textContent = reservationData.date;
+    document.getElementById('summaryTime').textContent = timeDisplay;
+
+    document.getElementById('reservationDetailsView').style.display = 'block';
+    document.getElementById('reservationDetailsEdit').style.display = 'none';
+}
+
+function cancelEditReservationDetails() {
+    document.getElementById('reservationDetailsView').style.display = 'block';
+    document.getElementById('reservationDetailsEdit').style.display = 'none';
+}
+
+// Food Package Edit Functions
+function editFoodPackage() {
+    const reservationData = JSON.parse(localStorage.getItem('reservationData')) || {};
+
+    document.getElementById('editPackage').value = reservationData.foodPackage || '';
+
+    document.getElementById('foodPackageView').style.display = 'none';
+    document.getElementById('foodPackageEdit').style.display = 'block';
+}
+
+function saveFoodPackage() {
+    const reservationData = JSON.parse(localStorage.getItem('reservationData')) || {};
+    const selectedPackage = document.getElementById('editPackage').value;
+
+    // Extract price from package string 
+    let price = '';
+    if (selectedPackage.includes('Basic')) price = '500';
+    else if (selectedPackage.includes('Premium')) price = '800';
+    else if (selectedPackage.includes('Deluxe')) price = '1200';
+
+    reservationData.foodPackage = selectedPackage.split(' - ')[0];
+    reservationData.packagePrice = price;
+
+    localStorage.setItem('reservationData', JSON.stringify(reservationData));
+
+    document.getElementById('selectedPackage').textContent = reservationData.foodPackage;
+    document.getElementById('packagePrice').textContent = reservationData.packagePrice ? `₱ ${reservationData.packagePrice}` : '-';
+
+    document.getElementById('foodPackageView').style.display = 'block';
+    document.getElementById('foodPackageEdit').style.display = 'none';
+}
+
+function cancelEditFoodPackage() {
+    document.getElementById('foodPackageView').style.display = 'block';
+    document.getElementById('foodPackageEdit').style.display = 'none';
+}

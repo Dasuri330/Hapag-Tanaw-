@@ -37,7 +37,6 @@ function createValidationModal() {
 
 // Function to update stepper
 function updateStepper(stepIndex) {
-    // Remove active class from all steps
     steps.forEach((step, index) => {
         if (index < stepIndex) {
             step.classList.add('completed');
@@ -105,7 +104,7 @@ if (nextButton) {
             }
         });
 
-        // Check if time range is filled (hidden inputs)
+        // Check if time range is filled 
         if (timeValueStart && timeValueEnd) {
             if (!timeValueStart.value || !timeValueEnd.value) {
                 isValid = false;
@@ -117,7 +116,7 @@ if (nextButton) {
 
         if (!isValid) {
             e.preventDefault();
-            // Show Bootstrap modal instead of alert
+            // instead of using alerts, use bootstrap modal
             const validationModal = new bootstrap.Modal(document.getElementById('validationModal'));
             validationModal.show();
         }

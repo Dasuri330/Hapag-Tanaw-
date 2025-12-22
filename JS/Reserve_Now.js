@@ -76,6 +76,7 @@ function getCurrentPageStep() {
     }
 }
 
+
 // Initialize
 document.addEventListener("DOMContentLoaded", function () {
     // Stepper

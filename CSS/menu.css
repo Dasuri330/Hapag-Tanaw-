@@ -26,7 +26,6 @@ footer {
     margin-top: auto;
     background-color: #D27D2D;
 
-    /*opacity: 0.8;*/
 }
 
 .nav-link.active {
@@ -37,7 +36,6 @@ footer {
     font-weight: 500;
 }
 
-/* Ensure container-fluid elements get the same background only inside main */
 main .container-fluid {
     background-color: #F5F5DC;
 }
@@ -50,10 +48,8 @@ h1 {
     font-size: 50px;
 }
 
-/* Larger, more padded buttons when using btn-lg */
 .btn-custom {
     background-color: #D27D2D !important;
-    /* override Bootstrap */
     border-color: #D27D2D !important;
     color: #fff !important;
     border-radius: 5;
@@ -147,12 +143,9 @@ h3 {
 /*for second navbar*/
 #menuNav {
     width: 100%;
-    /* full width */
     background-color: #F5F5DC;
-    /* initial background color, no opacity */
     transition: background-color 0.3s ease, box-shadow 0.3s ease;
     position: sticky;
-    /* keep it on top */
     top: 0;
     z-index: 1000;
 }
@@ -160,7 +153,6 @@ h3 {
 /* Change background on scroll */
 #menuNav.scrolled {
     background-color: #F5F5DC;
-    /* same solid color */
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
@@ -173,13 +165,10 @@ h3 {
 /* Nav links on scroll */
 #menuNav.scrolled .nav-link {
     color: black !important;
-    /* readable against beige background */
 }
 
 /* Make navbar content responsive */
 #menuNav .navbar-nav {
     flex-wrap: wrap;
-    /* wrap links on smaller screens */
     justify-content: center;
-    /* center links */
 }

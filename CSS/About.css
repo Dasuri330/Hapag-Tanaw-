@@ -27,12 +27,8 @@ body {
 footer {
     margin-top: auto;
     background-color: #D27D2D;
-
-    /*opacity: 0.8;*/
 }
 
-
-/* Ensure container-fluid elements get the same background only inside main */
 main .container-fluid {
     background-color: #F5F5DC;
 }
@@ -45,10 +41,8 @@ h1 {
     font-size: 50px;
 }
 
-/* Larger, more padded buttons when using btn-lg */
 .btn-custom {
     background-color: #D27D2D !important;
-    /* override Bootstrap */
     border-color: #D27D2D !important;
     color: #fff !important;
     border-radius: 5;
@@ -93,8 +87,6 @@ h1 {
     font-weight: 500;
 }
 
-
-
 .foodbg {
     width: 100%;
     overflow: hidden;
@@ -104,12 +96,11 @@ h1 {
 .foodbg .img-cover {
     width: 100%;
     height: auto;
-    /* Let image maintain aspect ratio on mobile */
     object-fit: cover;
     display: block;
 }
 
-/* Responsive heights for different screen sizes */
+
 @media (min-width: 576px) {
     .foodbg {
         height: 50vh;
@@ -134,11 +125,8 @@ h1 {
 
 .custom-hr {
     width: 95%;
-    /* Adjust width */
     margin-top: 6rem;
-    /* Adjust top spacing */
     margin-bottom: 1rem;
-    /* Adjust bottom spacing */
     margin-left: auto;
     margin-right: auto;
     border-width: 2px;

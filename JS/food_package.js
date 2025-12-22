@@ -86,7 +86,6 @@ updateStepper(currentStep);
 createValidationModal();
 
 // Package selection afterwards redirect to payment
-
 const packageButtons = document.querySelectorAll('.select-btn');
 
 packageButtons.forEach(button => {
@@ -104,7 +103,7 @@ packageButtons.forEach(button => {
         // Save updated reservation data back to localStorage
         localStorage.setItem('reservationData', JSON.stringify(reservationData));
 
-        console.log('Package saved to reservationData:', reservationData); // For debugging
+        console.log('Package saved to reservationData:', reservationData); 
 
         // Update stepper before redirect
         updateStepper(2);
