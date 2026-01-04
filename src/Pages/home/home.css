@@ -1,0 +1,28 @@
+main .container-fluid {
+    background-color: #F5F5DC;
+}
+
+/* Food images layout */
+.food-images {
+    margin-top: 0;
+}
+
+@media (max-width: 991px) {
+    .food-images {
+        margin-top: 3rem;
+    }
+}
+
+.food-images img {
+    width: 100%;
+    height: 67vh;
+    min-height: 180px;
+    object-fit: cover;
+}
+
+@media (max-width: 768px) {
+    .food-images img {
+        height: 200px;
+        max-width: 100%;
+    }
+}

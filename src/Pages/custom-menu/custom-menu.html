@@ -1,0 +1,237 @@
+<main>
+  <section class="reservation-section">
+    <div
+      class="container-fluid reservation-header text-center py-4"
+      style="background-color:#D27D2D">
+      <h3>
+        <span class="title">Reserve Your Table</span><br />
+        <span class="subtitle">
+          Timeless Filipino flavors, beautifully reimagined
+        </span>
+      </h3>
+    </div>
+    <div class="container-fluid reservation-bg pt-3 pb-5">
+      <div
+        class="container reservation-header text-start py-3 rounded-top-4"
+        style="background-color:#D27D2D; position:relative; z-index:2;">
+        <h3 class="mb-0">
+          <span class="title text-white p-3">Choose your Food Package</span>
+        </h3>
+      </div>
+      <div class="container shadow-lg rounded-top-0" style="background:#F5F5DC; padding:1rem;">
+
+        <div class="d-flex justify-content-between align-items-center p-4">
+          <h4 class="mb-0">Build your custom menu</h4>
+          <button
+            type="button"
+            class="btn btn-outline btn-sm shadow-lg-6 btn-rounded"
+            style="border-color:#D27D2D"
+            (click)="changeMethod()">
+            Back to Packages
+          </button>
+        </div>
+        <div class="menu-scroll-wrapper">
+          <section
+            *ngFor="let section of menuSections"
+            [id]="section.id"
+            class="menu-section">
+            <div class="container-fluid my-4 p-3">
+              <h4 class="mb-4 ms-2 fw-bold" style="color:#D27D2D;" >
+                {{ section.title }}
+               <hr class="custom-hr" />
+              </h4>
+
+              <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-4 g-4">
+                <div class="col" *ngFor="let item of section.items">
+                  <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden" (click)="toggleItem(item)" [class.selected-card]="isSelected(item)">
+                    
+                    <img
+                      [src]="item.image"
+                      class="card-img-top"
+                      [alt]="item.title"
+                      style="height:280px; object-fit:cover;" />
+
+                    <div class="card-body bg-light p-3 d-flex flex-column">
+                      <h6 class="mb-2 fw-semibold flex-grow-1 card-item-title">{{ item.title }}</h6>
+                      <div class="mt-auto">
+                        <span class="fw-bold card-item-price" style="color: #D27D2D;">₱ {{ item.price }}</span>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </section>
+
+          <!--Order summary part-->
+          <div class="container-fluid my-4 p-3" *ngIf="selectedPackages.length > 0">
+            <h4 class="mb-4 ms-2 fw-bold" style="color:#D27D2D;">
+              Your Order ({{ selectedPackages.length }})
+              <hr class="custom-hr" />
+            </h4>
+
+            <div class="order-summary-container p-3 p-md-4 rounded-3 shadow-sm" style="background: #fffaf2; border: 2px solid #D27D2D;">
+              <div class="order-items">
+                <div *ngFor="let item of selectedPackages" class="order-item mb-3 p-2 p-md-3 rounded-3" style="background: white; border: 1px solid #e0e0e0;">
+                  
+                <!--for mobile view-->
+                  <div class="d-md-none">
+                    <div class="d-flex justify-content-between align-items-start mb-2">
+                      <div class="item-info flex-grow-1">
+                        <h6 class="mb-1 fw-bold" style="font-size: 0.95rem;">{{ item.title }}</h6>
+                        <p class="mb-0 text-muted" style="font-size: 0.85rem;">₱ {{ item.price }} each</p>
+                      </div>
+                      <button
+                        class="btn btn-sm btn-outline-danger remove-btn ms-2"
+                        (click)="removeItem(item, $event)"
+                        style="width: 28px; height: 28px; border-radius: 50%; padding: 0; display: flex; align-items: center; justify-content: center; font-size: 0.75rem;">
+                        <i class="bi bi-x-lg"></i>
+                      </button>
+                    </div>
+                    
+                    <div class="d-flex justify-content-between align-items-center">
+                      <div class="quantity-controls d-flex align-items-center gap-2">
+                        <button
+                          class="btn btn-sm rounded-circle quantity-btn"
+                          (click)="decrementQuantity(item, $event)"
+                          style="width: 30px; height: 30px; background-color: #D27D2D; color: white; border: none; display: flex; align-items: center; justify-content: center; font-size: 0.85rem;">
+                          <i class="bi bi-dash"></i>
+                        </button>
+                        
+                        <span class="quantity-display fw-bold px-2" style="min-width: 25px; text-align: center; font-size: 1rem;">
+                          {{ item.quantity }}
+                        </span>
+                        
+                        <button
+                          class="btn btn-sm rounded-circle quantity-btn"
+                          (click)="incrementQuantity(item, $event)"
+                          style="width: 30px; height: 30px; background-color: #D27D2D; color: white; border: none; display: flex; align-items: center; justify-content: center; font-size: 0.85rem;">
+                          <i class="bi bi-plus"></i>
+                        </button>
+                      </div>
+
+                      <div class="item-total">
+                        <span class="fw-bold" style="color: #D27D2D; font-size: 1rem;">₱ {{ getItemTotal(item) }}</span>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!--for desktop layout responsiveness purposes-->
+                  <div class="d-none d-md-flex justify-content-between align-items-center">
+                    <div class="item-info flex-grow-1">
+                      <h6 class="mb-1 fw-bold">{{ item.title }}</h6>
+                      <p class="mb-0 text-muted" style="font-size: 0.9rem;">₱ {{ item.price }} each</p>
+                    </div>
+
+                    <div class="d-flex align-items-center gap-3">
+                      <div class="quantity-controls d-flex align-items-center gap-2">
+                        <button
+                          class="btn btn-sm rounded-circle quantity-btn"
+                          (click)="decrementQuantity(item, $event)"
+                          style="width: 32px; height: 32px; background-color: #D27D2D; color: white; border: none; display: flex; align-items: center; justify-content: center;">
+                          <i class="bi bi-dash"></i>
+                        </button>
+                        
+                        <span class="quantity-display fw-bold px-2" style="min-width: 30px; text-align: center; font-size: 1.1rem;">
+                          {{ item.quantity }}
+                        </span>
+                        
+                        <button
+                          class="btn btn-sm rounded-circle quantity-btn"
+                          (click)="incrementQuantity(item, $event)"
+                          style="width: 32px; height: 32px; background-color: #D27D2D; color: white; border: none; display: flex; align-items: center; justify-content: center;">
+                          <i class="bi bi-plus"></i>
+                        </button>
+                      </div>
+
+                      <div class="item-total" style="min-width: 80px; text-align: right;">
+                        <span class="fw-bold" style="color: #D27D2D; font-size: 1.1rem;">₱ {{ getItemTotal(item) }}</span>
+                      </div>
+
+                      <button
+                        class="btn btn-sm btn-outline-danger remove-btn"
+                        (click)="removeItem(item, $event)"
+                        style="width: 32px; height: 32px; border-radius: 50%; padding: 0; display: flex; align-items: center; justify-content: center;">
+                        <i class="bi bi-x-lg"></i>
+                      </button>
+                    </div>
+                  </div>
+
+                </div>
+              </div>
+
+              <!--order total part-->
+              <div class="order-total mt-3 mt-md-4 pt-3 border-top" style="border-color: #D27D2D !important;">
+                <div class="d-flex justify-content-between align-items-center">
+                  <h5 class="mb-0 fw-bold" style="font-size: 1.1rem;">Total:</h5>
+                  <h4 class="mb-0 fw-bold" style="color: #D27D2D; font-size: 1.3rem;">₱ {{ getTotalAmount() }}</h4>
+                </div>
+              </div>
+            </div>
+          </div>
+         
+        </div>
+
+        <div class="d-flex justify-content-between gap-3 px-4 pb-3 pt-3">
+          <div class="d-flex gap-2">
+            <button
+              type="button"
+              class="btn btn-primary p-3"
+              style="background-color:#D27D2D;border-color:#D27D2D"
+              (click)="onBack()" >
+              <i class="bi bi-chevron-left"></i> Back
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-danger p-3"
+              (click)="onCancel()">Cancel <i class="bi bi-x-lg"></i>
+            </button>
+          </div>
+
+          <button
+            type="button"
+            class="btn btn-success p-3"
+            style="background-color:#28a745;border-color:#28a745"
+            (click)="proceedToPayment()"
+            [disabled]="selectedPackages.length === 0">Proceed to Payment <i class="bi bi-arrow-right"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<div
+  class="modal fade show d-block"
+  tabindex="-1"
+  *ngIf="showCancelModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div
+        class="modal-header"
+        style="background-color:#D27D2D;color:white;">
+        <h5 class="modal-title"><i class="bi bi-exclamation-triangle-fill me-2"></i> Warning</h5>
+        <button
+          type="button"
+          class="btn-close btn-close-white"
+          (click)="closeCancelModal()"></button>
+      </div>
+
+      <div class="modal-body fs-5">
+        Are you sure you want to cancel? Your changes won't be saved.
+      </div>
+
+      <div class="modal-footer">
+        <button class="btn btn-secondary" (click)="closeCancelModal()">No</button>
+        <button class="btn btn-danger" (click)="confirmCancel()">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+
+<div
+  class="modal-backdrop fade show"
+  *ngIf="showCancelModal"
+></div>

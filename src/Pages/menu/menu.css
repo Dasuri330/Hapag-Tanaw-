@@ -1,0 +1,100 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+.nav-link.active {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-decoration-color: #D27D2D;
+    text-underline-offset: 4px;
+    font-weight: 500;
+}
+
+main .container-fluid {
+    background-color: #F5F5DC;
+}
+
+h3 {
+    font-weight: 400;
+    text-align: center;
+    text-decoration: underline;
+    text-decoration-color: #D27D2D;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 9px;
+}
+
+.card-group .card {
+    margin: 0 10px;
+    display: flex;
+    flex-direction: column;
+}
+
+.card-body {
+    display: flex;
+    flex-direction: column;
+    flex-grow: 1;
+}
+
+.card-text:last-child {
+    margin-top: auto;
+    padding-top: 10px;
+}
+
+.menu-section {
+    padding: 20px 0;
+}
+
+.badge {
+    background-color: #D27D2D;
+    color: white;
+    padding: 8px 15px;
+    font-size: 1rem;
+    font-weight: bold;
+}
+
+#Breakfast {
+    margin-top: -50px;
+}
+
+#Lunch {
+    margin-top: -50px;
+}
+
+#Dinner {
+    margin-top: -50px;
+}
+
+#Drinks {
+    margin-top: -50px;
+}
+
+/*for second navbar*/
+#menuNav {
+    width: 100%;
+    background-color: #F5F5DC;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+/* Change background on scroll */
+#menuNav.scrolled {
+    background-color: #F5F5DC;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+/* Nav links default */
+#menuNav .nav-link {
+    color: black !important;
+    font-weight: 500;
+}
+
+/* Nav links on scroll */
+#menuNav.scrolled .nav-link {
+    color: black !important;
+}
+
+/* Make navbar content responsive */
+#menuNav .navbar-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+}

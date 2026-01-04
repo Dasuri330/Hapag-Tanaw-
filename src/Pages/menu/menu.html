@@ -1,0 +1,41 @@
+<main>
+  <section class="hero-section">
+    <div class="container-fluid p-3 text-dark mt-n1">
+      <h3>From Our Kitchen to Your Table Menu Awaits!</h3>
+        </div>    
+ </section>
+
+  <nav id="menuNav" class="navbar navbar-expand-lg w-100 px-0">
+    <ul class="navbar-nav mt-3 second-nav w-100 justify-content-center">
+      <li class="nav-item mx-3"><a class="nav-link" href="#Starters">Starters</a></li>
+      <li class="nav-item mx-3"><a class="nav-link" href="#Breakfast">Breakfast</a></li>
+      <li class="nav-item mx-3"><a class="nav-link" href="#Lunch">Lunch</a></li>
+      <li class="nav-item mx-3"><a class="nav-link" href="#Dinner">Dinner</a></li>
+      <li class="nav-item mx-3"><a class="nav-link" href="#Drinks">Drinks</a></li>
+      <li class="nav-item mx-3">
+        <a class="nav-link" routerLink="/reserve-now">Reserve Now</a>
+      </li>
+    </ul>
+  </nav>
+
+<section *ngFor="let section of menuSections" [id]="section.id" class="menu-section">
+  <div class="container-fluid my-1 p-3 text-dark mb-5">
+    <h4 class="mb-4 ms-2">{{ section.title }}</h4>
+    <div class="card-group">
+      <div class="card" *ngFor="let item of section.items">
+        <img [src]="item.image" 
+             class="card-img-top" 
+             [alt]="item.title" 
+             style="height: 400px; object-fit: cover;">
+        <div class="card-body">
+          <h5 class="card-title">{{ item.title }}</h5>
+          <p class="card-text">{{ item.description }}</p>
+          <p class="card-text"><small>₱ {{ item.price }}</small></p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+ </main>
+
+ 

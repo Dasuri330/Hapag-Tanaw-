@@ -1,3 +1,29 @@
 import { Routes } from '@angular/router';
+import { Home } from '../Pages/home/home';
+import { About } from '../Pages/about/about';
+import { Menu } from '../Pages/menu/menu';
+import { Contact } from '../Pages/contact/contact';
+import { ReserveNowComponent } from '../Pages/reserve-now/reserve-now';
+import { FoodPackageComponent } from '../Pages/food-package/food-package';
+import { CustomMenuComponent } from '../Pages/custom-menu/custom-menu';
+import { PaymentComponent } from '../Pages/payment/payment';
+import { GcashComponent } from '../Pages/gcash/gcash';
+import { MayaComponent } from '../Pages/maya/maya';
+import { ConfirmComponent } from '../Pages/confirm/confirm';
+import { FAQs } from '../Pages/faqs/faqs';
 
-export const routes: Routes = [];
+export const routes: Routes = [
+    { path: '', component: Home },
+    { path: 'about', component: About },
+    { path: 'menu', component: Menu },
+    { path: 'contact', component: Contact },
+    { path: 'reserve-now', component: ReserveNowComponent },
+    { path: 'food-package', component: FoodPackageComponent },
+    { path: 'custom-menu', component: CustomMenuComponent },
+    { path: 'payment', component: PaymentComponent },
+    { path: 'gcash', component: GcashComponent },
+    { path: 'maya', component: MayaComponent },
+    { path: 'confirm', component: ConfirmComponent },
+    { path: 'faqs', component: FAQs },
+    { path: '**', redirectTo: '' }
+];

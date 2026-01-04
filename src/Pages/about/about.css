@@ -1,0 +1,79 @@
+/* Component-specific styles only */
+
+.foodbg {
+    width: 100%;
+    overflow: hidden;
+    position: relative;
+}
+
+.foodbg .img-cover {
+    width: 100%;
+    height: auto;
+    object-fit: cover;
+    display: block;
+}
+
+@media (min-width: 576px) {
+    .foodbg {
+        height: 50vh;
+    }
+
+    .foodbg .img-cover {
+        height: 100%;
+    }
+}
+
+@media (min-width: 768px) {
+    .foodbg {
+        height: 60vh;
+    }
+}
+
+@media (min-width: 992px) {
+    .foodbg {
+        height: 75vh;
+    }
+}
+
+.custom-hr {
+    width: 95%;
+    margin-top: 6rem;
+    margin-bottom: 1rem;
+    margin-left: auto;
+    margin-right: auto;
+    border-width: 2px;
+    opacity: 0.75;
+    color: #D27D2D;
+}
+
+.square-img {
+    width: 350px;
+    height: 350px;
+    object-fit: cover;
+    border-radius: 8px;
+    margin-left: 10px;
+    margin-bottom: 10px;
+}
+
+.text-justify {
+    text-align: justify;
+    margin-right: 50px;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+    .square-img {
+        width: 100%;
+        height: auto;
+        max-width: 350px;
+        margin-left: 0;
+    }
+
+    .text-justify {
+        margin-right: 20px;
+    }
+
+    p {
+        font-size: 16px;
+    }
+}

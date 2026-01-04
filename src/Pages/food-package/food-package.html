@@ -1,0 +1,148 @@
+<!--main content-->
+<main>
+  <section class="reservation-section">
+    <!--header-->
+    <div class="container-fluid reservation-header text-center py-4" style="background-color: #D27D2D;">
+      <h3 class="mb-0">
+        <span class="title">Reserve Your Table</span><br>
+        <span class="subtitle">Timeless Filipino flavors, beautifully reimagined</span>
+      </h3>
+    </div>
+
+    <!--reservation form area-->
+    <div class="container-fluid reservation-bg pt-3 pb-5">
+      <!--Stepper-->
+      <div class="container mt-0 mb-4">
+        <div class="d-flex justify-content-center align-items-center stepper">
+          <div class="step" [class.completed]="currentStep > 1">
+            <div class="step-circle">1</div><small>Details</small>
+          </div>
+          <div class="step-line" [class.active]="currentStep > 1"></div>
+          <div class="step" [class.active]="currentStep === 2" [class.completed]="currentStep > 2">
+            <div class="step-circle">2</div><small>Food Package</small>
+          </div>
+          <div class="step-line" [class.active]="currentStep > 2"></div>
+          <div class="step" [class.active]="currentStep === 3" [class.completed]="currentStep > 3">
+            <div class="step-circle">3</div><small>Payment</small>
+          </div>
+          <div class="step-line" [class.active]="currentStep > 3"></div>
+          <div class="step" [class.active]="currentStep === 4">
+            <div class="step-circle">4</div><small>Confirm</small>
+          </div>
+        </div>
+      </div>
+
+      <!--form header-->
+      <div class="container reservation-header text-start py-3 rounded-top-4"
+        style="background-color: #D27D2D; position: relative; z-index: 2;">
+        <h3 class="mb-0"><span class="title text-white p-3">Choose your Food Package(s)</span></h3>
+      </div>
+
+      <!--form container-->
+      <div class="container rounded-bottom shadow-lg"
+        style="background-color: #F5F5DC; margin-top: -10px; position: relative; z-index: 1; max-height: 550px; overflow-y: auto; padding: 0;">
+        
+        <!--selected summary-->
+        <div *ngIf="selectedPackages.length > 0" class="p-3 bg-white border-bottom" style="position: sticky; top: 0; z-index: 3;">
+          <div class="d-flex justify-content-between align-items-center pt-3">
+            <div>
+              <strong>Selected: </strong>
+              <span class="text-muted">{{ getSelectedTitles() }}</span>
+            </div>
+            <div class="text-end">
+              <strong style="color: #D27D2D; font-size: 1.3rem;">
+                Total: ₱ {{ getTotalPrice().toLocaleString() }}
+              </strong>
+            </div>
+          </div>
+        </div>
+
+        <!--food package cards-->
+        <div *ngFor="let package of packages; let last = last" 
+             class="package-content" 
+             [class.mb-3]="!last"
+             [class.mb-4]="last"
+             [class.border]="package.selected"
+             [style.border-color]="package.selected ? '#28a745' : 'transparent'"
+             [style.border-width]="package.selected ? '3px' : '0'"
+             style="transition: all 0.3s ease;">
+          <div class="package-info">
+            <div>
+              <div class="d-flex align-items-center mb-2">
+                <h3 class="package-title mb-0">{{ package.title }}</h3>
+                <i *ngIf="package.selected" class="bi bi-check-circle-fill text-success ms-2" style="font-size: 1.5rem;"></i>
+              </div>
+              <p class="package-persons">{{ package.persons }}</p>
+              <ul class="package-menu-list">
+                <li *ngFor="let item of package.menuItems">{{ item }}</li>
+              </ul>
+            </div>
+            <div>
+              <div class="package-price">{{ package.price }}</div>
+              <button 
+                class="select-btn" 
+                [class.btn-success]="package.selected"
+                [style.background-color]="package.selected ? '#28a745' : '#D27D2D'"
+                (click)="togglePackage(package)">
+                <i [class]="package.selected ? 'bi bi-check-circle-fill' : 'bi bi-plus-circle'" class="me-2"></i>
+                {{ package.selected ? 'Selected' : 'Select Package' }}
+              </button>
+            </div>
+          </div>
+          <div class="package-images d-flex justify-content-end align-items-center p-4">
+            <img [src]="package.image" [alt]="package.imageAlt" class="package-image rounded-3">
+          </div>
+        </div>
+
+      <!--button group-->
+      <div class="d-flex justify-content-between gap-3 px-4 pb-3 pt-3">
+        <div class="d-flex gap-2">
+          <button
+            type="button"
+            class="btn btn-primary p-3"
+            style="background-color:#D27D2D;border-color:#D27D2D"
+            (click)="onBack()"><i class="bi bi-chevron-left"></i> Back 
+          </button>
+
+          <button class="btn btn-danger p-3" type="button" (click)="onCancel()">
+            Cancel <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <button 
+          class="btn btn-success p-3" 
+          type="button" 
+          (click)="proceedToPayment()"
+          [disabled]="selectedPackages.length === 0"
+          style="background-color: #28a745; border-color: #28a745;">
+          Proceed to Payment <i class="bi bi-arrow-right"></i>
+        </button>
+
+            </div>
+          </div>
+         </div>
+        </section>
+      </main>
+
+<!--cancel confirmation modal-->
+<div class="modal fade" [class.show]="showCancelModal" [style.display]="showCancelModal ? 'block' : 'none'" 
+     tabindex="-1" *ngIf="showCancelModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+      <div class="modal-header" style="background-color: #D27D2D; color: white;">
+        <h5 class="modal-title">
+          <i class="bi bi-exclamation-triangle-fill me-2"></i> Warning
+        </h5>
+        <button type="button" class="btn-close btn-close-white" (click)="closeCancelModal()"></button>
+      </div>
+      <div class="modal-body" style="font-size: 20px;">
+        Are you sure you want to cancel? Your changes won't be saved.
+      </div>
+      <div class="modal-footer">
+        <button type="button" class="btn btn-secondary" (click)="closeCancelModal()">No</button>
+        <button type="button" class="btn btn-danger" (click)="confirmCancel()">Yes</button>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="modal-backdrop fade" [class.show]="showCancelModal" *ngIf="showCancelModal"></div>

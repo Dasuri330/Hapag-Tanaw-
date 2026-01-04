@@ -1,0 +1,33 @@
+.navbar {
+  background-color: #D27D2D;
+  opacity: 0.8;
+}
+
+.navbar-brand {
+  color: #D27D2D !important;
+  font-family: "Montserrat Alternates", sans-serif;
+  font-weight: 800;
+}
+
+.navbar-brand:hover,
+.navbar-brand:focus {
+  color: #D27D2D !important;
+  text-decoration: none;
+}
+
+.navbar .nav-link {
+  color: black !important;
+  font-weight: 500;
+}
+
+.nav-link.active {
+  text-decoration: underline;
+  text-decoration-thickness: 2px;
+  text-decoration-color: #D27D2D;
+  text-underline-offset: 4px;
+  font-weight: 500;
+}
+
+.user-icon {
+  color: #D27D2D;
+}

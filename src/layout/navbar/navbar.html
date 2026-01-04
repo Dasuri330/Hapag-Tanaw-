@@ -1,0 +1,53 @@
+<!--Navbar area-->
+<nav class="navbar navbar-expand-md bg-white px-4 mt-1">
+  <div class="container-fluid position-relative">
+    <!-- Brand -->
+    <a routerLink="/" class="navbar-brand ms-5">
+      Hapag Tanaw
+    </a>
+
+    <!--Mobile Toggle-->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
+      data-bs-target="#main-nav" aria-controls="main-nav"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+
+    <!--Navbar Links-->
+    <div class="collapse navbar-collapse justify-content-center ms-2" id="main-nav">
+      <!--Center Menu-->
+      <ul class="navbar-nav mx-auto">
+        <li class="nav-item mx-3">
+          <a class="nav-link" routerLink="/" routerLinkActive="active" 
+             [routerLinkActiveOptions]="{exact: true}">
+            Home
+          </a>
+        </li>
+        <li class="nav-item mx-3">
+          <a class="nav-link" routerLink="/about" routerLinkActive="active">
+            About
+          </a>
+        </li>
+        <li class="nav-item mx-3">
+          <a class="nav-link" routerLink="/menu" routerLinkActive="active">
+            Menu
+          </a>
+        </li>
+        <li class="nav-item mx-3">
+          <a class="nav-link" routerLink="/contact" routerLinkActive="active">
+            Contact
+          </a>
+        </li>
+      </ul>
+
+      <!--Right User Icon-->
+      <ul class="navbar-nav">
+        <li class="nav-item">
+          <a class="nav-link" href="#">
+            <i class="bi bi-person-fill fs-4 user-icon"></i>
+          </a>
+        </li>
+      </ul>
+    </div>
+  </div>
+</nav>

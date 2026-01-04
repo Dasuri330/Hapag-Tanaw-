@@ -1,0 +1,196 @@
+<main>
+  <section class="reservation-section">
+
+    <!-- MAIN BANNER -->
+    <div
+      class="container-fluid reservation-header text-center py-4"
+      style="background-color:#D27D2D"
+    >
+      <h3>
+        <span class="title">Reserve Your Table</span><br />
+        <span class="subtitle">
+          Timeless Filipino flavors, beautifully reimagined
+        </span>
+      </h3>
+    </div>
+
+    <div class="container-fluid reservation-bg pt-3 pb-5">
+
+       <!-- Stepper -->
+      <div class="container mt-0 mb-4">
+        <div class="d-flex justify-content-center align-items-center stepper">
+          <div class="step" [class.completed]="currentStep > 1">
+            <div class="step-circle">1</div><small>Details</small>
+          </div>
+          <div class="step-line" [class.active]="currentStep > 1"></div>
+          <div class="step" [class.completed]="currentStep > 2">
+            <div class="step-circle">2</div><small>Food Package</small>
+          </div>
+          <div class="step-line" [class.active]="currentStep > 2"></div>
+          <div class="step" [class.active]="currentStep === 3" [class.completed]="currentStep > 3">
+            <div class="step-circle">3</div><small>Payment</small>
+          </div>
+          <div class="step-line" [class.active]="currentStep > 3"></div>
+          <div class="step" [class.active]="currentStep === 4">
+            <div class="step-circle">4</div><small>Confirm</small>
+          </div>
+        </div>
+      </div>
+
+      <!--payment header-->
+      <div
+        class="container reservation-header text-start py-3 rounded-top-4"
+        style="background-color:#D27D2D; position:relative; z-index:2;"
+      >
+        <h3 class="mb-0">
+          <span class="title text-white p-3">Payment Method</span>
+        </h3>
+      </div>
+
+      <!--form container-->
+      <div
+        class="container shadow-lg rounded-top-0"
+        style="background:#F5F5DC; padding:1rem;"
+      >
+
+        <!--method title container-->
+        <div class="d-flex justify-content-between align-items-center p-4">
+          <h4 class="mb-0">Maya</h4>
+
+          <button
+            type="button"
+            class="btn btn-outline btn-sm"
+            style="border-color:#D27D2D"
+            (click)="changeMethod()"
+          >
+            Change Method
+          </button>
+        </div>
+
+        <form (ngSubmit)="submitPayment()">
+
+            <!--maya icon-->
+          <div class="text-center">
+            <img
+              src="assets/mayanobg.png" style="margin-top: -40px;"
+              class="img-fluid"
+              width="350"
+              alt="Maya Logo"
+            />
+          </div>
+
+          <!-- QR CODE -->
+          <div class="text-center" style="margin-top: -20px; width: 100%; ">
+            <img
+              src="assets/QR.jpg"
+              class="img-fluid rounded"
+              width="180"
+              alt="GCash QR"
+            />
+          </div>
+
+          <!-- INSTRUCTIONS -->
+          <div class="d-flex justify-content-center align-items-center flex-column mt-2">
+            <p>QR Code will appear here</p>
+            <ol style="padding-left:20px;">
+              <li>Open your Maya app on your mobile device.</li>
+              <li>Tap "Pay QR" or scan the QR code using the app.</li>
+              <li>Enter the amount to pay and confirm the payment.</li>
+              <li>Confirm Payment 30% Deposit.</li>
+              <li>Save the receipt or screenshot for reference.</li>
+            </ol>
+          </div>
+
+          <!-- REFERENCE NUMBER -->
+          <div class="p-3">
+            <label class="form-label">
+              Reference Number <span class="text-danger">*</span>
+            </label>
+
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="referenceNumber"
+              name="referenceNumber"
+              required
+              maxlength="16"
+              pattern="[A-Za-z0-9]{16}"
+              placeholder="Enter reference number"
+              (input)="onReferenceInput()"/>
+
+            <div
+              class="text-danger mt-1"
+              *ngIf="referenceNumber && referenceNumber.length !== 16">
+              Reference number must be exactly 16 alphanumeric characters
+            </div>
+          </div>
+
+          <div class="container p-4 shadow-lg rounded-3 my-3">
+            <h5 class="policy">Payment Policy</h5>
+            <ul>
+              <li>A 30% deposit is required to confirm your reservation</li>
+              <li>Full payment can be settled upon arrival or through your chosen method</li>
+              <li>Cancellations made 48 hours before the reservation date are fully refundable</li>
+            </ul>
+          </div>
+
+        <!--buttons-->
+          <div class="d-flex justify-content-between gap-3 px-2 pb-3 pt-3">
+            <div class="d-flex gap-2">
+              <button
+                type="button"
+                class="btn btn-primary p-3"
+                style="background-color:#D27D2D;border-color:#D27D2D"
+                (click)="goBack()">
+              <i class="bi bi-chevron-left"></i> Back 
+              </button>
+             <button
+              type="submit"
+              class="btn btn-danger p-3"
+              (click)="showCancelModal = true">
+            Cancel <i class="bi bi-chevron-right"></i>
+            </button>
+            </div>
+          <button
+          type="submit"
+          class="btn btn-custom p-3"
+          [disabled]="!isValidReference()">Next 
+          <i class="bi bi-chevron-right"></i>
+        </button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!--cancel modal-->
+<div class="modal fade show d-block" *ngIf="showCancelModal">
+  <div class="modal-dialog modal-dialog-centered">
+    <div class="modal-content">
+
+      <div class="modal-header" style="background-color: #D27D2D; color: white;">
+
+        <h5><i class="bi bi-exclamation-triangle-fill me-2"></i> Warning</h5>
+      </div>
+
+      <div class="modal-body" style="font-size:20px;">
+        Are you sure you want to cancel?
+      </div>
+
+      <div class="modal-footer">
+        <button
+          class="btn btn-secondary"
+          (click)="showCancelModal = false">
+          No
+        </button>
+
+        <button
+          class="btn btn-danger"
+          (click)="confirmCancel()">
+          Yes
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

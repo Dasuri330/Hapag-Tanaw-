@@ -1,0 +1,65 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
+
+
+html,
+body {
+    height: 100%;
+}
+
+body {
+    display: flex;
+    flex-direction: column;
+    min-height: 100vh;
+}
+
+
+main .container-fluid {
+    background-color: #F5F5DC;
+}
+
+p {
+    font-size: 20px;
+}
+
+h1 {
+    font-size: 50px;
+}
+
+
+h3 {
+    font-weight: 400;
+    text-align: center;
+    text-decoration: underline;
+    text-decoration-color: #D27D2D;
+    text-decoration-thickness: 1px;
+    text-underline-offset: 9px;
+}
+
+.highlight {
+    color: #D27D2D;
+}
+
+/* Accordion button - active/open state */
+.accordion-button:not(.collapsed) {
+    background-color: #D27D2D;
+    color: #fff;
+    box-shadow: none;
+}
+
+/* Accordion button - default state */
+.accordion-button {
+    background-color: #f8f9fa;
+    /* default bg */
+    color: #000;
+}
+
+/* Remove focus blue outline */
+.accordion-button:focus {
+    box-shadow: none;
+    border-color: #D27D2D;
+}
+
+/*Changed the arrow color to white*/
+.accordion-button:not(.collapsed)::after {
+    filter: brightness(0) invert(1)
+}
