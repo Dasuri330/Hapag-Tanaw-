@@ -1,6 +1,8 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
+import { Observable } from 'rxjs';
 
 export interface MenuItem {
   image: string;
@@ -21,18 +23,30 @@ export interface MenuSection {
 @Component({
   selector: 'app-custom-menu',
   standalone: true,
-  imports: [CommonModule],
+  imports: [CommonModule, HttpClientModule],  
   templateUrl: './custom-menu.html',
   styleUrl: './custom-menu.css',
 })
-export class CustomMenuComponent {
-
-  constructor(private router: Router) {
-    this.loadFromLocalStorage();
-  }
+export class CustomMenuComponent implements OnInit {  
 
   showCancelModal = false;
   selectedPackages: SelectedItem[] = [];
+  
+
+  menuSections$!: Observable<MenuSection[]>;
+
+  constructor(
+    private router: Router,
+    private http: HttpClient  
+  ) {
+    this.loadFromLocalStorage();
+  }
+
+ 
+  ngOnInit(): void {
+   
+    this.menuSections$ = this.http.get<MenuSection[]>('assets/data/ala-carte.json');
+  }
 
   loadFromLocalStorage(): void {
     const saved = localStorage.getItem('selectedPackages');
@@ -50,7 +64,7 @@ export class CustomMenuComponent {
     localStorage.setItem(
       'selectedPackages',
       JSON.stringify(this.selectedPackages)
-    )
+    );
   }
 
   changeMethod(): void {
@@ -71,7 +85,7 @@ export class CustomMenuComponent {
 
   confirmCancel(): void {
     this.selectedPackages = [];
-    localStorage.removeItem('selectedPackages')
+    localStorage.removeItem('selectedPackages');
     this.showCancelModal = false;
     this.router.navigate(['/home']);
   }
@@ -95,6 +109,7 @@ export class CustomMenuComponent {
 
     this.router.navigate(['/payment']);
   }
+
   toggleItem(item: MenuItem): void {
     const index = this.selectedPackages.findIndex(
       selected => selected.title === item.title
@@ -122,7 +137,6 @@ export class CustomMenuComponent {
   incrementQuantity(item: SelectedItem, event: Event): void {
     event.stopPropagation();
     item.quantity++;
-
     this.saveToLocalStorage();
   }
 
@@ -155,72 +169,5 @@ export class CustomMenuComponent {
     }, 0);
   }
 
-  menuSections: MenuSection[] = [
-    {
-      id: 'Appetizers',
-      title: 'Appetizers',
-      items: [
-        { image: 'assets/freshlumpia.jpg', title: 'Fresh Lumpia', price: '180' },
-        { image: 'assets/ukoy1.jpg', title: 'Ukoy', price: '200' },
-        { image: 'assets/tokwatbaboy.jpg', title: 'Tokwa at Baboy', price: '150' },
-        { image: 'assets/calamares.jpg', title: 'Calamares', price: '280' },
-        { image: 'assets/fishball.png', title: 'fish Balls', price: '180' },
-        { image: 'assets/chicharonbulaklak.jpg', title: 'Chicharon Bulaklak', price: '240' },
-        { image: 'assets/dynamite.jpg', title: 'Dynamite', price: '170' },
-        { image: 'assets/lumpiang-shanghai.png', title: 'Lumpiang Shanghai', price: '150' },
-      ]
-    },
-    {
-      id: 'Sides',
-      title: 'Sides',
-      items: [
-        { image: 'assets/grice.png', title: 'Garlic Rice', price: '60' },
-        { image: 'assets/javarice.jpg', title: 'Java Rice', price: '60' },
-        { image: 'assets/steamed rice.jpg', title: 'Steamed Rice', price: '60' },
-        { image: 'assets/atchara.jpg', title: 'Atchara', price: '50' },
-        { image: 'assets/tofu.jpg', title: 'Fried Tofu', price: '70' },
-        { image: 'assets/fishcrackers.jpg', title: 'Fish Crackers', price: '50' },
-        { image: 'assets/sideup.jpg', title: 'Fried Egg', price: '50' },
-        { image: 'assets/coleslaw.png', title: 'Coleslaw', price: '80' },
-      ]
-    },
-    {
-      id: 'Mains',
-      title: 'Mains',
-      items: [
-        { image: 'assets/sisig.png', title: 'Sisig', price: '120' },
-        { image: 'assets/caldereta.jpg', title: 'Caldereta', price: '200' },
-        { image: 'assets/adobo-pork.jpg', title: 'Pork Adobo', price: '150' },
-        { image: 'assets/chickenadobo.jpg', title: 'Chicken Adobo', price: '135' },
-        { image: 'assets/bulalo.jpg', title: 'Bulalo', price: '200' },
-        { image: 'assets/pakbet.jpg', title: 'Pakbet', price: '100' },
-        { image: 'assets/sinigangnahipon.jpg', title: 'Sinigang na hipon', price: '140' },
-        { image: 'assets/crispypata.jpg', title: 'Crispy Pata', price: '280' },
-      ]
-    },
-    {
-      id: 'Desserts',
-      title: 'Desserts',
-      items: [
-        { image: 'assets/lecheflan.jpg', title: 'Leche Flan', price: '70' },
-        { image: 'assets/halo1.png', title: 'Halo-Halo', price: '100' },
-        { image: 'assets/bukopandan1.png', title: 'Buko Pandan', price: '100' },
-        { image: 'assets/maisconyelo.jpg', title: 'Mais con yelo', price: '100' },
-        { image: 'assets/bibingka.jpg', title: 'Bibingka', price: '120' },
-        { image: 'assets/majablanca.jpg', title: 'Maja Blanca', price: '100' },
-        { image: 'assets/ube champorado.jpg', title: 'Ube Champorado', price: '150' },
-        { image: 'assets/turon.jpg', title: 'Turon', price: '60' },
-      ]
-    },
-    {
-      id: 'Drinks',
-      title: 'Drinks',
-      items: [
-        { image: 'assets/calamansi juice.jpg', title: 'Calamansi Juice', price: '75' },
-        { image: 'assets/buko juice.jpg', title: 'Buko Juice', price: '75' },
-        { image: 'assets/sago gulaman.jpg', title: 'Sago at Gulaman', price: '75' },
-        { image: 'assets/watermelon juice.jpg', title: 'Watermelon Juice', price: '120' },
-      ]
-    }
-  ];
+ 
 }
