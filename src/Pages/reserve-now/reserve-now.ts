@@ -230,7 +230,7 @@ export class ReserveNowComponent implements OnInit {
 
   confirmCancel(): void {
     this.showCancelModal = false;
-    localStorage.removeItem('reservationData'); // optional cleanup
+    localStorage.removeItem('reservationData'); 
     this.router.navigate(['/']);
   }
 }
