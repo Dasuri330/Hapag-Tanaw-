@@ -20,7 +20,6 @@ export class ReserveNowComponent implements OnInit {
     '10 or more Guests'
   ];
 
-  // Time picker properties
   selectedPeriodStart = 'AM';
   selectedPeriodEnd = 'PM';
   displayTimeRange = '-- : -- -- → -- : -- --';
@@ -41,6 +40,9 @@ export class ReserveNowComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // Clear previous reservation data on page load
+    localStorage.removeItem('reservationData');
+
     // Initialize form
     this.reservationForm = this.fb.group({
       fullName: ['', Validators.required],
@@ -61,31 +63,6 @@ export class ReserveNowComponent implements OnInit {
     this.minDate = today.toISOString().split('T')[0];
 
     this.setupTimeValidation();
-
-    // saved data from localstorage
-    const savedData = localStorage.getItem('reservationData');
-    if (savedData) {
-      const data = JSON.parse(savedData);
-
-      this.reservationForm.patchValue({
-        fullName: data.fullName,
-        email: data.email,
-        phoneNumber: data.phoneNumber,
-        date: data.date,
-        numGuests: data.numGuests,
-        specialOccasion: data.specialOccasion,
-        specialRequests: data.specialRequests,
-        hourStart: data.timeStart?.split(':')[0],
-        minuteStart: data.timeStart?.split(':')[1]?.split(' ')[0],
-        hourEnd: data.timeEnd?.split(':')[0],
-        minuteEnd: data.timeEnd?.split(':')[1]?.split(' ')[0]
-      });
-
-      this.selectedPeriodStart = data.timeStart?.includes('PM') ? 'PM' : 'AM';
-      this.selectedPeriodEnd = data.timeEnd?.includes('PM') ? 'PM' : 'AM';
-
-      this.updateTimeDisplay();
-    }
   }
 
   // Custom phone validator
@@ -94,7 +71,6 @@ export class ReserveNowComponent implements OnInit {
     return phonePattern.test(control.value) ? null : { invalidPhone: true };
   }
 
-  // Setup time validation
   setupTimeValidation(): void {
     this.reservationForm.get('hourStart')?.valueChanges.subscribe(() => this.updateTimeDisplay());
     this.reservationForm.get('minuteStart')?.valueChanges.subscribe(() => this.updateTimeDisplay());
@@ -102,7 +78,6 @@ export class ReserveNowComponent implements OnInit {
     this.reservationForm.get('minuteEnd')?.valueChanges.subscribe(() => this.updateTimeDisplay());
   }
 
-  // Update time display
   updateTimeDisplay(): void {
     const hourStart = this.reservationForm.get('hourStart')?.value;
     const minuteStart = this.reservationForm.get('minuteStart')?.value;
@@ -137,7 +112,6 @@ export class ReserveNowComponent implements OnInit {
     }
   }
 
-  // Validate time range
   validateTimeRange(
     hStart: string, mStart: string, periodStart: string,
     hEnd: string, mEnd: string, periodEnd: string
@@ -212,6 +186,7 @@ export class ReserveNowComponent implements OnInit {
       specialRequests: this.reservationForm.value.specialRequests || ''
     };
 
+
     localStorage.setItem('reservationData', JSON.stringify(formData));
     this.router.navigate(['/food-package']);
   }
@@ -230,7 +205,7 @@ export class ReserveNowComponent implements OnInit {
 
   confirmCancel(): void {
     this.showCancelModal = false;
-    localStorage.removeItem('reservationData'); 
+    localStorage.removeItem('reservationData');
     this.router.navigate(['/']);
   }
 }
