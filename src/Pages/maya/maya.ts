@@ -39,7 +39,7 @@ export class MayaComponent implements OnInit {
 
   onReferenceInput(): void {
     this.referenceNumber = this.referenceNumber
-      .replace(/[^A-Z0-9]/gi, '') 
+      .replace(/[^A-Z0-9]/gi, '')
       .toUpperCase()
       .slice(0, 16);
 
@@ -47,11 +47,11 @@ export class MayaComponent implements OnInit {
   }
 
 
-isValidReference(): boolean {
-  return (
-    /^[A-Z0-9]{16}$/.test(this.referenceNumber) && /[A-Z]/.test(this.referenceNumber) && /[0-9]/.test(this.referenceNumber)
-  );
-}
+  isValidReference(): boolean {
+    return (
+      /^[A-Z0-9]{16}$/.test(this.referenceNumber) && /[A-Z]/.test(this.referenceNumber) && /[0-9]/.test(this.referenceNumber)
+    );
+  }
 
   submitPayment(): void {
     if (!this.isValidReference()) {
@@ -70,7 +70,7 @@ isValidReference(): boolean {
   }
 
   goBack(): void {
-    this.router.navigate(['/food-package']);
+    this.router.navigate(['/payment']);
   }
 
   confirmCancel(): void {

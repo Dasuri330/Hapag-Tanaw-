@@ -109,7 +109,7 @@ export class PaymentComponent implements OnInit {
 
 
   onBack() {
-    this.router.navigate(['/custom-menu']);
+    this.router.navigate(['/food-package']);
   }
 
   onCancel() {

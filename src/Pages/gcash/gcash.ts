@@ -21,7 +21,7 @@ interface PaymentMethod {
 })
 export class GcashComponent implements OnInit {
 
-  constructor(private router: Router) {}
+  constructor(private router: Router) { }
 
   currentStep = 3;
 
@@ -62,12 +62,12 @@ export class GcashComponent implements OnInit {
 
     localStorage.setItem('reservationData', JSON.stringify(data));
 
-  
+
     this.router.navigate(['/confirm']);
   }
 
   goBack(): void {
-    this.router.navigate(['/food-package']);
+    this.router.navigate(['payment']);
   }
 
   confirmCancel(): void {
