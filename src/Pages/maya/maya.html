@@ -1,11 +1,10 @@
 <main>
   <section class="reservation-section">
 
-    <!-- MAIN BANNER -->
+    <!--main banner-->
     <div
       class="container-fluid reservation-header text-center py-4"
-      style="background-color:#D27D2D"
-    >
+      style="background-color:#D27D2D">
       <h3>
         <span class="title">Reserve Your Table</span><br />
         <span class="subtitle">
@@ -16,7 +15,7 @@
 
     <div class="container-fluid reservation-bg pt-3 pb-5">
 
-       <!-- Stepper -->
+       <!--stepper-->
       <div class="container mt-0 mb-4">
         <div class="d-flex justify-content-center align-items-center stepper">
           <div class="step" [class.completed]="currentStep > 1">
@@ -40,8 +39,7 @@
       <!--payment header-->
       <div
         class="container reservation-header text-start py-3 rounded-top-4"
-        style="background-color:#D27D2D; position:relative; z-index:2;"
-      >
+        style="background-color:#D27D2D; position:relative; z-index:2;">
         <h3 class="mb-0">
           <span class="title text-white p-3">Payment Method</span>
         </h3>
@@ -50,8 +48,7 @@
       <!--form container-->
       <div
         class="container shadow-lg rounded-top-0"
-        style="background:#F5F5DC; padding:1rem;"
-      >
+        style="background:#F5F5DC; padding:1rem;">
 
         <!--method title container-->
         <div class="d-flex justify-content-between align-items-center p-4">
@@ -59,10 +56,9 @@
 
           <button
             type="button"
-            class="btn btn-outline btn-sm"
+            class="btn btn-outline btn-sm shadow-lg"
             style="border-color:#D27D2D"
-            (click)="changeMethod()"
-          >
+            (click)="changeMethod()">
             Change Method
           </button>
         </div>
@@ -75,8 +71,7 @@
               src="assets/mayanobg.png" style="margin-top: -40px;"
               class="img-fluid"
               width="350"
-              alt="Maya Logo"
-            />
+              alt="Maya Logo"/>
           </div>
 
           <!-- QR CODE -->
@@ -85,11 +80,9 @@
               src="assets/QR.jpg"
               class="img-fluid rounded"
               width="180"
-              alt="GCash QR"
-            />
+              alt="GCash QR"/>
           </div>
 
-          <!-- INSTRUCTIONS -->
           <div class="d-flex justify-content-center align-items-center flex-column mt-2">
             <p>QR Code will appear here</p>
             <ol style="padding-left:20px;">
@@ -101,7 +94,6 @@
             </ol>
           </div>
 
-          <!-- REFERENCE NUMBER -->
           <div class="p-3">
             <label class="form-label">
               Reference Number <span class="text-danger">*</span>
