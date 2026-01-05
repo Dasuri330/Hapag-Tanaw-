@@ -45,8 +45,6 @@ export class ConfirmComponent implements OnInit {
   summaryName = '';
   summaryEmail = '';
   summaryPhone = '';
-  summaryDate = '';
-  summaryTime = '';
   summaryGuests = '';
   summaryOccasion = '';
   summaryRequests = '';
@@ -130,8 +128,6 @@ export class ConfirmComponent implements OnInit {
     this.summaryName = data.fullName || '';
     this.summaryEmail = data.email || '';
     this.summaryPhone = data.phoneNumber || '';
-    this.summaryDate = data.date || '';
-    this.summaryTime = `${data.timeStart || ''} → ${data.timeEnd || ''}`;
     this.summaryGuests = data.numGuests || '';
     this.summaryOccasion = data.specialOccasion || '-';
     this.summaryRequests = data.specialRequests || '-';
