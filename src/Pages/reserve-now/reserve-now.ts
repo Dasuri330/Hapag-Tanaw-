@@ -56,11 +56,36 @@ export class ReserveNowComponent implements OnInit {
       specialRequests: ['']
     });
 
-    // Set minimum date to today
+    // Set minimum date
     const today = new Date();
     this.minDate = today.toISOString().split('T')[0];
 
     this.setupTimeValidation();
+
+    // saved data from localstorage
+    const savedData = localStorage.getItem('reservationData');
+    if (savedData) {
+      const data = JSON.parse(savedData);
+
+      this.reservationForm.patchValue({
+        fullName: data.fullName,
+        email: data.email,
+        phoneNumber: data.phoneNumber,
+        date: data.date,
+        numGuests: data.numGuests,
+        specialOccasion: data.specialOccasion,
+        specialRequests: data.specialRequests,
+        hourStart: data.timeStart?.split(':')[0],
+        minuteStart: data.timeStart?.split(':')[1]?.split(' ')[0],
+        hourEnd: data.timeEnd?.split(':')[0],
+        minuteEnd: data.timeEnd?.split(':')[1]?.split(' ')[0]
+      });
+
+      this.selectedPeriodStart = data.timeStart?.includes('PM') ? 'PM' : 'AM';
+      this.selectedPeriodEnd = data.timeEnd?.includes('PM') ? 'PM' : 'AM';
+
+      this.updateTimeDisplay();
+    }
   }
 
   // Custom phone validator
@@ -94,7 +119,6 @@ export class ReserveNowComponent implements OnInit {
 
     this.displayTimeRange = `${start} → ${end}`;
 
-    // Validate if all fields are filled
     if (hourStart && minuteStart && hourEnd && minuteEnd) {
       const validation = this.validateTimeRange(
         hourStart, minuteStart, this.selectedPeriodStart,
@@ -121,7 +145,6 @@ export class ReserveNowComponent implements OnInit {
     let hs = parseInt(hStart);
     let he = parseInt(hEnd);
 
-    // Convert to 24-hour format
     if (periodStart === 'PM' && hs !== 12) hs += 12;
     if (periodStart === 'AM' && hs === 12) hs = 0;
     if (periodEnd === 'PM' && he !== 12) he += 12;
@@ -129,37 +152,25 @@ export class ReserveNowComponent implements OnInit {
 
     const startMin = hs * 60 + parseInt(mStart);
     const endMin = he * 60 + parseInt(mEnd);
-    const minTime = 10 * 60; // 
-    const maxTime = 21 * 60; // 
+
+    const minTime = 10 * 60;
+    const maxTime = 21 * 60;
 
     if (startMin < minTime || startMin > maxTime) {
-      return {
-        valid: false,
-        message: 'Start time must be between 10:00 AM and 9:00 PM',
-        clearEnd: false
-      };
+      return { valid: false, message: 'Start time must be between 10:00 AM and 9:00 PM', clearEnd: false };
     }
 
     if (endMin < minTime || endMin > maxTime) {
-      return {
-        valid: false,
-        message: 'End time must be between 10:00 AM and 9:00 PM',
-        clearEnd: true
-      };
+      return { valid: false, message: 'End time must be between 10:00 AM and 9:00 PM', clearEnd: true };
     }
 
     if (endMin <= startMin) {
-      return {
-        valid: false,
-        message: 'End time must be after start time',
-        clearEnd: true
-      };
+      return { valid: false, message: 'End time must be after start time', clearEnd: true };
     }
 
     return { valid: true, message: '', clearEnd: false };
   }
 
-  // Show time validation message
   showTimeValidationMessage(message: string): void {
     this.timeValidationMessage = message;
     this.showTimeValidationModal = true;
@@ -169,7 +180,6 @@ export class ReserveNowComponent implements OnInit {
     this.showTimeValidationModal = false;
   }
 
-  // Period button handlers
   selectPeriodStart(period: string): void {
     this.selectedPeriodStart = period;
     this.updateTimeDisplay();
@@ -180,9 +190,7 @@ export class ReserveNowComponent implements OnInit {
     this.updateTimeDisplay();
   }
 
-  // Next button handler
   onNext(): void {
-
     Object.keys(this.reservationForm.controls).forEach(key => {
       this.reservationForm.get(key)?.markAsTouched();
     });
@@ -192,34 +200,26 @@ export class ReserveNowComponent implements OnInit {
       return;
     }
 
-    // Gather form data
     const formData = {
-      fullName: this.reservationForm.get('fullName')?.value,
-      email: this.reservationForm.get('email')?.value,
-      phoneNumber: this.reservationForm.get('phoneNumber')?.value,
-      date: this.reservationForm.get('date')?.value,
-      timeStart: `${this.reservationForm.get('hourStart')?.value}:${this.reservationForm.get('minuteStart')?.value} ${this.selectedPeriodStart}`,
-      timeEnd: `${this.reservationForm.get('hourEnd')?.value}:${this.reservationForm.get('minuteEnd')?.value} ${this.selectedPeriodEnd}`,
-      numGuests: this.reservationForm.get('numGuests')?.value,
-      specialOccasion: this.reservationForm.get('specialOccasion')?.value || '',
-      specialRequests: this.reservationForm.get('specialRequests')?.value || ''
+      fullName: this.reservationForm.value.fullName,
+      email: this.reservationForm.value.email,
+      phoneNumber: this.reservationForm.value.phoneNumber,
+      date: this.reservationForm.value.date,
+      timeStart: `${this.reservationForm.value.hourStart}:${this.reservationForm.value.minuteStart} ${this.selectedPeriodStart}`,
+      timeEnd: `${this.reservationForm.value.hourEnd}:${this.reservationForm.value.minuteEnd} ${this.selectedPeriodEnd}`,
+      numGuests: this.reservationForm.value.numGuests,
+      specialOccasion: this.reservationForm.value.specialOccasion || '',
+      specialRequests: this.reservationForm.value.specialRequests || ''
     };
 
-    // Save to localStorage
     localStorage.setItem('reservationData', JSON.stringify(formData));
-
-    console.log('Reservation data saved to localStorage:', formData);
-
-    // Navigate to food package page
     this.router.navigate(['/food-package']);
   }
-
 
   closeValidationModal(): void {
     this.showValidationModal = false;
   }
 
-  // Cancel handlers
   onCancel(): void {
     this.showCancelModal = true;
   }
@@ -230,6 +230,7 @@ export class ReserveNowComponent implements OnInit {
 
   confirmCancel(): void {
     this.showCancelModal = false;
+    localStorage.removeItem('reservationData'); // optional cleanup
     this.router.navigate(['/']);
   }
 }
