@@ -10,7 +10,7 @@ interface FoodPackage {
   priceValue?: number;
   image: string;
   imageAlt: string;
-  selected?: boolean; 
+  selected?: boolean;
 }
 
 @Component({
@@ -90,7 +90,7 @@ export class FoodPackageComponent implements OnInit {
         'Great for dietary needs & allergies'
       ],
       price: 'Varies',
-      image: 'assets/food in table.jpg',
+      image: 'assets/food-in-table.jpg',
       imageAlt: 'À La Carte',
       selected: false
     }
@@ -113,7 +113,7 @@ export class FoodPackageComponent implements OnInit {
   togglePackage(pkg: FoodPackage): void {
     // If A La Carte is clicked, navigate to custom menu page
     if (pkg.title === 'À La Carte') {
-  
+
       const reservationData = JSON.parse(localStorage.getItem('reservationData') || '{}');
       reservationData.currentStep = this.currentStep;
       reservationData.foodPackage = 'À La Carte';

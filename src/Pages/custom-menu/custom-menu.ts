@@ -23,41 +23,30 @@ export interface MenuSection {
 @Component({
   selector: 'app-custom-menu',
   standalone: true,
-  imports: [CommonModule, HttpClientModule],  
+  imports: [CommonModule, HttpClientModule],
   templateUrl: './custom-menu.html',
   styleUrl: './custom-menu.css',
 })
-export class CustomMenuComponent implements OnInit {  
+export class CustomMenuComponent implements OnInit {
 
   showCancelModal = false;
   selectedPackages: SelectedItem[] = [];
-  
 
   menuSections$!: Observable<MenuSection[]>;
 
   constructor(
     private router: Router,
-    private http: HttpClient  
+    private http: HttpClient
   ) {
-    this.loadFromLocalStorage();
   }
 
- 
   ngOnInit(): void {
-   
-    this.menuSections$ = this.http.get<MenuSection[]>('assets/data/ala-carte.json');
-  }
+    // Clear selections when page loads/refreshes
+    this.selectedPackages = [];
+    localStorage.removeItem('selectedPackages');
 
-  loadFromLocalStorage(): void {
-    const saved = localStorage.getItem('selectedPackages');
-    if (saved) {
-      try {
-        this.selectedPackages = JSON.parse(saved);
-      } catch (e) {
-        console.error('error loading from localStorage:', e);
-        this.selectedPackages = [];
-      }
-    }
+    // Load menu data
+    this.menuSections$ = this.http.get<MenuSection[]>('assets/data/ala-carte.json');
   }
 
   saveToLocalStorage(): void {
@@ -68,10 +57,16 @@ export class CustomMenuComponent implements OnInit {
   }
 
   changeMethod(): void {
+    // Clear selections before going back
+    this.selectedPackages = [];
+    localStorage.removeItem('selectedPackages');
     this.router.navigate(['/food-package']);
   }
 
   onBack(): void {
+    // Clear selections before going back
+    this.selectedPackages = [];
+    localStorage.removeItem('selectedPackages');
     this.router.navigate(['/food-package']);
   }
 
@@ -86,8 +81,9 @@ export class CustomMenuComponent implements OnInit {
   confirmCancel(): void {
     this.selectedPackages = [];
     localStorage.removeItem('selectedPackages');
+    localStorage.removeItem('reservationData');
     this.showCancelModal = false;
-    this.router.navigate(['/home']);
+    this.router.navigate(['/']);
   }
 
   proceedToPayment(): void {
@@ -100,10 +96,11 @@ export class CustomMenuComponent implements OnInit {
 
     // Update reservation data with ala carte items
     const reservationData = JSON.parse(localStorage.getItem('reservationData') || '{}');
-    reservationData.foodPackage = 'Ala Carte';
+    reservationData.foodPackage = 'À La Carte';
     reservationData.selectedItems = this.selectedPackages;
     reservationData.totalAmount = this.getTotalAmount();
     reservationData.packagePrice = this.getTotalAmount();
+    reservationData.currentStep = 3;
 
     localStorage.setItem('reservationData', JSON.stringify(reservationData));
 
@@ -168,6 +165,4 @@ export class CustomMenuComponent implements OnInit {
       return total + this.getItemTotal(item);
     }, 0);
   }
-
- 
 }

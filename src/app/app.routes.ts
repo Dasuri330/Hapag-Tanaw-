@@ -11,6 +11,7 @@ import { GcashComponent } from '../Pages/gcash/gcash';
 import { MayaComponent } from '../Pages/maya/maya';
 import { ConfirmComponent } from '../Pages/confirm/confirm';
 import { SignUpComponent } from '../Pages/sign-up/sign-up';
+import { LoginComponent } from '../Pages/login/login';
 import { FAQs } from '../Pages/faqs/faqs';
 
 export const routes: Routes = [
@@ -26,6 +27,7 @@ export const routes: Routes = [
     { path: 'maya', component: MayaComponent },
     { path: 'confirm', component: ConfirmComponent },
     { path: 'sign-up', component: SignUpComponent },
+    { path: 'login', component: LoginComponent },
     { path: 'faqs', component: FAQs },
     { path: '**', redirectTo: '' }
 ];

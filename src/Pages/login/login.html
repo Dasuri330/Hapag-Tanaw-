@@ -1,0 +1,104 @@
+<main style="position: relative; height: 100vh; overflow: hidden;">
+    <img src="assets/food-in-table.jpg" 
+         style="position: fixed; top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; z-index: -2;"
+         alt="Background">
+    <div class="bg-overlay"></div>
+    
+    <div class="container-fluid d-flex justify-content-center align-items-center py-3">
+        <div class="card shadow-lg p-0">
+            <div class="row g-0">
+                <div class="col-md-5 p-5 d-flex flex-column justify-content-center">
+                    <h1 class="mb-4" style="font-size: 2.5rem;">The Best View of the Feast, Starts Here.</h1>
+                    <hr class="custom-hr">
+                    <p>Reserve your table with ease, creating memorable dining experience, manage bookings and your dining history.</p>
+                </div>
+                
+              <div class="col-md-7 p-4">
+                <div class="shadow-lg p-4" style="max-width: 420px; margin: 0 auto; background-color: white; border-radius: 15px;">
+                    <div class="text-center mt-0">
+                        <img src="assets/hapag-tanaw-logo.png" 
+                            alt="Hapag Tanaw Logo" 
+                            style="max-width: 90px; box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1); margin-bottom: 3%;">
+                    </div>
+                                    
+                        <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+                            
+                            <div class="mb-3">
+                                <label for="email" class="form-label">Email:</label>
+                                <input 
+                                    type="email" 
+                                    id="email"
+                                    class="form-control"
+                                    [class.is-invalid]="hasError('email')"
+                                    [class.is-valid]="f['email'].touched && f['email'].valid"
+                                    formControlName="email">
+                                <div class="error-message" *ngIf="hasError('email')">
+                                    {{ getErrorMessage('email') }}
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <label for="password" class="form-label">Password:</label>
+                                <div class="position-relative">
+                                    <input 
+                                        [type]="showPassword ? 'text' : 'password'" 
+                                        class="form-control"
+                                        id="password"
+                                        [class.is-invalid]="hasError('password')"
+                                        [class.is-valid]="f['password'].touched && f['password'].valid"
+                                        formControlName="password">
+                                    <i class="bi" 
+                                        [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'" 
+                                        (click)="togglePassword()" 
+                                        [ngStyle]="{
+                                            'position': 'absolute',
+                                            'top': '50%',
+                                            'right': (hasError('password') || (f['password'].touched && f['password'].valid)) ? '40px' : '10px',
+                                            'cursor': 'pointer',
+                                            'transform': 'translateY(-50%)'
+                                        }">
+                                    </i>
+                                </div>
+                                <div class="error-message" *ngIf="hasError('password')">
+                                    {{ getErrorMessage('password') }}
+                                </div>
+                            </div>
+                            
+                            <div class="text-end mb-3">
+                                <a href="#" class="text-decoration-none" style="font-size: 0.9rem;">Forgot Password?</a>
+                            </div>
+                                                
+                            <button type="submit" class="btn w-50 mb-3 black-outline mx-auto d-block">Login</button>
+                            
+                            <div class="text-center mb-2">Or log in with</div>
+                            
+                            <div class="row g-2">
+                                <div class="col-6">
+                                    <button 
+                                        type="button" 
+                                        class="btn w-100 social-btn google-btn"
+                                        (click)="loginWithGoogle()">
+                                        <i class="bi bi-google google-color"></i> Google
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <button 
+                                        type="button" 
+                                        class="btn w-100 social-btn facebook-btn"
+                                        (click)="loginWithFacebook()">
+                                        <i class="bi bi-facebook"></i> Facebook
+                                    </button>
+                                </div>
+                            </div>
+                            
+                            <div class="text-center mt-3">
+                                <span>Don't have an account? </span>
+                                <a routerLink="/signup" class="text-decoration-none fw-bold">Sign up</a>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>
