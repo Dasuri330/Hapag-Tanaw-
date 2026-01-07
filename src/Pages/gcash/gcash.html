@@ -1,9 +1,7 @@
 <main>
   <section class="reservation-section">
    <!--main banner-->
-    <div
-      class="container-fluid reservation-header text-center py-4"
-      style="background-color:#D27D2D">
+    <div class="container-fluid reservation-header cstm-rsrvtn text-center py-4 gcash-header">
       <h3>
         <span class="title">Reserve Your Table</span><br />
         <span class="subtitle">
@@ -34,19 +32,14 @@
       </div>
 
       <!--payment header-->
-      <div
-        class="container reservation-header text-start py-3 rounded-top-4"
-        style="background-color:#D27D2D; position:relative; z-index:2;">
+      <div class="container reservation-header text-start py-3 rounded-top-4 gcash-payment-header">
         <h3 class="mb-0">
           <span class="title text-white p-3">Payment Method</span>
         </h3>
       </div>
 
       <!--form container-->
-      <div
-        class="container shadow-lg rounded-top-0"
-        style="background:#F5F5DC; padding:1rem;"
-      >
+      <div class="container shadow-lg rounded-top-0 gcash-form-container">
 
         <!--method container-->
         <div class="d-flex justify-content-between align-items-center p-4">
@@ -54,8 +47,7 @@
 
           <button
             type="button"
-            class="btn btn-outline btn-sm shadow-lg"
-            style="border-color:#D27D2D;"
+            class="btn btn-outline btn-sm shadow-lg change-method-btn"
             (click)="changeMethod()">Change Method
           </button>
         </div>
@@ -66,14 +58,14 @@
           <!--gcash logo-->
           <div class="text-center">
             <img
-              src="assets/gcashnobg.png" style="margin-top: -40px;"
-              class="img-fluid"
+              src="assets/gcashnobg.png"
+              class="img-fluid gcash-logo"
               width="350"
               alt="GCash Logo"/>
           </div>
 
           <!--qr code-->
-          <div class="text-center" style="margin-top: -20px; width: 100%; ">
+          <div class="text-center gcash-qr-container">
             <img
               src="assets/QR.jpg"
               class="img-fluid rounded"
@@ -83,7 +75,7 @@
 
           <div class="d-flex justify-content-center align-items-center flex-column mt-2">
             <p>QR Code will appear here</p>
-            <ol style="padding-left:20px;">
+            <ol class="gcash-instructions">
               <li>Open your GCash app on your mobile device.</li>
               <li>Tap "Pay QR" or scan the QR code using the app.</li>
               <li>Enter the amount to pay and confirm the payment.</li>
@@ -130,8 +122,7 @@
             <div class="d-flex gap-2">
               <button
                 type="button"
-                class="btn btn-primary p-3"
-                style="background-color:#D27D2D;border-color:#D27D2D"
+                class="btn btn-primary p-3 btn-back-gcash"
                 (click)="goBack()">
               <i class="bi bi-chevron-left"></i> Back 
               </button>
@@ -160,12 +151,11 @@
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
 
-      <div class="modal-header" style="background-color: #D27D2D; color: white;">
-
+      <div class="modal-header gcash-modal-header">
         <h5><i class="bi bi-exclamation-triangle-fill me-2"></i> Warning</h5>
       </div>
 
-      <div class="modal-body" style="font-size:20px;">
+      <div class="modal-body gcash-modal-body">
         Are you sure you want to cancel? your changes won't be saved.
       </div>
 

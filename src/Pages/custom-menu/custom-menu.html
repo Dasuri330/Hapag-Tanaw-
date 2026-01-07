@@ -1,8 +1,6 @@
 <main>
   <section class="reservation-section">
-    <div
-      class="container-fluid reservation-header text-center py-4"
-      style="background-color:#D27D2D">
+    <div class="container-fluid reservation-header text-center py-4 custom-menu-header">
       <h3>
         <span class="title">Reserve Your Table</span><br />
         <span class="subtitle">
@@ -11,28 +9,41 @@
       </h3>
     </div>
     <div class="container-fluid reservation-bg pt-3 pb-5">
-      <div
-        class="container reservation-header text-start py-3 rounded-top-4"
-        style="background-color:#D27D2D; position:relative; z-index:2;">
+      <div class="container reservation-header text-start py-3 rounded-top-4 custom-menu-section-header">
         <h3 class="mb-0">
           <span class="title text-white p-3">Choose your Food Package</span>
         </h3>
       </div>
-      <div class="container shadow-lg rounded-top-0" style="background:#F5F5DC; padding:1rem;">
+      <div class="container shadow-lg rounded-top-0 custom-menu-container">
 
         <div class="d-flex justify-content-between align-items-center p-4">
           <h4 class="mb-0">Build your custom menu</h4>
           <button
             type="button"
-            class="btn btn-outline btn-sm shadow-lg-6 btn-rounded"
-            style="border-color:#D27D2D"
+            class="btn btn-outline btn-sm shadow-lg-6 btn-rounded back-to-packages-btn"
             (click)="changeMethod()">
             Back to Packages
           </button>
         </div>
 
+        <!-- selected summary -->
+<div *ngIf="selectedPackages.length > 0" class="selected-summary">
+  <div class="summary-content p-2 mt-1">
+    <div class="summary-left">
+      <strong>Selected:</strong>
+      <span class="selected-items">
+        {{ getSelectedTitles() }}
+      </span>
+    </div>
+
+    <div class="summary-right">
+      Total: ₱ {{ getTotalPrice().toLocaleString() }}
+    </div>
+  </div>
+</div>
+
         <div *ngIf="!(menuSections$ | async)" class="text-center my-5 py-5">
-          <div class="spinner-border text-primary" role="status" style="width: 3rem; height: 3rem; color: #D27D2D !important;">
+          <div class="spinner-border text-primary loading-spinner" role="status">
             <span class="visually-hidden">Loading...</span>
           </div>
           <p class="mt-3 text-muted">Loading menu items...</p>
@@ -44,7 +55,7 @@
             [id]="section.id"
             class="menu-section">
             <div class="container-fluid my-4 p-3">
-              <h4 class="mb-4 ms-2 fw-bold" style="color:#D27D2D;" >
+              <h4 class="mb-4 ms-2 fw-bold menu-section-title">
                 {{ section.title }}
                <hr class="custom-hr" />
               </h4>
@@ -57,14 +68,13 @@
                     
                     <img
                       [src]="item.image"
-                      class="card-img-top"
-                      [alt]="item.title"
-                      style="height:280px; object-fit:cover;" />
+                      class="card-img-top menu-item-image"
+                      [alt]="item.title" />
 
                     <div class="card-body bg-light p-3 d-flex flex-column">
                       <h6 class="mb-2 fw-semibold flex-grow-1 card-item-title">{{ item.title }}</h6>
                       <div class="mt-auto">
-                        <span class="fw-bold card-item-price" style="color: #D27D2D;">₱ {{ item.price }}</span>
+                        <span class="fw-bold card-item-price">₱ {{ item.price }}</span>
                       </div>
                     </div>
                   </div>
@@ -75,26 +85,25 @@
 
           <!--Order summary part-->
           <div class="container-fluid my-4 p-3" *ngIf="selectedPackages.length > 0">
-            <h4 class="mb-4 ms-2 fw-bold" style="color:#D27D2D;">
+            <h4 class="mb-4 ms-2 fw-bold order-summary-title">
               Your Order ({{ selectedPackages.length }})
               <hr class="custom-hr" />
             </h4>
 
-            <div class="order-summary-container p-3 p-md-4 rounded-3 shadow-sm" style="background: #fffaf2; border: 2px solid #D27D2D;">
+            <div class="order-summary-container p-3 p-md-4 rounded-3 shadow-sm">
               <div class="order-items">
-                <div *ngFor="let item of selectedPackages" class="order-item mb-3 p-2 p-md-3 rounded-3" style="background: white; border: 1px solid #e0e0e0;">
+                <div *ngFor="let item of selectedPackages" class="order-item mb-3 p-2 p-md-3 rounded-3">
                   
                 <!--for mobile view-->
                   <div class="d-md-none">
                     <div class="d-flex justify-content-between align-items-start mb-2">
                       <div class="item-info flex-grow-1">
-                        <h6 class="mb-1 fw-bold" style="font-size: 0.95rem;">{{ item.title }}</h6>
-                        <p class="mb-0 text-muted" style="font-size: 0.85rem;">₱ {{ item.price }} each</p>
+                        <h6 class="mb-1 fw-bold item-info-title-mobile">{{ item.title }}</h6>
+                        <p class="mb-0 text-muted item-info-price-mobile">₱ {{ item.price }} each</p>
                       </div>
                       <button
-                        class="btn btn-sm btn-outline-danger remove-btn ms-2"
-                        (click)="removeItem(item, $event)"
-                        style="width: 28px; height: 28px; border-radius: 50%; padding: 0; display: flex; align-items: center; justify-content: center; font-size: 0.75rem;">
+                        class="btn btn-sm btn-outline-danger remove-btn remove-btn-mobile ms-2"
+                        (click)="removeItem(item, $event)">
                         <i class="bi bi-x-lg"></i>
                       </button>
                     </div>
@@ -102,26 +111,24 @@
                     <div class="d-flex justify-content-between align-items-center">
                       <div class="quantity-controls d-flex align-items-center gap-2">
                         <button
-                          class="btn btn-sm rounded-circle quantity-btn"
-                          (click)="decrementQuantity(item, $event)"
-                          style="width: 30px; height: 30px; background-color: #D27D2D; color: white; border: none; display: flex; align-items: center; justify-content: center; font-size: 0.85rem;">
+                          class="btn btn-sm rounded-circle quantity-btn quantity-btn-mobile"
+                          (click)="decrementQuantity(item, $event)">
                           <i class="bi bi-dash"></i>
                         </button>
                         
-                        <span class="quantity-display fw-bold px-2" style="min-width: 25px; text-align: center; font-size: 1rem;">
+                        <span class="quantity-display fw-bold px-2 quantity-display-mobile">
                           {{ item.quantity }}
                         </span>
                         
                         <button
-                          class="btn btn-sm rounded-circle quantity-btn"
-                          (click)="incrementQuantity(item, $event)"
-                          style="width: 30px; height: 30px; background-color: #D27D2D; color: white; border: none; display: flex; align-items: center; justify-content: center; font-size: 0.85rem;">
+                          class="btn btn-sm rounded-circle quantity-btn quantity-btn-mobile"
+                          (click)="incrementQuantity(item, $event)">
                           <i class="bi bi-plus"></i>
                         </button>
                       </div>
 
                       <div class="item-total">
-                        <span class="fw-bold" style="color: #D27D2D; font-size: 1rem;">₱ {{ getItemTotal(item) }}</span>
+                        <span class="fw-bold item-total-mobile">₱ {{ getItemTotal(item) }}</span>
                       </div>
                     </div>
                   </div>
@@ -130,38 +137,35 @@
                   <div class="d-none d-md-flex justify-content-between align-items-center">
                     <div class="item-info flex-grow-1">
                       <h6 class="mb-1 fw-bold">{{ item.title }}</h6>
-                      <p class="mb-0 text-muted" style="font-size: 0.9rem;">₱ {{ item.price }} each</p>
+                      <p class="mb-0 text-muted item-info-price-desktop">₱ {{ item.price }} each</p>
                     </div>
 
                     <div class="d-flex align-items-center gap-3">
                       <div class="quantity-controls d-flex align-items-center gap-2">
                         <button
-                          class="btn btn-sm rounded-circle quantity-btn"
-                          (click)="decrementQuantity(item, $event)"
-                          style="width: 32px; height: 32px; background-color: #D27D2D; color: white; border: none; display: flex; align-items: center; justify-content: center;">
+                          class="btn btn-sm rounded-circle quantity-btn quantity-btn-desktop"
+                          (click)="decrementQuantity(item, $event)">
                           <i class="bi bi-dash"></i>
                         </button>
                         
-                        <span class="quantity-display fw-bold px-2" style="min-width: 30px; text-align: center; font-size: 1.1rem;">
+                        <span class="quantity-display fw-bold px-2 quantity-display-desktop">
                           {{ item.quantity }}
                         </span>
                         
                         <button
-                          class="btn btn-sm rounded-circle quantity-btn"
-                          (click)="incrementQuantity(item, $event)"
-                          style="width: 32px; height: 32px; background-color: #D27D2D; color: white; border: none; display: flex; align-items: center; justify-content: center;">
+                          class="btn btn-sm rounded-circle quantity-btn quantity-btn-desktop"
+                          (click)="incrementQuantity(item, $event)">
                           <i class="bi bi-plus"></i>
                         </button>
                       </div>
 
-                      <div class="item-total" style="min-width: 80px; text-align: right;">
-                        <span class="fw-bold" style="color: #D27D2D; font-size: 1.1rem;">₱ {{ getItemTotal(item) }}</span>
+                      <div class="item-total item-total-desktop">
+                        <span class="fw-bold item-total-price-desktop">₱ {{ getItemTotal(item) }}</span>
                       </div>
 
                       <button
-                        class="btn btn-sm btn-outline-danger remove-btn"
-                        (click)="removeItem(item, $event)"
-                        style="width: 32px; height: 32px; border-radius: 50%; padding: 0; display: flex; align-items: center; justify-content: center;">
+                        class="btn btn-sm btn-outline-danger remove-btn remove-btn-desktop"
+                        (click)="removeItem(item, $event)">
                         <i class="bi bi-x-lg"></i>
                       </button>
                     </div>
@@ -171,10 +175,10 @@
               </div>
 
               <!--order total part-->
-              <div class="order-total mt-3 mt-md-4 pt-3 border-top" style="border-color: #D27D2D !important;">
+              <div class="order-total mt-3 mt-md-4 pt-3 border-top order-total-border">
                 <div class="d-flex justify-content-between align-items-center">
-                  <h5 class="mb-0 fw-bold" style="font-size: 1.1rem;">Total:</h5>
-                  <h4 class="mb-0 fw-bold" style="color: #D27D2D; font-size: 1.3rem;">₱ {{ getTotalAmount() }}</h4>
+                  <h5 class="mb-0 fw-bold order-total-label">Total:</h5>
+                  <h4 class="mb-0 fw-bold order-total-amount">₱ {{ getTotalAmount() }}</h4>
                 </div>
               </div>
             </div>
@@ -186,8 +190,7 @@
           <div class="d-flex gap-2">
             <button
               type="button"
-              class="btn btn-primary p-3"
-              style="background-color:#D27D2D;border-color:#D27D2D"
+              class="btn btn-primary p-3 btn-back-custom"
               (click)="onBack()" >
               <i class="bi bi-chevron-left"></i> Back
             </button>
@@ -201,8 +204,7 @@
 
           <button
             type="button"
-            class="btn btn-success p-3"
-            style="background-color:#28a745;border-color:#28a745"
+            class="btn btn-success p-3 btn-proceed-payment"
             (click)="proceedToPayment()"
             [disabled]="selectedPackages.length === 0">Proceed to Payment <i class="bi bi-arrow-right"></i>
           </button>
@@ -219,9 +221,7 @@
   *ngIf="showCancelModal">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div
-        class="modal-header"
-        style="background-color:#D27D2D;color:white;">
+      <div class="modal-header custom-menu-modal-header">
         <h5 class="modal-title"><i class="bi bi-exclamation-triangle-fill me-2"></i> Warning</h5>
         <button
           type="button"

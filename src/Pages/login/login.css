@@ -1,11 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:wght@400;600;700&family=Raleway:wght@300;400;500;600;700&display=swap');
-
-html,
-body {
-    height: 100%;
-    overflow: hidden;
-}
-
 body {
     font-family: 'Raleway', sans-serif;
     background-size: cover;
@@ -13,6 +5,24 @@ body {
     background-repeat: no-repeat;
     background-attachment: fixed;
     margin: 0;
+}
+
+/* Main Container */
+.main-container {
+    position: relative;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Background Image */
+.background-image {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
 }
 
 /* Background overlay */
@@ -26,59 +36,42 @@ body {
     z-index: -1;
 }
 
-.card {
-    max-width: 1200px;
-    width: 100%;
-    border-radius: 20px;
-    background-color: rgba(255, 252, 245, 0.95);
-    border: none;
-    max-height: 95vh;
-    overflow: hidden;
+/* Main Heading */
+.main-heading {
+    font-size: 2.5rem;
 }
 
-/* Make the row container scrollable */
-.card .row {
-    max-height: 95vh;
-    overflow: hidden;
+/* Logo Image */
+.logo-image {
+    max-width: 90px;
+    box-shadow: 0 2px 3px rgba(0, 0, 0, 0.1);
+    margin-bottom: 3%;
 }
 
-/* Left side - fixed height */
-.col-md-5 {
-    overflow: hidden;
+/* Form Container */
+.form-container {
+    max-width: 420px;
+    margin: 0 auto;
+    background-color: white;
+    border-radius: 15px;
 }
 
-.col-md-7 {
-    max-height: 95vh;
-    overflow-y: auto;
-    overflow-x: hidden;
+/* Forgot Password Link */
+.forgot-password-link {
+    font-size: 0.9rem;
 }
 
-.col-md-7::-webkit-scrollbar {
-    width: 8px;
-}
-
-.col-md-7::-webkit-scrollbar-track {
-    background: rgba(0, 0, 0, 0.05);
-    border-radius: 10px;
-}
-
-.col-md-7::-webkit-scrollbar-thumb {
-    background: rgba(0, 0, 0, 0.2);
-    border-radius: 10px;
-}
-
-.col-md-7::-webkit-scrollbar-thumb:hover {
-    background: rgba(0, 0, 0, 0.3);
-}
-
-.col-md-7 {
-    scrollbar-width: thin;
-    scrollbar-color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.05);
+/* Password Toggle Icon */
+.password-toggle-icon {
+    position: absolute;
+    top: 50%;
+    cursor: pointer;
+    transform: translateY(-50%);
 }
 
 .black-outline {
     background-color: transparent;
-    border: 1px solid #000;
+    border: 1px solid #ADADAD;
     color: #000;
     transition: background-color 0.2s ease, color 0.2s ease;
 }
@@ -90,9 +83,17 @@ body {
 
 .social-btn {
     background-color: #ffffff;
-    border: 1px solid black;
+    border: 1px solid #ADADAD;
     color: #000;
     transition: background-color 0.2s ease, box-shadow 0.2s ease;
+}
+
+.navbar-brand {
+    color: #D27D2D !important;
+    font-family: "Montserrat Alternates", sans-serif;
+    font-weight: 800;
+    font-size: 24px;
+
 }
 
 .social-btn:hover {
@@ -121,23 +122,69 @@ button:disabled {
     color: #D27D2D;
 }
 
+.card {
+    max-width: 1200px;
+    width: 100%;
+    border-radius: 20px;
+    background-color: rgba(255, 252, 245, 0.95);
+    border: none;
+    max-height: 95vh;
+    overflow: hidden;
+}
+
+.card .row {
+    max-height: 95vh;
+    overflow: hidden;
+}
+
+.col-md-5 {
+    overflow: hidden;
+}
+
+.col-md-7 {
+    max-height: 95vh;
+    overflow-y: auto;
+    overflow-x: hidden;
+    scroll-behavior: smooth;
+}
+
+.col-md-7::-webkit-scrollbar {
+    width: 8px;
+}
+
+.col-md-7::-webkit-scrollbar-track {
+    background: rgba(0, 0, 0, 0.05);
+    border-radius: 10px;
+}
+
+.col-md-7::-webkit-scrollbar-thumb {
+    background: rgba(0, 0, 0, 0.2);
+    border-radius: 10px;
+}
+
+.col-md-7::-webkit-scrollbar-thumb:hover {
+    background: rgba(0, 0, 0, 0.3);
+}
+
+.col-md-7 {
+    scrollbar-width: thin;
+    scrollbar-color: rgba(0, 0, 0, 0.2) rgba(0, 0, 0, 0.05);
+}
+
 .error-message {
     color: #dc3545;
     font-size: 0.875rem;
     margin-top: 0.25rem;
 }
 
-
 .form-control {
-    border: 1px solid black;
+    border: 1px solid #ADADAD;
 }
-
 
 .form-control:focus {
     outline: none;
     box-shadow: none !important;
     border-color: #000;
-
 }
 
 .form-control.is-invalid {
@@ -148,22 +195,8 @@ button:disabled {
     border-color: #198754;
 }
 
-/* Eye icon inside password field */
-.form-control+i.bi {
-    position: absolute;
-    top: 50%;
-    right: 3.5rem;
-    /* move icon left so it doesn't overlap validation icon */
-    transform: translateY(-50%);
-    cursor: pointer;
-    font-size: 1rem;
-    color: #555;
-    z-index: 2;
-}
-
 .form-control[type="password"] {
     padding-right: 5rem;
-    /* give extra space for eye + validation icons */
 }
 
 @media (min-width: 1200px) {
@@ -177,7 +210,7 @@ button:disabled {
         max-width: 95%;
     }
 
-    main h1 {
+    .main-heading {
         font-size: 2rem !important;
     }
 }
@@ -187,7 +220,7 @@ button:disabled {
         max-width: 90%;
     }
 
-    main h1 {
+    .main-heading {
         font-size: 1.75rem !important;
     }
 
@@ -204,7 +237,7 @@ button:disabled {
         overflow: auto;
     }
 
-    main {
+    .main-container {
         height: auto !important;
         min-height: 100vh;
         overflow-y: auto !important;
@@ -242,7 +275,7 @@ button:disabled {
         text-align: center;
     }
 
-    main h1 {
+    .main-heading {
         font-size: 1.5rem !important;
         margin-bottom: 1rem !important;
     }
@@ -260,21 +293,9 @@ button:disabled {
         padding: 1.5rem !important;
     }
 
-    .shadow-lg.p-4 {
+    .form-container {
         padding: 1.5rem !important;
         max-width: 100% !important;
-    }
-
-    .shadow-lg.p-4 h2 {
-        font-size: 1.5rem;
-    }
-
-    .row.mb-3 .col-md-6 {
-        margin-bottom: 1rem;
-    }
-
-    .row.mb-3 .col-md-6:last-child {
-        margin-bottom: 0;
     }
 }
 
@@ -291,7 +312,7 @@ button:disabled {
         padding: 1rem !important;
     }
 
-    main h1 {
+    .main-heading {
         font-size: 1.25rem !important;
     }
 
@@ -303,17 +324,9 @@ button:disabled {
         padding: 1rem !important;
     }
 
-    .shadow-lg.p-4 {
+    .form-container {
         padding: 1rem !important;
         border-radius: 10px !important;
-    }
-
-    .shadow-lg.p-4 h2 {
-        font-size: 1.25rem;
-    }
-
-    .shadow-lg.p-4 p {
-        font-size: 0.9rem;
     }
 
     .btn {
@@ -334,29 +347,21 @@ button:disabled {
         font-size: 0.9rem;
     }
 
-    .form-check-label {
-        font-size: 0.85rem;
-    }
-
     .error-message {
         font-size: 0.75rem;
     }
 }
 
 @media (max-width: 374px) {
-    main h1 {
+    .main-heading {
         font-size: 1.1rem !important;
-    }
-
-    .shadow-lg.p-4 h2 {
-        font-size: 1.1rem;
     }
 
     .col-md-5 {
         padding: 0.75rem !important;
     }
 
-    .shadow-lg.p-4 {
+    .form-container {
         padding: 0.75rem !important;
     }
 
@@ -389,7 +394,7 @@ button:disabled {
         padding: 1rem !important;
     }
 
-    main h1 {
+    .main-heading {
         font-size: 1.25rem !important;
         margin-bottom: 0.5rem !important;
     }
@@ -399,7 +404,7 @@ button:disabled {
         margin-bottom: 0.5rem;
     }
 
-    .shadow-lg.p-4 {
+    .form-container {
         padding: 1rem !important;
     }
 }
@@ -418,13 +423,9 @@ button:disabled {
         max-height: 90vh;
     }
 
-    main h1 {
+    .main-heading {
         font-size: 1.75rem !important;
     }
-}
-
-.col-md-7 {
-    scroll-behavior: smooth;
 }
 
 @media print {

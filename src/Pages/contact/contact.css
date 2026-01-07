@@ -1,6 +1,3 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
-
-
 .location-section {
     background-color: #f5f5dc;
     padding: 20px 0;
@@ -71,9 +68,7 @@
     display: inline-block;
     border-bottom: 1px solid #D27D2D;
     padding-bottom: 4px;
-
 }
-
 
 .social-icons {
     display: flex;
@@ -97,10 +92,6 @@
     text-decoration: none;
 }
 
-.custom-border {
-    border-radius: 15px;
-}
-
 .social-icon:hover {
     transform: scale(1.1);
 }
@@ -117,6 +108,10 @@
     background-color: #000;
 }
 
+.custom-border {
+    border-radius: 15px;
+}
+
 .map-container {
     width: 100%;
     height: 380px;
@@ -129,8 +124,4 @@
     width: 100%;
     height: 100%;
     border: 0;
-}
-
-.custom-container {
-    margin-top: 20px;
 }

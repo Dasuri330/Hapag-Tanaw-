@@ -2,6 +2,11 @@ main .container-fluid {
     background-color: #F5F5DC;
 }
 
+.custom-hr {
+    color: #D27D2D;
+    opacity: 1;
+}
+
 /* Food images layout */
 .food-images {
     margin-top: 0;

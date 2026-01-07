@@ -1,26 +1,20 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
-
-html,
-body {
-    height: 100%;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
 main .container-fluid {
     background-color: #F5F5DC;
 }
 
-p {
-    font-size: 20px;
+.custom-rsrvtn {
+    background-color: #D27D2D !important;
 }
 
-h1 {
-    font-size: 50px;
+.maya-payment-header {
+    background-color: #D27D2D;
+    position: relative;
+    z-index: 2;
+}
+
+.maya-form-container {
+    background: #F5F5DC;
+    padding: 1rem;
 }
 
 .btn-custom {
@@ -32,10 +26,38 @@ h1 {
 
 }
 
+.btn-back-maya {
+    background-color: #D27D2D;
+    border-color: #D27D2D;
+    color: white;
+}
+
+.maya-modal-header {
+    background-color: #D27D2D;
+    color: white;
+}
+
+.maya-modal-body {
+    font-size: 20px;
+}
+
+.maya-qr-container {
+    margin-top: -20px;
+    width: 100%;
+}
+
+.change-method-btn {
+    border-color: #D27D2D
+}
+
 .btn-custom:hover {
     background-color: #b86723;
     border-color: #b86723;
     color: #fff;
+}
+
+.maya-logo {
+    margin-top: -40px;
 }
 
 .btn-custom:active {

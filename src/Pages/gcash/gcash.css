@@ -1,52 +1,9 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
-
-html,
-body {
-    height: 100%;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
-
 main .container-fluid {
     background-color: #F5F5DC;
 }
 
-p {
-    font-size: 20px;
-}
-
-h1 {
-    font-size: 50px;
-}
-
-.btn-custom {
+.cstm-rsrvtn {
     background-color: #D27D2D !important;
-    border-color: #D27D2D !important;
-    color: #fff !important;
-    border-radius: 5;
-    padding: 12px 28px;
-
-}
-
-.btn-custom:hover {
-    background-color: #b86723;
-    border-color: #b86723;
-    color: #fff;
-}
-
-.btn-custom:active {
-    transform: scale(0.97);
-}
-
-
-.subtitle {
-    font-weight: 400;
-    font-size: large;
 }
 
 
@@ -61,20 +18,7 @@ h1 {
     font-size: 0.95rem;
 }
 
-.reservation-bg {
-    background-color: #F5F5DC;
-}
 
-.stepper {
-    gap: 10px;
-}
-
-.stepper-container {
-    margin-top: 10px;
-}
-
-
-/* Stepper wrapper */
 .stepper {
     display: flex;
     align-items: center;
@@ -83,7 +27,6 @@ h1 {
     gap: 0;
 }
 
-/* Step wrapper */
 .step {
     display: flex;
     flex-direction: column;
@@ -93,7 +36,6 @@ h1 {
     z-index: 2;
 }
 
-/* Stepper circles */
 .step-circle {
     width: 40px;
     height: 40px;
@@ -109,7 +51,6 @@ h1 {
     border: 3px solid #ccc;
 }
 
-/* Step labels below circles */
 .step small {
     display: block;
     text-align: center;
@@ -118,7 +59,6 @@ h1 {
     transition: all 0.3s ease;
 }
 
-/* Active step */
 .step.active .step-circle {
     background-color: #D27D2D;
     border-color: #D27D2D;
@@ -130,11 +70,11 @@ h1 {
     font-weight: bold;
 }
 
-/* Completed step */
 .step.completed .step-circle {
     background-color: #28a745;
     border-color: #28a745;
     color: white;
+    font-size: 0;
 }
 
 .step.completed .step-circle::before {
@@ -142,17 +82,11 @@ h1 {
     font-size: 20px;
 }
 
-/* Hide the number when completed */
-.step.completed .step-circle {
-    font-size: 0;
-}
-
 .step.completed small {
     color: #28a745;
     font-weight: 600;
 }
 
-/* Line between steps */
 .step-line {
     flex: 1;
     height: 4px;
@@ -164,90 +98,56 @@ h1 {
     transition: all 0.3s ease;
 }
 
-/* Active/Completed line */
 .step-line.active {
     background-color: #D27D2D;
 }
 
-.form-label i {
-    color: #D27D2D;
-    margin-right: 5px;
-}
 
-.form-control {
-    background-color: white;
-    border: 1px solid #ddd;
-    padding: 10px 15px;
-}
-
-.form-control:focus {
-    border-color: #D27D2D;
-    box-shadow: 0 0 0 0.2rem rgba(210, 125, 45, 0.25);
-}
-
-/* Form validation styles */
-.form-control.is-invalid {
-    border-color: #dc3545;
-    padding-right: calc(1.5em + 0.75rem);
-    background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 12 12' width='12' height='12' fill='none' stroke='%23dc3545'%3e%3ccircle cx='6' cy='6' r='4.5'/%3e%3cpath stroke-linejoin='round' d='M5.8 3.6h.4L6 6.5z'/%3e%3ccircle cx='6' cy='8.2' r='.6' fill='%23dc3545' stroke='none'/%3e%3c/svg%3e");
-    background-repeat: no-repeat;
-    background-position: right calc(0.375em + 0.1875rem) center;
-    background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
-}
-
-.select-btn {
+/* GCash Specific Styles */
+.gcash-header {
     background-color: #D27D2D;
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 15px;
+}
+
+.gcash-payment-header {
+    background-color: #D27D2D;
+    position: relative;
+    z-index: 2;
+}
+
+.gcash-form-container {
+    background: #F5F5DC;
+    padding: 1rem;
+}
+
+.change-method-btn {
+    border-color: #D27D2D;
+}
+
+.gcash-logo {
+    margin-top: -40px;
+}
+
+.gcash-qr-container {
+    margin-top: -20px;
     width: 100%;
 }
-.select-btn:hover {
-    background-color: #b86723;
-    transform: scale(1.02);
-}
-.period-selector {
-    display: flex;
-    gap: 5px;
-    margin-top: 15px;
-}
-.period-btn {
-    flex: 1;
-    padding: 10px;
-    border: 2px solid #ddd;
-    background: white;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-.period-btn:hover {
-    border-color: #D27D2D;
-    background-color: #fff5e6;
+
+.gcash-instructions {
+    padding-left: 20px;
 }
 
-.period-btn.active {
+.btn-back-gcash {
+    background-color: #D27D2D;
+    border-color: #D27D2D;
+}
+
+.gcash-modal-header {
     background-color: #D27D2D;
     color: white;
-    border-color: #D27D2D;
 }
 
-.button-custom {
-    background-color: #F5F5DC;
-    border-color: #F5F5DC;
-    color: #333;
-}
-
-p {
-    text-decoration: underline;
-    text-decoration-color: #D27D2D;
-    text-underline-offset: 5px;
-    font-weight: 500;
+.gcash-modal-body {
+    font-size: 20px;
 }
 
 /* Responsive */

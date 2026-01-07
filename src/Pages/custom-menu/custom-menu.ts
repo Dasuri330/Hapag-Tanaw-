@@ -165,4 +165,20 @@ export class CustomMenuComponent implements OnInit {
       return total + this.getItemTotal(item);
     }, 0);
   }
+
+  // NEW METHODS - Similar to food-package component
+  getSelectedTitles(): string {
+    if (this.selectedPackages.length === 0) {
+      return '';
+    }
+
+    // Format: "Item 1 (x2), Item 2 (x1), Item 3 (x3)"
+    return this.selectedPackages
+      .map(item => `${item.title} (x${item.quantity})`)
+      .join(', ');
+  }
+
+  getTotalPrice(): number {
+    return this.getTotalAmount();
+  }
 }

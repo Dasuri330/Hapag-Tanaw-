@@ -1,7 +1,7 @@
 <main>
   <section class="reservation-section">
     <!--header-->
-    <div class="container-fluid reservation-header text-center py-4" style="background-color: #D27D2D;">
+    <div class="container-fluid reservation-header text-center py-4 header-orange">
       <h3 class="mb-0">
         <span class="title">Reserve Your Table</span><br>
         <span class="subtitle">Timeless Filipino flavors, beautifully reimagined</span>
@@ -32,26 +32,24 @@
       </div>
 
       <!--form header-->
-      <div class="container reservation-header text-start py-3 rounded-top-4"
-        style="background-color: #D27D2D; position: relative; z-index: 2;">
+      <div class="container reservation-header text-start py-3 rounded-top-4 form-header">
         <h3 class="mb-0"><span class="title text-white p-3">Select Payment Method</span></h3>
       </div>
 
       <!--form container-->
-      <div class="container rounded-bottom shadow-lg"
-        style="background-color: #F5F5DC; margin-top: -10px; position: relative; max-height: 550px; padding: 0;">
+      <div class="container rounded-bottom shadow-lg form-container-payment">
         <div class="d-grid gap-2 m-2 p-3">
           
           <!--payment method buttons-->
           <button 
             *ngFor="let method of paymentMethods"
-            class="btn text-start p-4 button-custom shadow-lg d-flex align-items-center border-0" style="font-size: 15px;"
+            class="btn text-start p-4 button-custom shadow-lg d-flex align-items-center border-0 payment-method-btn"
             type="button"
             [disabled]="method.disabled"
             [style.background-color]="method.disabled ? '#e9ecef' : ''"
             [class.selected]="selectedPaymentMethod === method.id"
             (click)="selectPaymentMethod(method)">
-            <i [class]="method.icon + ' me-2'" style="color:#D27D2D;"></i>
+            <i [class]="method.icon + ' me-2 payment-icon'"></i>
             <span>{{ method.title }} ({{ method.description }})</span>
           </button>
 
@@ -59,8 +57,7 @@
 
         <!--btn group-->
         <div class="d-flex gap-2 p-3 w-100">
-          <button class="btn btn-primary flex-fill" type="button" (click)="onBack()" 
-                  style="background-color: #D27D2D; border-color: #D27D2D;">
+          <button class="btn btn-primary flex-fill btn-back-payment" type="button" (click)="onBack()">
             Back
           </button>
           <button class="btn btn-danger flex-fill" type="button" (click)="onCancel()">
@@ -77,7 +74,7 @@
      tabindex="-1" *ngIf="showUnavailableModal">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header text-white" style="background-color: #D27D2D;">
+      <div class="modal-header text-white modal-header-orange">
         <h5 class="modal-title">
           <i class="bi bi-exclamation-circle-fill me-2"></i>
           Payment Method Unavailable
@@ -88,8 +85,7 @@
         <p class="mb-0">{{ unavailableMessage }}</p>
       </div>
       <div class="modal-footer">
-        <button type="button" class="btn btn-custom" (click)="closeUnavailableModal()" 
-                style="background-color: #D27D2D; border-color: #D27D2D;">
+        <button type="button" class="btn btn-custom btn-modal-ok" (click)="closeUnavailableModal()">
           <i class="bi bi-check-circle me-1"></i> OK
         </button>
       </div>
@@ -103,13 +99,13 @@
      tabindex="-1" *ngIf="showCancelModal">
   <div class="modal-dialog modal-dialog-centered">
     <div class="modal-content">
-      <div class="modal-header" style="background-color: #D27D2D; color: white;">
+      <div class="modal-header modal-header-warning">
         <h5 class="modal-title">
           <i class="bi bi-exclamation-triangle-fill me-2"></i> Warning
         </h5>
         <button type="button" class="btn-close btn-close-white" (click)="closeCancelModal()"></button>
       </div>
-      <div class="modal-body" style="font-size: 20px;">
+      <div class="modal-body modal-body-large">
         Are you sure you want to cancel? Your changes won't be saved.
       </div>
       <div class="modal-footer">

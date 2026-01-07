@@ -1,23 +1,11 @@
-@import url('https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&family=Raleway:ital,wght@0,100..900;1,100..900&display=swap');
-
-html,
-body {
-    height: 100%;
-}
-
-body {
-    display: flex;
-    flex-direction: column;
-    min-height: 100vh;
-}
-
+/* Main Styles */
 main .container-fluid {
     background-color: #F5F5DC;
 }
 
-.subtitle {
-    font-weight: 400;
-    font-size: large;
+/* Headers */
+.header-orange {
+    background-color: #D27D2D !important;
 }
 
 .reservation-header .title {
@@ -31,21 +19,26 @@ main .container-fluid {
     font-size: 0.95rem;
 }
 
+.form-header {
+    background-color: #D27D2D;
+    position: relative;
+    z-index: 2;
+}
+
 .reservation-bg {
     background-color: #F5F5DC;
 }
 
-.stepper {
-    gap: 10px;
+/* Form Container */
+.form-container-payment {
+    background-color: #F5F5DC;
+    margin-top: -10px;
+    position: relative;
+    max-height: 550px;
+    padding: 0;
 }
 
-.stepper-container {
-    margin-top: 10px;
-
-}
-
-
-/* Stepper wrapper */
+/* Stepper */
 .stepper {
     display: flex;
     align-items: center;
@@ -54,7 +47,6 @@ main .container-fluid {
     gap: 0;
 }
 
-/* Step wrapper */
 .step {
     display: flex;
     flex-direction: column;
@@ -64,7 +56,6 @@ main .container-fluid {
     z-index: 2;
 }
 
-/* Stepper circles */
 .step-circle {
     width: 40px;
     height: 40px;
@@ -80,7 +71,6 @@ main .container-fluid {
     border: 3px solid #ccc;
 }
 
-/* Step labels below circles */
 .step small {
     display: block;
     text-align: center;
@@ -89,7 +79,6 @@ main .container-fluid {
     transition: all 0.3s ease;
 }
 
-/* Active step */
 .step.active .step-circle {
     background-color: #D27D2D;
     border-color: #D27D2D;
@@ -101,11 +90,11 @@ main .container-fluid {
     font-weight: bold;
 }
 
-/* Completed step */
 .step.completed .step-circle {
     background-color: #28a745;
     border-color: #28a745;
     color: white;
+    font-size: 0;
 }
 
 .step.completed .step-circle::before {
@@ -113,17 +102,11 @@ main .container-fluid {
     font-size: 20px;
 }
 
-/* Hide the number when completed */
-.step.completed .step-circle {
-    font-size: 0;
-}
-
 .step.completed small {
     color: #28a745;
     font-weight: 600;
 }
 
-/* Line between steps */
 .step-line {
     flex: 1;
     height: 4px;
@@ -135,11 +118,11 @@ main .container-fluid {
     transition: all 0.3s ease;
 }
 
-/* Active/Completed line */
 .step-line.active {
     background-color: #D27D2D;
 }
 
+/* Forms */
 .form-label i {
     color: #D27D2D;
     margin-right: 5px;
@@ -156,7 +139,6 @@ main .container-fluid {
     box-shadow: 0 0 0 0.2rem rgba(210, 125, 45, 0.25);
 }
 
-/* Form validation styles */
 .form-control.is-invalid {
     border-color: #dc3545;
     padding-right: calc(1.5em + 0.75rem);
@@ -166,168 +148,46 @@ main .container-fluid {
     background-size: calc(0.75em + 0.375rem) calc(0.75em + 0.375rem);
 }
 
-.Reservation {
-    font-size: 20px;
-}
-
-.food-package-card {
-    border-radius: 15px;
-    overflow: hidden;
-    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-    margin-bottom: 30px;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
-
-.food-package-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.2);
-}
-
-.package-content {
-    display: flex;
-    flex-direction: row;
-}
-
-.package-info {
-    flex: 0 0 35%;
-    padding: 30px 25px;
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-}
-
-.package-title {
-    color: #D27D2D;
-    font-weight: 700;
-    font-size: 22px;
-    margin-bottom: 15px;
-}
-
-.package-persons {
-    color: #666;
-    font-size: 14px;
-    margin-bottom: 20px;
-    font-weight: 500;
-}
-
-.package-menu-list {
-    list-style: none;
-    padding: 0;
-    margin: 0 0 20px 0;
-}
-
-.package-menu-list li {
-    padding: 8px 0;
-    color: #333;
+/* Payment Method Buttons */
+.payment-method-btn {
     font-size: 15px;
-    border-bottom: 1px solid #f0f0f0;
 }
 
-.package-menu-list li:last-child {
-    border-bottom: none;
-}
-
-.package-menu-list li::before {
-    content: "•";
-    color: #D27D2D;
-    font-weight: bold;
-    display: inline-block;
-    width: 15px;
-    margin-right: 8px;
-}
-
-.package-price {
-    color: #D27D2D;
-    font-weight: 700;
-    font-size: 32px;
-    margin-top: auto;
-}
-
-.package-images {
-    display: flex;
-    justify-content: flex-end;
-    align-items: center;
-}
-
-.package-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-
-}
-
-.select-btn {
-    background-color: #D27D2D;
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 8px;
-    font-weight: 600;
-    cursor: pointer;
-    transition: all 0.3s ease;
-    margin-top: 15px;
-    width: 100%;
-}
-
-.select-btn:hover {
-    background-color: #b86723;
-    transform: scale(1.02);
-}
-
-/* Responsive */
-@media (max-width: 768px) {
-    .package-content {
-        flex-direction: column;
-    }
-
-    .package-info {
-        flex: 1;
-    }
-
-    .package-images {
-        grid-template-columns: repeat(2, 1fr);
-        min-height: 250px;
-    }
-}
-
-.period-selector {
-    display: flex;
-    gap: 5px;
-    margin-top: 15px;
-}
-
-.period-btn {
-    flex: 1;
-    padding: 10px;
-    border: 2px solid #ddd;
-    background: white;
-    border-radius: 8px;
-    font-weight: bold;
-    cursor: pointer;
-    transition: all 0.3s ease;
-}
-
-.period-btn:hover {
-    border-color: #D27D2D;
-    background-color: #fff5e6;
-}
-
-.period-btn.active {
-    background-color: #D27D2D;
-    color: white;
-    border-color: #D27D2D;
-}
-
-/*For customize payment button*/
 .button-custom {
     background-color: #F5F5DC;
     border-color: #F5F5DC;
     color: #333;
 }
 
-.bank-btn i {
-    color: #fff;
+.payment-icon {
+    color: #D27D2D;
 }
+
+/* Buttons */
+.btn-back-payment {
+    background-color: #D27D2D;
+    border-color: #D27D2D;
+}
+
+/* Modals */
+.modal-header-orange {
+    background-color: #D27D2D;
+}
+
+.modal-header-warning {
+    background-color: #D27D2D;
+    color: white;
+}
+
+.modal-body-large {
+    font-size: 20px;
+}
+
+.btn-modal-ok {
+    background-color: #D27D2D;
+    border-color: #D27D2D;
+}
+
 
 /* Responsive */
 @media (max-width: 768px) {
@@ -347,5 +207,17 @@ main .container-fluid {
 
     .step-line {
         margin-top: -30px;
+    }
+
+    .package-content {
+        flex-direction: column;
+    }
+
+    .package-info {
+        flex: 1;
+    }
+
+    .package-images {
+        min-height: 250px;
     }
 }
