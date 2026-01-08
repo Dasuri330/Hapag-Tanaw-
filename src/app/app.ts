@@ -1,7 +1,7 @@
 import { Component, signal } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Navbar } from '../layout/navbar/navbar';
+import { Navbar } from '../layout//navbar/navbar';
 import { Footer } from '../layout/footer/footer';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 

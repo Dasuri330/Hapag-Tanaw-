@@ -1,0 +1,73 @@
+{
+    "foodPackages": [
+        {
+            "id": 1,
+            "title": "Classic Kamayan",
+            "persons": "4-6 persons",
+            "menuItems": [
+                "Lechon Kawali",
+                "Sinigang na Baboy",
+                "Grilled Liempo",
+                "Garlic Rice",
+                "Fresh Lumpia"
+            ],
+            "price": "₱ 2,500",
+            "priceValue": 2500,
+            "image": "assets/Classic Kamayan.png",
+            "imageAlt": "Classic Kamayan",
+            "selected": false
+        },
+        {
+            "id": 2,
+            "title": "Deluxe Fiesta",
+            "persons": "6-8 persons",
+            "menuItems": [
+                "Crispy Pata",
+                "Kare-Kare",
+                "Grilled Bangus",
+                "Halo-Halo",
+                "Leche Flan"
+            ],
+            "price": "₱ 4,500",
+            "priceValue": 4500,
+            "image": "assets/Deluxe Fiesta.png",
+            "imageAlt": "Deluxe Fiesta",
+            "selected": false
+        },
+        {
+            "id": 3,
+            "title": "Premium Celebration",
+            "persons": "8-10 persons",
+            "menuItems": [
+                "Whole Lechon Belly",
+                "Seafood Sinigang",
+                "Beef Caldereta",
+                "Buttered Shrimp",
+                "Buko Pandan"
+            ],
+            "price": "₱ 6,800",
+            "priceValue": 6800,
+            "image": "assets/Premium Celebration.png",
+            "imageAlt": "Premium Celebration",
+            "selected": false
+        },
+        {
+            "id": 4,
+            "title": "À La Carte",
+            "persons": "Customizable",
+            "menuItems": [
+                "Build your own menu",
+                "Choose from our full selection",
+                "Perfect for special preference",
+                "Ideal for small or large gatherings",
+                "Mix and match your favorite dishes",
+                "Great for dietary needs & allergies"
+            ],
+            "price": "Varies",
+            "priceValue": null,
+            "image": "assets/food-in-table.jpg",
+            "imageAlt": "À La Carte",
+            "selected": false
+        }
+    ]
+}

@@ -1,0 +1,20 @@
+{
+  "name": "Hapag_Tanaw_Angular",
+  "version": "1.0.0",
+  "private": true,
+  "scripts": {
+    "ng": "ng",
+    "start": "ng serve",
+    "build": "ng build",
+    "test": "ng test",
+    "lint": "ng lint",
+    "e2e": "ng e2e"
+  },
+  "dependencies": {
+    // other dependencies
+  },
+  "devDependencies": {
+    "@types/jasmine": "^3.10.0",
+    // other devDependencies
+  }
+}

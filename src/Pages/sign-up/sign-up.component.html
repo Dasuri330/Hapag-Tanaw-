@@ -1,0 +1,161 @@
+<main class="main">
+   <img src="assets/food-in-table.jpg" alt="Background" class="bg-image">
+    <div class="bg-overlay"></div>
+    
+    <div class="container-fluid d-flex justify-content-center align-items-center py-3">
+        <div class="card shadow-lg p-0">
+            <div class="row g-0">
+                <div class="col-md-5 p-5 d-flex flex-column justify-content-center">
+                    <h1 class="mb-4" style="font-size: 2.5rem;">The Best View of the Feast, Starts Here.</h1>
+                    <hr class="custom-hr">
+                    <p>Reserve your table with ease, creating memorable dining experience, manage bookings and your dining history.</p>
+                </div>
+                
+                <div class="col-md-7 p-3">
+                    <div class="shadow-lg p-4 custom-card">
+                        <h2 class="text-center mb-2">Create an account</h2>
+                        <p class="text-center mb-4">
+                            Already have an account? <a routerLink="/login" href="/login">Log in</a>
+                        </p>
+                        
+                        <form [formGroup]="signupForm" (ngSubmit)="onSubmit()">
+                            <div class="row mb-3">
+                                <div class="col-md-6">
+                                    <input 
+                                        type="text" 
+                                        class="form-control" 
+                                        [class.is-invalid]="hasError('firstName')"
+                                        [class.is-valid]="f['firstName'].touched && f['firstName'].valid"
+                                        formControlName="firstName"
+                                        placeholder="First Name:">
+                                    <div class="error-message" *ngIf="hasError('firstName')">
+                                        {{ getErrorMessage('firstName') }}
+                                    </div>
+                                </div>
+                                <div class="col-md-6">
+                                    <input 
+                                        type="text" 
+                                        class="form-control"
+                                        [class.is-invalid]="hasError('lastName')"
+                                        [class.is-valid]="f['lastName'].touched && f['lastName'].valid"
+                                        formControlName="lastName"
+                                        placeholder="Last Name:">
+                                    <div class="error-message" *ngIf="hasError('lastName')">
+                                        {{ getErrorMessage('lastName') }}
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3">
+                                <input 
+                                    type="email" 
+                                    class="form-control"
+                                    [class.is-invalid]="hasError('email')"
+                                    [class.is-valid]="f['email'].touched && f['email'].valid"
+                                    formControlName="email"
+                                    placeholder="Email:">
+                                <div class="error-message" *ngIf="hasError('email')">
+                                    {{ getErrorMessage('email') }}
+                                </div>
+                            </div>
+                            
+                            <div class="mb-3 position-relative">
+                                 <input 
+                                    [type]="showPassword ? 'text' : 'password'" 
+                                    class="form-control"
+                                    [class.is-invalid]="hasError('password')"
+                                    [class.is-valid]="f['password'].touched && f['password'].valid"
+                                    formControlName="password"
+                                    placeholder="Password:">
+                                    <i class="bi" 
+                                    [ngClass]="showPassword ? 'bi-eye-slash' : 'bi-eye'" 
+                                    (click)="togglePassword()" 
+                                    [ngStyle]="{
+                                        'position': 'absolute',
+                                        'top': '50%',
+                                        'right': (hasError('password') || (f['password'].touched && f['password'].valid)) ? '40px' : '10px',
+                                        'cursor': 'pointer',
+                                        'transform': 'translateY(-50%)'
+                                    }">
+                                    </i>
+
+                                <div class="error-message" *ngIf="hasError('password')">
+                                    {{ getErrorMessage('password') }}
+                                </div>
+                            </div>
+                            
+                         <div class="mb-3 position-relative">
+                            <input 
+                                [type]="showConfirmPassword ? 'text' : 'password'" 
+                                class="form-control"
+                                [class.is-invalid]="hasError('confirmPassword') || signupForm.errors?.['passwordMismatch']"
+                                [class.is-valid]="f['confirmPassword'].touched && f['confirmPassword'].valid && !signupForm.errors?.['passwordMismatch']"
+                                formControlName="confirmPassword"
+                                placeholder="Confirm password:">
+
+                            <!--eye icon-->
+                             <i class="bi" 
+                                [ngClass]="showConfirmPassword ? 'bi-eye-slash' : 'bi-eye'" 
+                                (click)="toggleConfirmPassword()" 
+                                [ngStyle]="{
+                                    'position': 'absolute',
+                                    'top': '50%',
+                                    'right': (hasError('confirmPassword') || signupForm.errors?.['passwordMismatch'] || (f['confirmPassword'].touched && f['confirmPassword'].valid && !signupForm.errors?.['passwordMismatch'])) ? '40px' : '10px',
+                                    'cursor': 'pointer',
+                                    'transform': 'translateY(-50%)'
+                                }">
+                            </i>
+
+
+                         <div class="error-message" *ngIf="hasError('confirmPassword') && !signupForm.errors?.['passwordMismatch']">
+                                {{ getErrorMessage('confirmPassword') }}
+                            </div>
+                            <div class="error-message" *ngIf="signupForm.errors?.['passwordMismatch'] && f['confirmPassword'].touched">
+                                Passwords do not match
+                            </div>
+                        </div>
+
+                            
+                            <div class="form-check mb-3">
+                                <input 
+                                    class="form-check-input" 
+                                    type="checkbox" 
+                                    id="terms"
+                                    formControlName="terms">
+                                <label class="form-check-label" for="terms">
+                                    I have read and agree to the <a href="#">Terms and Conditions</a>
+                                </label>
+                                <div class="error-message" *ngIf="hasError('terms')">
+                                    You must agree to the terms and conditions
+                                </div>
+                            </div>
+                            
+                            <button type="submit" class="btn w-100 mb-3 custom-outline">Sign up</button>
+                            
+                            <div class="text-center mb-2">Or Sign up with</div>
+                            
+                            <div class="row g-2">
+                                <div class="col-6">
+                                    <button 
+                                        type="button" 
+                                        class="btn w-100 social-btn google-btn"
+                                        (click)="signUpWithGoogle()">
+                                        <i class="bi bi-google google-color"></i> Google
+                                    </button>
+                                </div>
+                                <div class="col-6">
+                                    <button 
+                                        type="button" 
+                                        class="btn w-100 social-btn facebook-btn"
+                                        (click)="signUpWithFacebook()">
+                                        <i class="bi bi-facebook"></i> Facebook
+                                    </button>
+                                </div>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</main>

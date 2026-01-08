@@ -1,24 +1,24 @@
 import { Routes } from '@angular/router';
-import { Home } from '../Pages/home/home';
-import { About } from '../Pages/about/about';
-import { Menu } from '../Pages/menu/menu';
-import { Contact } from '../Pages/contact/contact';
-import { ReserveNowComponent } from '../Pages/reserve-now/reserve-now';
-import { FoodPackageComponent } from '../Pages/food-package/food-package';
-import { CustomMenuComponent } from '../Pages/custom-menu/custom-menu';
-import { PaymentComponent } from '../Pages/payment/payment';
-import { GcashComponent } from '../Pages/gcash/gcash';
-import { MayaComponent } from '../Pages/maya/maya';
-import { ConfirmComponent } from '../Pages/confirm/confirm';
-import { SignUpComponent } from '../Pages/sign-up/sign-up';
-import { LoginComponent } from '../Pages/login/login';
-import { FAQs } from '../Pages/faqs/faqs';
+import { HomeComponent } from '../Pages/home/home.component';
+import { AboutComponent } from '../Pages/about/about.component';
+import { MenuComponent } from '../Pages/menu/menu.component';
+import { ContactComponent } from '../Pages/contact/contact.component';
+import { ReserveNowComponent } from '../Pages/reserve-now/reserve-now.component';
+import { FoodPackageComponent } from '../Pages/food-package/food-package.component';
+import { CustomMenuComponent } from '../Pages/custom-menu/custom-menu.component';
+import { PaymentComponent } from '../Pages/payment/payment.component';
+import { GcashComponent } from '../Pages/gcash/gcash.component';
+import { MayaComponent } from '../Pages/maya/maya.component';
+import { ConfirmComponent } from '../Pages/confirm/confirm.component';
+import { SignUpComponent } from '../Pages/sign-up/sign-up.component';
+import { LoginComponent } from '../Pages/login/login.component';
+import { FAQsComponents } from '../Pages/faqs/faqs.component';
 
 export const routes: Routes = [
-    { path: '', component: Home },
-    { path: 'about', component: About },
-    { path: 'menu', component: Menu },
-    { path: 'contact', component: Contact },
+    { path: '', component: HomeComponent },
+    { path: 'about', component: AboutComponent },
+    { path: 'menu', component: MenuComponent },
+    { path: 'contact', component: ContactComponent },
     { path: 'reserve-now', component: ReserveNowComponent },
     { path: 'food-package', component: FoodPackageComponent },
     { path: 'custom-menu', component: CustomMenuComponent },
@@ -28,6 +28,6 @@ export const routes: Routes = [
     { path: 'confirm', component: ConfirmComponent },
     { path: 'sign-up', component: SignUpComponent },
     { path: 'login', component: LoginComponent },
-    { path: 'faqs', component: FAQs },
+    { path: 'faqs', component: FAQsComponents },
     { path: '**', redirectTo: '' }
 ];
