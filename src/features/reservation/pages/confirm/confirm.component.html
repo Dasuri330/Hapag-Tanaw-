@@ -1,0 +1,194 @@
+<!--Main Content-->
+<main>
+  <section class="reservation-section">
+    <!--Page Header-->
+    <div class="container-fluid reservation-header text-center py-4 custom-container">
+      <h3 class="mb-0">
+        <span class="title">Reserve Your Table</span><br>
+        <span class="subtitle">Timeless Filipino flavors, beautifully reimagined</span>
+      </h3>
+    </div>
+
+    <div class="container-fluid reservation-bg pt-3 pb-5">
+
+   <!--stepper-->
+        <app-stepper [currentStep]="currentStep"></app-stepper>
+
+      <!--Section Title-->
+      <div class="container reservation-header text-start py-3 rounded-top-4 section-title-header">
+        <h3 class="mb-0"><span class="title text-white p-3">Review your reservation</span></h3>
+      </div>
+
+      <!--Reservation Summary Container-->
+      <div class="container rounded-bottom shadow-lg reservation-summary-container">
+
+        <!--Customer information-->
+        @if (!showCustomerInfoEdit) {
+          <div class="summary-section mb-3 p-3 rounded shadow-sm bg-white">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <h5 class="fw-bold mb-0">Customer Information</h5>
+              <button class="btn btn-link p-0 text-primary edit-btn" (click)="editCustomerInfo()">
+                <i class="bi bi-pencil-square fs-5"></i>
+              </button>
+            </div>
+            <div class="summary-item mb-3"><span class="summary-label">Full Name</span><span class="summary-value">{{summaryName}}</span></div>
+            <div class="summary-item mb-3"><span class="summary-label">Email Address</span><span class="summary-value">{{summaryEmail}}</span></div>
+            <div class="summary-item mb-3"><span class="summary-label">Phone Number</span><span class="summary-value">{{summaryPhone}}</span></div>
+            <div class="summary-item mb-3"><span class="summary-label">Number of Guests</span><span class="summary-value">{{summaryGuests}}</span></div>
+            <div class="summary-item mb-3"><span class="summary-label">Special Occasion</span><span class="summary-value">{{summaryOccasion}}</span></div>
+            <div class="summary-item mb-3"><span class="summary-label">Special Requests or Dietary Restrictions</span><span class="summary-value">{{summaryRequests}}</span></div>
+          </div>
+        }
+
+        <!--edit mode-->
+          @if (showCustomerInfoEdit) {
+          <div class="summary-section mb-3 p-3 rounded shadow-sm bg-white">
+            <div class="mb-2"><h5 class="fw-bold mb-3">Edit Customer Information</h5></div>
+            <label for="fullName" class="full-name mb-2 text-muted">Full Name:</label>
+            <input type="text" id="fullName" [(ngModel)]="editName" placeholder="Full Name" class="form-control mb-2">
+            <label for="Email" class="email mb-2 text-muted">Email:</label>
+            <input type="email" [(ngModel)]="editEmail" placeholder="Email Address" class="form-control mb-2">
+            <label for="Phone Number" class="phone-number mb-2 text-muted">Phone Number:</label>
+            <input type="text" [(ngModel)]="editPhone" placeholder="Phone Number" class="form-control mb-2">
+            <label for="Number of Guests" class="number-of-guests mb-2 text-muted">Number of Guests:</label>
+            <input type="number" [(ngModel)]="editGuests" placeholder="Number of Guests" class="form-control mb-2">
+            <label for="Special Occasion" class="special-occasion mb-2 text-muted">Special Occasion:</label>
+            <input type="text" [(ngModel)]="editOccasion" placeholder="Special Occasion" class="form-control mb-2">
+            <label for="Special Requests or Dietary Restrictions" class="full-name mb-2 text-muted">Special Requests or Dietary Restrictions:</label>
+            <input type="text" [(ngModel)]="editRequests" placeholder="Special Requests or Dietary Restrictions" class="form-control mb-2">
+            <button class="btn me-2 custom-btn" (click)="saveCustomerInfo()">Save</button>
+            <button class="btn btn-secondary" (click)="cancelEditCustomerInfo()">Cancel</button>
+          </div>
+        }
+
+        <!--Reservation Details Section-->
+       @if (!showReservationDetailsEdit) {
+          <div class="summary-section mb-3 p-3 rounded shadow-sm bg-white">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <h5 class="fw-bold mb-0">Reservation Details</h5>
+              <button class="btn btn-link p-0 text-primary edit-btn" (click)="editReservationDetails()">
+                <i class="bi bi-pencil-square fs-5"></i>
+              </button>
+            </div>
+            <div class="summary-item mb-3"><span class="summary-label">Date</span><span class="summary-value">{{detailsDate}}</span></div>
+            <div class="summary-item mb-3"><span class="summary-label">Time</span><span class="summary-value">{{detailsTime}}</span></div>
+          </div>
+        }
+
+        <!--edit mode-->
+         @if (showReservationDetailsEdit) {
+          <div class="summary-section mb-3 p-3 rounded shadow-sm bg-white">
+            <div class="mb-2"><h5 class="fw-bold mb-0">Edit Reservation Details</h5></div>
+            <label for="Date:" class="full-name mb-2 text-muted">Date:</label>
+            <input type="date" [(ngModel)]="editDate" class="form-control mb-2">
+            <label for="Start-Time:" class="full-name mb-2 text-muted">Start Time:</label>
+            <input type="time" [(ngModel)]="editTimeStart" class="form-control mb-2">
+            <label for="End-Time:" class="full-name mb-2 text-muted">End-Time:</label>
+            <input type="time" [(ngModel)]="editTimeEnd" class="form-control mb-2">
+            <button class="btn me-2 custom-btn" (click)="saveReservationDetails()">Save</button>
+            <button class="btn btn-secondary" (click)="cancelEditReservationDetails()">Cancel</button>
+          </div>
+        }
+
+        <!-- Food Package Section -->
+           @if (!showFoodPackageEdit) {
+          <div class="summary-section mb-3 p-3 rounded shadow-sm bg-white">
+            <div class="d-flex justify-content-between align-items-center mb-2">
+              <h5 class="fw-bold mb-0">Food Package</h5>
+              <button class="btn btn-link p-0 text-primary edit-btn" (click)="editFoodPackage()">
+                <i class="bi bi-pencil-square fs-5"></i>
+              </button>
+            </div>
+            <div class="summary-item mb-3">
+              <span class="summary-label">Selected Package</span>
+              <span class="summary-value">{{selectedPackage}}</span>
+            </div>
+            <div class="summary-item mb-3">
+              <span class="summary-label">Package Price</span>
+              <span class="summary-value">{{packagePrice}}</span>
+            </div>
+          </div>
+        }
+
+        <!--edit mode-->
+        @if (showFoodPackageEdit) {
+          <div class="summary-section mb-3 p-3 rounded shadow-sm bg-white">
+            <div class="mb-2"><h5 class="fw-bold mb-0">Edit Food Package</h5></div>
+            <label for="Food-Package:" class="full-name mb-2 text-muted">Food Package:</label>
+            <input type="text" [(ngModel)]="editPackage" (input)="onPackageInput()" class="form-control mb-2" placeholder="Package Name">
+            <div class="mb-2">
+              <span class="text-muted">Price: ₱{{autoPrice}}</span>
+            </div>
+            <button class="btn me-2 custom-btn" (click)="saveFoodPackage()">Save</button>
+            <button class="btn btn-secondary" (click)="cancelEditFoodPackage()">Cancel</button>
+          </div>
+        }
+
+
+        <!--payment section-->
+        <div class="summary-section mb-3 p-3 rounded shadow-sm bg-white">
+          <h5 class="fw-bold mb-2">Payment Method</h5>
+          <div class="summary-item mb-3">
+            <span class="summary-label">Payment Method</span>
+            <span class="summary-value">{{paymentMethod}}</span>
+          </div>
+          <div class="summary-item mb-3">
+            <span class="summary-label">Reference Number</span>
+            <span class="summary-value">{{referenceNumber}}</span>
+          </div>
+        </div>
+
+        <!--Important Notice-->
+        <div class="m-3 p-3 rounded-3 border-start custom-border-start">
+          <h4 class="customh4">Important Notice</h4>
+          <ul>
+            <li>Please arrive 10 minutes before your reservation time</li>
+            <li>Reservations are held for 15 minutes after scheduled time</li>
+            <li>Cancellations must be made 48 hours in advance for full refund</li>
+          </ul>
+        </div>
+
+        <!--button group-->
+        <div class="d-flex gap-2 p-3">
+          <button type="button" class="btn btn-primary p-3 btn-back" (click)="goBack()">
+            <i class="bi bi-chevron-left"></i> Back
+          </button>
+
+          <button type="button" class="btn btn-danger p-3" (click)="onCancel()">
+            Cancel <i class="bi bi-x-lg"></i>
+          </button>
+          
+          <button type="submit" class="btn btn-success p-3 ms-auto btn-confirm" (click)="confirmReservation()">
+            Confirm Reservation
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Reusable Modals -->
+<app-invalid-package-modal
+  [show]="showInvalidPackageModal"
+  (close)="closeInvalidPackageModal()">
+</app-invalid-package-modal>
+
+<app-warning-modal
+  [show]="showCancelModal"
+  title="Warning"
+  message="Are you sure you want to cancel? Your changes won't be saved."
+  confirmText="Yes"
+  cancelText="No"
+  icon="bi-exclamation-triangle-fill"
+  confirmButtonClass="btn-danger"
+  cancelButtonClass="btn-secondary"
+  messageClass="modal-body-large"
+  (confirm)="confirmCancel()"
+  (cancel)="closeCancelModal()">
+</app-warning-modal>
+
+<app-success-modal
+  [show]="showSuccessModal"
+  [email]="summaryEmail"
+  (goHome)="goToHome()">
+</app-success-modal>
