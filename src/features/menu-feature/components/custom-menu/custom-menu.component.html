@@ -1,0 +1,244 @@
+<main>
+  <section class="reservation-section">
+    <div class="container-fluid reservation-header text-center py-4 custom-menu-header">
+      <h3>
+        <span class="title">Reserve Your Table</span><br />
+        <span class="subtitle">
+          Timeless Filipino flavors, beautifully reimagined
+        </span>
+      </h3>
+    </div>
+    <div class="container-fluid reservation-bg pt-3 pb-5">
+      <div class="container reservation-header text-start py-3 rounded-top-4 custom-menu-section-header">
+        <h3 class="mb-0">
+          <span class="title text-white p-3">Choose your Food Package</span>
+        </h3>
+      </div>
+      <div class="container shadow-lg rounded-top-0 custom-menu-container">
+
+        <div class="d-flex justify-content-between align-items-center p-4">
+          <h4 class="mb-0">Build your custom menu</h4>
+          <button
+            type="button"
+            class="btn btn-outline btn-sm shadow-lg-6 btn-rounded back-to-packages-btn"
+            (click)="changeMethod()">
+            Back to Packages
+          </button>
+        </div>
+
+        <!-- selected summary -->
+        @if (selectedPackages.length > 0) {
+              <div class="selected-summary">
+                <div class="summary-content p-2 mt-1">
+                  <div class="summary-left">
+                    <strong>Selected:</strong>
+                    <span class="selected-items">
+                      {{ getSelectedTitles() }}
+
+                    </span>
+                  </div>
+                  <div class="summary-right">
+                    Total: ₱ {{ getTotalPrice().toLocaleString() }}
+                  </div>
+                </div>
+              </div>
+            }
+
+         @if (!(menuSections$ | async)) {
+          <div class="text-center my-5 py-5">
+            <div class="spinner-border text-primary loading-spinner" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
+            <p class="mt-3 text-muted">Loading menu items...</p>
+          </div>
+        }
+
+        <div class="menu-scroll-wrapper">
+            @if (menuSections$ | async; as menuSections) {
+            @for (section of menuSections; track section.id) {
+              <section [id]="section.id" class="menu-section">
+                <div class="container-fluid my-4 p-3">
+                  <h4 class="mb-4 ms-2 fw-bold menu-section-title">
+                    {{ section.title }}
+                   <hr class="custom-hr" />
+                  </h4>
+
+              <div class="row row-cols-2 row-cols-sm-3 row-cols-md-4 row-cols-lg-4 g-4">
+                    @for (item of section.items; track item.title) {
+                      <div class="col">
+                        <div class="card h-100 shadow-sm border-0 rounded-3 overflow-hidden" 
+                             (click)="toggleItem(item)" 
+                             [class.selected-card]="isSelected(item)">
+                    
+                        <img
+                            [src]="item.image"
+                            class="card-img-top menu-item-image"
+                            [alt]="item.title" />
+
+                          <div class="card-body bg-light p-3 d-flex flex-column">
+                            <h6 class="mb-2 fw-semibold flex-grow-1 card-item-title">{{ item.title }}</h6>
+                            <div class="mt-auto">
+                              <span class="fw-bold card-item-price">₱ {{ item.price }}</span>
+                            </div>
+                          </div>
+                        </div>
+                      </div>
+                    }
+                  </div>
+                </div>
+              </section>
+            }
+          }
+
+          <!--Order summary part-->
+           @if (selectedPackages.length > 0) {
+            <div class="container-fluid my-4 p-3">
+              <h4 class="mb-4 ms-2 fw-bold order-summary-title">
+                Your Order ({{ selectedPackages.length }})
+                <hr class="custom-hr" />
+              </h4>
+
+            <div class="order-summary-container p-3 p-md-4 rounded-3 shadow-sm">
+                <div class="order-items">
+                  @for (item of selectedPackages; track item.title) {
+                    <div class="order-item mb-3 p-2 p-md-3 rounded-3">
+                  
+                <!--for mobile view-->
+                  <div class="d-md-none">
+                        <div class="d-flex justify-content-between align-items-start mb-2">
+                          <div class="item-info flex-grow-1">
+                            <h6 class="mb-1 fw-bold item-info-title-mobile">{{ item.title }}</h6>
+                            <p class="mb-0 text-muted item-info-price-mobile">₱ {{ item.price }} each</p>
+                          </div>
+                          <button
+                            class="btn btn-sm btn-outline-danger remove-btn remove-btn-mobile ms-2"
+                            (click)="removeItem(item, $event)">
+                            <i class="bi bi-x-lg"></i>
+                          </button>
+                        </div>
+                    
+                    <div class="d-flex justify-content-between align-items-center">
+                          <div class="quantity-controls d-flex align-items-center gap-2">
+                            <button
+                              class="btn btn-sm rounded-circle quantity-btn quantity-btn-mobile"
+                              (click)="decrementQuantity(item, $event)">
+                              <i class="bi bi-dash"></i>
+                            </button>
+                        
+                        <span class="quantity-display fw-bold px-2 quantity-display-mobile">
+                              {{ item.quantity }}
+                        </span>
+                        
+                         <button
+                              class="btn btn-sm rounded-circle quantity-btn quantity-btn-mobile"
+                              (click)="incrementQuantity(item, $event)">
+                              <i class="bi bi-plus"></i>
+                            </button>
+                          </div>
+
+                      <div class="item-total">
+                            <span class="fw-bold item-total-mobile">₱ {{ getItemTotal(item) }}</span>
+                          </div>
+                        </div>
+                      </div>
+
+                  <!--for desktop layout responsiveness purposes-->
+                   <div class="d-none d-md-flex justify-content-between align-items-center">
+                        <div class="item-info flex-grow-1">
+                          <h6 class="mb-1 fw-bold">{{ item.title }}</h6>
+                          <p class="mb-0 text-muted item-info-price-desktop">₱ {{ item.price }} each</p>
+                        </div>
+
+                    <div class="d-flex align-items-center gap-3">
+                          <div class="quantity-controls d-flex align-items-center gap-2">
+                            <button
+                              class="btn btn-sm rounded-circle quantity-btn quantity-btn-desktop"
+                              (click)="decrementQuantity(item, $event)">
+                              <i class="bi bi-dash"></i>
+                            </button>
+                        
+                       <span class="quantity-display fw-bold px-2 quantity-display-desktop">
+                              {{ item.quantity }}
+                        </span>
+
+                        
+                         <button
+                              class="btn btn-sm rounded-circle quantity-btn quantity-btn-desktop"
+                              (click)="incrementQuantity(item, $event)">
+                              <i class="bi bi-plus"></i>
+                            </button>
+                          </div>
+
+                      <div class="item-total item-total-desktop">
+                         <span class="fw-bold item-total-price-desktop">₱ {{ getItemTotal(item) }}</span>
+                      </div>
+
+
+                      <button
+                            class="btn btn-sm btn-outline-danger remove-btn remove-btn-desktop"
+                            (click)="removeItem(item, $event)">
+                            <i class="bi bi-x-lg"></i>
+                          </button>
+                        </div>
+                      </div>
+
+                    </div>
+                  }
+                </div>
+
+              <!--order total part-->
+                <div class="order-total mt-3 mt-md-4 pt-3 border-top order-total-border">
+                  <div class="d-flex justify-content-between align-items-center">
+                    <h5 class="mb-0 fw-bold order-total-label">Total:</h5>
+                    <h4 class="mb-0 fw-bold order-total-amount">₱ {{ getTotalAmount() }}</h4>
+                  </div>
+                </div>
+              </div>
+            </div>
+          }
+         
+        </div>
+
+         <div class="d-flex justify-content-between gap-3 px-4 pb-3 pt-3">
+          <div class="d-flex gap-2">
+            <button
+              type="button"
+              class="btn btn-primary p-3 btn-back-custom"
+              (click)="onBack()" >
+              <i class="bi bi-chevron-left"></i> Back
+            </button>
+
+            <button
+              type="button"
+              class="btn btn-danger p-3"
+              (click)="onCancel()">Cancel <i class="bi bi-x-lg"></i>
+            </button>
+          </div>
+
+          <button
+            type="button"
+            class="btn btn-success p-3 btn-proceed-payment"
+            (click)="proceedToPayment()"
+            [disabled]="selectedPackages.length === 0">Proceed to Payment <i class="bi bi-arrow-right"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Cancel Confirmation Modal (Warning Modal) -->
+<app-warning-modal
+  [show]="showCancelModal"
+  title="Warning"
+  message="Are you sure you want to cancel? Your changes won't be saved."
+  confirmText="Yes"
+  cancelText="No"
+  icon="bi-exclamation-triangle-fill"
+  confirmButtonClass="btn-danger"
+  cancelButtonClass="btn-secondary"
+  messageClass="modal-body-large"
+  (confirm)="confirmCancel()"
+  (cancel)="closeCancelModal()">
+</app-warning-modal>
