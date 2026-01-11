@@ -1,0 +1,68 @@
+<main>
+  <section class="reservation-section">
+    <!--header-->
+    <div class="container-fluid reservation-header text-center py-4 header-orange">
+      <h3 class="mb-0">
+        <span class="title">Reserve Your Table</span><br>
+        <span class="subtitle">Timeless Filipino flavors, beautifully reimagined</span>
+      </h3>
+    </div>
+
+    <!--reservation form -->
+    <div class="container-fluid reservation-bg pt-3 pb-5">
+      
+    <!--stepper-->
+        <app-stepper [currentStep]="currentStep"></app-stepper>
+
+      <!--form header-->
+      <div class="container reservation-header text-start py-3 rounded-top-4 form-header">
+        <h3 class="mb-0"><span class="title text-white p-3">Select Payment Method</span></h3>
+      </div>
+
+      <!--form container-->
+      <div class="container rounded-bottom shadow-lg form-container-payment">
+        <div class="d-grid gap-2 m-2 p-3">
+          
+          <!--payment method buttons-->
+          @for (method of paymentMethods; track method.id) {
+            <button 
+              class="btn text-start p-4 button-custom shadow-lg d-flex align-items-center border-0 payment-method-btn"
+              type="button"
+              [disabled]="method.disabled"
+              [style.background-color]="method.disabled ? '#e9ecef' : ''"
+              [class.selected]="selectedPaymentMethod === method.id"
+              (click)="selectPaymentMethod(method)">
+              <i [class]="method.icon + ' me-2 payment-icon'"></i>
+              <span>{{ method.title }} ({{ method.description }})</span>
+            </button>
+          }
+
+        <!--btn group-->
+        <div class="d-flex gap-2 p-3 w-100">
+          <button class="btn btn-primary flex-fill btn-back-payment" type="button" (click)="onBack()">
+            Back
+          </button>
+          <button class="btn btn-danger flex-fill" type="button" (click)="onCancel()">
+            Cancel
+          </button>
+        </div>
+      </div>
+    </div>
+    </div>
+  </section>
+</main>
+
+<!-- Cancel Confirmation Modal (Warning Modal) -->
+<app-warning-modal
+  [show]="showCancelModal"
+  title="Warning"
+  message="Are you sure you want to cancel? Your changes won't be saved."
+  confirmText="Yes"
+  cancelText="No"
+  icon="bi-exclamation-triangle-fill"
+  confirmButtonClass="btn-danger"
+  cancelButtonClass="btn-secondary"
+  messageClass="modal-body-large"
+  (confirm)="confirmCancel()"
+  (cancel)="closeCancelModal()">
+</app-warning-modal>
