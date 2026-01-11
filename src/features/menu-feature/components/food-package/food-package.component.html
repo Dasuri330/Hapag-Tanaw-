@@ -1,0 +1,127 @@
+<!--main content-->
+<main>
+  <section class="reservation-section">
+    <!--header-->
+    <div class="container-fluid reservation-header text-center py-4 food-package-header">
+      <h3 class="mb-0">
+        <span class="title">Reserve Your Table</span><br>
+        <span class="subtitle">Timeless Filipino flavors, beautifully reimagined</span>
+      </h3>
+    </div>
+
+    <!--reservation form area-->
+    <div class="container-fluid reservation-bg pt-3 pb-5">
+      <!--Stepper-->
+         <app-stepper [currentStep]="currentStep"></app-stepper>
+
+       <!--form header-->
+      <div class="container reservation-header text-start py-3 rounded-top-4">
+        <h3 class="mb-0"><span class="title text-white p-3">Choose your Food Package(s)</span></h3>
+      </div>
+
+      <!--form container-->
+      <div class="container custom-container rounded-bottom shadow-lg">
+        
+      <!-- selected summary -->
+       @if (selectedPackages.length > 0) {
+        <div class="selected-summary">
+          <div class="summary-content p-2 mt-1">
+            <div class="summary-left">
+              <strong>Selected:</strong>
+              <span class="selected-items">
+                {{ getSelectedTitles() }}
+
+              </span>
+            </div>
+            <div class="summary-right">
+              Total: ₱ {{ getTotalPrice().toLocaleString() }}
+            </div>
+          </div>
+        </div>
+       }
+
+
+        <!--food package cards-->
+        @for (package of packages; track package.title; let last = $last) {
+          <div class="package-content" 
+               [class.mb-3]="!last"
+               [class.mb-4]="last"
+               [class.border]="package.selected"
+               [style.border-color]="package.selected ? '#28a745' : 'transparent'"
+               [style.border-width]="package.selected ? '3px' : '0'"
+               style="transition: all 0.3s ease;">
+            <div class="package-info">
+              <div>
+                <div class="d-flex align-items-center mb-2">
+                  <h3 class="package-title mb-0">{{ package.title }}</h3>
+                  @if (package.selected) {
+                    <i class="bi bi-check-circle-fill text-success ms-2" style="font-size: 1.5rem;"></i>
+                  }
+                </div>
+                <p class="package-persons">{{ package.persons }}</p>
+                <ul class="package-menu-list">
+                  @for (item of package.menuItems; track item) {
+                    <li>{{ item }}</li>
+                  }
+                </ul>
+              </div>
+              <div>
+                <div class="package-price">{{ package.price }}</div>
+                <button 
+                  class="select-btn" 
+                  [class.btn-success]="package.selected"
+                  [style.background-color]="package.selected ? '#28a745' : '#D27D2D'"
+                  (click)="togglePackage(package)">
+                  <i [class]="package.selected ? 'bi bi-check-circle-fill' : 'bi bi-plus-circle'" class="me-2"></i>
+                  {{ package.selected ? 'Selected' : 'Select Package' }}
+                </button>
+              </div>
+            </div>
+            <div class="package-images d-flex justify-content-end align-items-center p-4">
+              <img [src]="package.image" [alt]="package.imageAlt" class="package-image rounded-3">
+            </div>
+          </div>
+        }
+
+      <!--button group-->
+      <div class="d-flex justify-content-between gap-3 px-4 pb-3 pt-3">
+        <div class="d-flex gap-2">
+          <button
+            type="button"
+            class="btn p-3 btn-back-package"
+            (click)="onBack()"><i class="bi bi-chevron-left"></i> Back 
+          </button>
+
+          <button class="btn btn-danger p-3" type="button" (click)="onCancel()">
+            Cancel <i class="bi bi-x-lg"></i>
+          </button>
+        </div>
+
+        <button 
+          class="btn btn-success p-3 btn-proceed-package" 
+          type="button" 
+          (click)="proceedToPayment()"
+          [disabled]="selectedPackages.length === 0">
+          Proceed to Payment <i class="bi bi-arrow-right"></i>
+        </button>
+
+       </div>
+      </div>
+     </div>
+   </section>
+ </main>
+
+<!-- Cancel Confirmation Modal (Warning Modal) -->
+<app-warning-modal
+  [show]="showCancelModal"
+  title="Warning"
+  message="Are you sure you want to cancel? Your changes won't be saved."
+  confirmText="Yes"
+  cancelText="No"
+  icon="bi-exclamation-triangle-fill"
+  confirmButtonClass="btn-danger"
+  cancelButtonClass="btn-secondary"
+  messageClass="modal-body-large"
+  (confirm)="confirmCancel()"
+  (cancel)="closeCancelModal()">
+</app-warning-modal>
