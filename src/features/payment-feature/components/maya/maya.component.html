@@ -1,0 +1,149 @@
+<main>
+  <section class="reservation-section">
+
+    <!--main banner-->
+    <div
+      class="container-fluid reservation-header custom-rsrvtn text-center py-4">
+      <h3>
+        <span class="title">Reserve Your Table</span><br />
+        <span class="subtitle">
+          Timeless Filipino flavors, beautifully reimagined
+        </span>
+      </h3>
+    </div>
+
+    <div class="container-fluid reservation-bg pt-3 pb-5">
+
+   <!--stepper-->
+        <app-stepper [currentStep]="currentStep"></app-stepper>
+
+      <!--payment header-->
+      <div
+        class="container reservation-header text-start py-3 rounded-top-4 maya-payment-header">
+        <h3 class="mb-0">
+          <span class="title text-white p-3">Payment Method</span>
+        </h3>
+      </div>
+
+      <!--form container-->
+      <div
+        class="container shadow-lg rounded-top-0 maya-form-container">
+
+        <!--method title container-->
+        <div class="d-flex justify-content-between align-items-center p-4">
+          <h4 class="mb-0">Maya</h4>
+
+          <button
+            type="button"
+            class="btn btn-outline btn-sm shadow-lg change-method-btn"
+            (click)="changeMethod()">
+            Change Method
+          </button>
+        </div>
+
+        <form (ngSubmit)="submitPayment()">
+
+            <!--maya icon-->
+          <div class="text-center">
+            <img
+              src="assets/mayanobg.png " 
+              class="img-fluid maya-logo"
+              width="350"
+              alt="Maya Logo"/>
+          </div>
+
+          <!-- QR CODE -->
+          <div class="text-center maya-qr-container">
+            <img
+              src="assets/QR.jpg"
+              class="img-fluid rounded"
+              width="180"
+              alt="Maya QR"/>
+          </div>
+
+          <div class="d-flex justify-content-center align-items-center flex-column mt-2">
+            <p class="text-emp">QR Code will appear here</p>
+            <ol>
+              <li>Open your Maya app on your mobile device.</li>
+              <li>Tap "Pay QR" or scan the QR code using the app.</li>
+              <li>Enter the amount to pay and confirm the payment.</li>
+              <li>Confirm Payment 30% Deposit.</li>
+              <li>Save the receipt or screenshot for reference.</li>
+            </ol>
+          </div>
+
+          <div class="p-3">
+            <label class="form-label">
+              Reference Number <span class="text-danger">*</span>
+            </label>
+
+            <input
+              type="text"
+              class="form-control"
+              [(ngModel)]="referenceNumber"
+              name="referenceNumber"
+              required
+              maxlength="16"
+              pattern="[A-Za-z0-9]{16}"
+              placeholder="Enter reference number"
+              (input)="onReferenceInput()"/>
+
+            <div
+              class="text-danger mt-1"
+              *ngIf="referenceNumber && referenceNumber.length !== 16">
+              Reference number must be exactly 16 alphanumeric characters
+            </div>
+          </div>
+
+          <div class="container p-4 shadow-lg rounded-3 my-3">
+            <h5 class="policy">Payment Policy</h5>
+            <ul>
+              <li>A 30% deposit is required to confirm your reservation</li>
+              <li>Full payment can be settled upon arrival or through your chosen method</li>
+              <li>Cancellations made 48 hours before the reservation date are fully refundable</li>
+            </ul>
+          </div>
+
+        <!--buttons-->
+          <div class="d-flex justify-content-between gap-3 px-2 pb-3 pt-3">
+            <div class="d-flex gap-2">
+              <button
+                type="button"
+                class="btn p-3 btn-back-maya"
+                (click)="goBack()">
+              <i class="bi bi-chevron-left"></i> Back 
+              </button>
+             <button
+              type="button"
+              class="btn btn-danger p-3"
+              (click)="showCancelModal = true">
+            Cancel <i class="bi bi-x-lg"></i>
+            </button>
+            </div>
+          <button
+          type="submit"
+          class="btn btn-custom p-3"
+          [disabled]="!isValidReference()">Next 
+          <i class="bi bi-chevron-right"></i>
+        </button>
+        </div>
+        </form>
+      </div>
+    </div>
+  </section>
+</main>
+
+<!-- Cancel Confirmation Modal (Warning Modal) -->
+<app-warning-modal
+  [show]="showCancelModal"
+  title="Warning"
+  message="Are you sure you want to cancel? Your changes won't be saved."
+  confirmText="Yes"
+  cancelText="No"
+  icon="bi-exclamation-triangle-fill"
+  confirmButtonClass="btn-danger"
+  cancelButtonClass="btn-secondary"
+  messageClass="modal-body-large"
+  (confirm)="confirmCancel()"
+  (cancel)="closeCancelModal()">
+</app-warning-modal>

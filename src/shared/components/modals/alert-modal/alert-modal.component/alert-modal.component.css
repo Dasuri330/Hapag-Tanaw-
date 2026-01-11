@@ -1,0 +1,75 @@
+/* Modal Headers */
+.modal-header-orange {
+    background-color: #D27D2D;
+}
+
+.modal-header-warning {
+    background-color: #D27D2D;
+    color: white;
+}
+
+.modal-header {
+    border-top-left-radius: 0.3rem;
+    border-top-right-radius: 0.3rem;
+}
+
+/* Modal Body */
+.modal-body {
+    padding: 1.5rem;
+    font-size: 1rem;
+}
+
+/* Modal Footer */
+.modal-footer {
+    padding: 1rem 1.5rem;
+}
+
+/* Custom Button */
+.btn-custom {
+    background-color: #D27D2D !important;
+    border-color: #D27D2D !important;
+    color: #fff !important;
+    border-radius: 5px;
+    padding: 10px 24px;
+}
+
+.btn-custom:hover {
+    background-color: #b86723 !important;
+    border-color: #b86723 !important;
+    color: #fff !important;
+}
+
+.btn-custom:active {
+    transform: scale(0.97);
+}
+
+/* Modal Animations */
+.modal.show {
+    animation: modalFadeIn 0.3s ease-in-out;
+}
+
+.modal-backdrop.show {
+    animation: backdropFadeIn 0.3s ease-in-out;
+}
+
+@keyframes modalFadeIn {
+    from {
+        opacity: 0;
+        transform: scale(0.9);
+    }
+
+    to {
+        opacity: 1;
+        transform: scale(1);
+    }
+}
+
+@keyframes backdropFadeIn {
+    from {
+        opacity: 0;
+    }
+
+    to {
+        opacity: 0.5;
+    }
+}

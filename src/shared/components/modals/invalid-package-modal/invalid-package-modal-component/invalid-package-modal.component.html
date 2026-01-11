@@ -1,0 +1,41 @@
+@if (show) {
+  <div 
+    class="modal fade show d-block" 
+    tabindex="-1" 
+    (click)="onBackdropClick($event)">
+    <div class="modal-dialog modal-dialog-centered">
+      <div class="modal-content">
+        <div class="modal-header modal-header-warning">
+          <h5 class="modal-title">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i> Invalid Package
+          </h5>
+          <button 
+            type="button" 
+            class="btn-close btn-close-white" 
+            (click)="onClose()">
+          </button>
+        </div>
+        <div class="modal-body">
+          Please enter a valid package name! Valid packages are:
+          <ul class="mt-2 mb-0">
+            <li>Classic Kamayan</li>
+            <li>Deluxe Fiesta</li>
+            <li>Premium Celebration</li>
+          </ul>
+        </div>
+        <div class="modal-footer">
+          <button 
+            type="button" 
+            class="btn custom-btn" 
+            (click)="onClose()">
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+
+@if (show) {
+  <div class="modal-backdrop fade show"></div>
+}
