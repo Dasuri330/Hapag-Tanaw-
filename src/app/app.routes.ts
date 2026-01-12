@@ -1,17 +1,17 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from '../features/home/home.component';
 import { AboutComponent } from '../features/about/about.component';
-import { MenuComponent } from '../features/menu-feature/components/menu/menu.component';
+import { MenuComponent } from '../features/menu/menu.component';
 import { ContactComponent } from '../features/contact/contact.component';
-import { ReserveNowComponent } from '../features/reservation/pages/reserve-now/reserve-now.component';
-import { FoodPackageComponent } from '../features/menu-feature/components/food-package/food-package.component';
-import { CustomMenuComponent } from '../features/menu-feature/components/custom-menu/custom-menu.component';
-import { PaymentComponent } from '../features/payment-feature/pages/payment/payment.component';
-import { GcashComponent } from '../features/payment-feature/components/gcash/gcash.component';
-import { MayaComponent } from '../features/payment-feature/components/maya/maya.component';
-import { ConfirmComponent } from '../features/reservation/pages/confirm/confirm.component';
-import { SignUpComponent } from '../features/auth/pages/sign-up/sign-up.component';
-import { LoginComponent } from '../features/auth/pages/login/login.component';
+import { ReserveNowComponent } from '../features/reservation/components/reserve-now/reserve-now.component';
+import { FoodPackageComponent } from '../features/reservation/components/food-package/food-package.component';
+import { CustomMenuComponent } from '../features/reservation/components/custom-menu/custom-menu.component';
+import { PaymentComponent } from '../features/payment/components/payment/payment.component';
+import { GcashComponent } from '../features/payment/components/gcash/gcash.component';
+import { MayaComponent } from '../features/payment/components/maya/maya.component';
+import { ConfirmComponent } from '../features/reservation/components/confirm/confirm.component';
+import { SignUpComponent } from '../features/auth/sign-up/sign-up.component';
+import { LoginComponent } from '../features/auth/login/login.component';
 import { FAQsComponents } from '../features/faqs/faqs.component';
 
 export const routes: Routes = [

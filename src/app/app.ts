@@ -1,13 +1,13 @@
 import { Component, signal } from '@angular/core';
 import { Router, RouterOutlet } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { Navbar } from '../shared/components/navbar/navbar';
-import { Footer } from '../shared/components/footer/footer';
+import { NavbarComponent } from '../shared/components/navbar/navbar.component';
+import { FooterComponent } from '../shared/components/footer/footer.component';
 import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, Navbar, Footer, FontAwesomeModule, CommonModule],
+  imports: [RouterOutlet, NavbarComponent, FooterComponent, FontAwesomeModule, CommonModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
