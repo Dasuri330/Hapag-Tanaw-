@@ -14,9 +14,10 @@
           </p>
 
           <div class="d-flex flex-row gap-3 mt-2">
-            <a routerLink="/reserve-now" class="btn btn-lg btn-custom">
+            <!-- Changed from <a> to <button> with click handler -->
+            <button (click)="onReserveNowClick($event)" class="btn btn-lg btn-custom">
               Reserve Now
-            </a>
+            </button>
             <a routerLink="/faqs" class="btn btn-lg btn-custom">
               FAQs
             </a>
@@ -38,3 +39,13 @@
     </div>
   </section>
 </main>
+
+@if (showAuthModal) {
+  <app-auth-modal
+  (close)="closeAuthModal()"
+  (goToSignup)="goToSignup()">
+</app-auth-modal>
+}
+
+
+

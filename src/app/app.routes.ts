@@ -10,8 +10,8 @@ import { PaymentComponent } from '../features/payment/components/payment/payment
 import { GcashComponent } from '../features/payment/components/gcash/gcash.component';
 import { MayaComponent } from '../features/payment/components/maya/maya.component';
 import { ConfirmComponent } from '../features/reservation/components/confirm/confirm.component';
-import { SignUpComponent } from '../features/auth/sign-up/sign-up.component';
-import { LoginComponent } from '../features/auth/login/login.component';
+import { SignUpComponent } from '../features/auth/components/sign-up/sign-up.component';
+import { LoginComponent } from '../features/auth/components/login/login.component';
 import { FAQsComponents } from '../features/faqs/faqs.component';
 
 export const routes: Routes = [

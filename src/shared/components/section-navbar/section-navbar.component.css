@@ -1,0 +1,35 @@
+.nav-link.active {
+    text-decoration: underline;
+    text-decoration-thickness: 2px;
+    text-decoration-color: #D27D2D;
+    text-underline-offset: 4px;
+    font-weight: 500;
+}
+
+.section-navbar {
+    width: 100%;
+    background-color: #F5F5DC;
+    transition: background-color 0.3s ease, box-shadow 0.3s ease;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.section-navbar.scrolled {
+    background-color: #F5F5DC;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
+}
+
+.section-navbar .nav-link {
+    color: black !important;
+    font-weight: 500;
+}
+
+.section-navbar.scrolled .nav-link {
+    color: black !important;
+}
+
+.section-navbar .navbar-nav {
+    flex-wrap: wrap;
+    justify-content: center;
+}

@@ -1,0 +1,16 @@
+<nav id="menuNav" class="section-navbar navbar navbar-expand-lg w-100 px-0">
+  <ul class="navbar-nav mt-3 second-nav w-100 justify-content-center">
+    @for (section of sections; track section.sectionId) {
+      <li class="nav-item mx-3">
+        <a class="nav-link" [href]="'#' + section.sectionId">{{ section.label }}</a>
+      </li>
+    }
+    @if (actionButton) {
+      <li class="nav-item mx-3">
+        <a class="nav-link" [routerLink]="actionButton.routerLink">
+          {{ actionButton.label }}
+        </a>
+      </li>
+    }
+  </ul>
+</nav>
