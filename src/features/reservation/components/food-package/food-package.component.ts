@@ -1,4 +1,4 @@
-import { Component, OnInit, OnDestroy, ChangeDetectorRef } from '@angular/core';
+import { Component, OnInit, OnDestroy, ChangeDetectorRef, ChangeDetectionStrategy } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
 import { WarningModalComponent } from "../../../../shared/components/modals/warning-modal/warning-modal-components/warning-modal.component";
@@ -24,6 +24,7 @@ import { Subscription } from 'rxjs';
   imports: [CommonModule, WarningModalComponent, StepperComponent],
   templateUrl: './food-package.component.html',
   styleUrl: './food-package.component.css',
+  // changeDetection: ChangeDetectionStrategy.Default
 })
 export class FoodPackageComponent implements OnInit, OnDestroy {
 
@@ -133,8 +134,8 @@ export class FoodPackageComponent implements OnInit, OnDestroy {
           console.log('✅ Packages loaded successfully');
 
           // Force Angular to update the view
-          this.cdr.detectChanges();
-          console.log('✅ Change detection triggered');
+          // this.cdr.detectChanges();
+          // console.log('✅ Change detection triggered');
         },
 
         /**
