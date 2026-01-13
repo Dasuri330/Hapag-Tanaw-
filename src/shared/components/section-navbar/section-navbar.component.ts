@@ -19,7 +19,7 @@ export class SectionNavbarComponent implements AfterViewInit {
   @Input() actionButton?: { label: string; routerLink: string };
   @Output() navbarReady = new EventEmitter<HTMLElement>();
 
-  constructor(private el: ElementRef) {}
+  constructor(private el: ElementRef) { }
 
   ngAfterViewInit(): void {
     const navbar = this.el.nativeElement.querySelector('.section-navbar');

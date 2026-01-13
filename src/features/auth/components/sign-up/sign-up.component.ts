@@ -1,18 +1,20 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControl, ValidationErrors } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../../../shared/components/services/auth.service';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent {
   signupForm: FormGroup;
   submitted = false;
+  errorMessage = '';
 
   // password visibility
   showPassword = false;
@@ -20,7 +22,8 @@ export class SignUpComponent {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router  // Add Router here
+    private router: Router,
+    private authService: AuthService
   ) {
     this.signupForm = this.fb.group({
       firstName: ['', [Validators.required, Validators.minLength(2)]],
@@ -109,6 +112,7 @@ export class SignUpComponent {
   // Submit form
   onSubmit(): void {
     this.submitted = true;
+    this.errorMessage = '';
 
     // Mark all fields as touched to show validation errors
     Object.keys(this.signupForm.controls).forEach(key => {
@@ -116,7 +120,7 @@ export class SignUpComponent {
     });
 
     if (this.signupForm.invalid) {
-      alert('Please fix the errors in the form');
+      this.errorMessage = 'Please fix the errors in the form';
       return;
     }
 
@@ -127,11 +131,17 @@ export class SignUpComponent {
       password: this.signupForm.value.password
     };
 
-    console.log('Form submitted successfully!', formData);
-    alert(`Account created successfully! Welcome, ${formData.firstName}!`);
+    // Use AuthService to register user
+    const result = this.authService.signup(formData);
 
-    // Navigate to login page after successful signup
-    this.router.navigate(['/login']);
+    if (result.success) {
+      alert(`Account created successfully! Welcome, ${formData.firstName}!`);
+      // Navigate to reservation page after successful signup
+      this.router.navigate(['/login']);
+    } else {
+      this.errorMessage = result.message;
+      alert(result.message);
+    }
   }
 
   // social login methods will be later implemented.

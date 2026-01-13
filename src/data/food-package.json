@@ -13,7 +13,7 @@
             ],
             "price": "₱ 2,500",
             "priceValue": 2500,
-            "image": "assets/Classic Kamayan.png",
+            "image": "assets/image/Classic Kamayan.png",
             "imageAlt": "Classic Kamayan",
             "selected": false
         },
@@ -30,7 +30,7 @@
             ],
             "price": "₱ 4,500",
             "priceValue": 4500,
-            "image": "assets/Deluxe Fiesta.png",
+            "image": "assets/image/Deluxe Fiesta.png",
             "imageAlt": "Deluxe Fiesta",
             "selected": false
         },
@@ -47,7 +47,7 @@
             ],
             "price": "₱ 6,800",
             "priceValue": 6800,
-            "image": "assets/Premium Celebration.png",
+            "image": "assets/image/Premium Celebration.png",
             "imageAlt": "Premium Celebration",
             "selected": false
         },
@@ -65,7 +65,7 @@
             ],
             "price": "Varies",
             "priceValue": null,
-            "image": "assets/food-in-table.jpg",
+            "image": "assets/image/food-in-table.jpg",
             "imageAlt": "À La Carte",
             "selected": false
         }

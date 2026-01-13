@@ -1,8 +1,8 @@
 <main class="main">
-   <img src="assets/food-in-table.jpg" alt="Background" class="bg-image">
+   <img src="assets/image/food-in-table.jpg" alt="Background" class="bg-image">
     <div class="bg-overlay"></div>
     
-    <div class="container-fluid d-flex justify-content-center align-items-center py-3">
+    <div class="container-fluid d-flex justify-content-center align-items-center py-5">
         <div class="card shadow-lg p-0">
             <div class="row g-0">
                 <div class="col-md-5 p-5 d-flex flex-column justify-content-center">
@@ -28,9 +28,11 @@
                                         [class.is-valid]="f['firstName'].touched && f['firstName'].valid"
                                         formControlName="firstName"
                                         placeholder="First Name:">
-                                    <div class="error-message" *ngIf="hasError('firstName')">
-                                        {{ getErrorMessage('firstName') }}
-                                    </div>
+                                    @if (hasError('firstName')) {
+                                        <div class="error-message">
+                                            {{ getErrorMessage('firstName')}}
+                                        </div>
+                                    }
                                 </div>
                                 <div class="col-md-6">
                                     <input 
@@ -40,9 +42,12 @@
                                         [class.is-valid]="f['lastName'].touched && f['lastName'].valid"
                                         formControlName="lastName"
                                         placeholder="Last Name:">
-                                    <div class="error-message" *ngIf="hasError('lastName')">
-                                        {{ getErrorMessage('lastName') }}
-                                    </div>
+
+                                    @if (hasError('lastName')) {
+                                        <div class="error-message">
+                                            {{ getErrorMessage('lastName') }}
+                                        </div>
+                                    }
                                 </div>
                             </div>
                             
@@ -54,9 +59,12 @@
                                     [class.is-valid]="f['email'].touched && f['email'].valid"
                                     formControlName="email"
                                     placeholder="Email:">
-                                <div class="error-message" *ngIf="hasError('email')">
-                                    {{ getErrorMessage('email') }}
-                                </div>
+
+                                @if (hasError('email')) {
+                                    <div class="error-message">
+                                        {{ getErrorMessage('email') }}
+                                    </div>
+                                }
                             </div>
                             
                             <div class="mb-3 position-relative">
@@ -79,9 +87,11 @@
                                     }">
                                     </i>
 
-                                <div class="error-message" *ngIf="hasError('password')">
-                                    {{ getErrorMessage('password') }}
-                                </div>
+                                    @if (hasError('password')) {
+                                        <div class="error-message">
+                                            {{ getErrorMessage('password') }}
+                                        </div>
+                                    }
                             </div>
                             
                          <div class="mb-3 position-relative">
@@ -106,16 +116,12 @@
                                 }">
                             </i>
 
-
-                         <div class="error-message" *ngIf="hasError('confirmPassword') && !signupForm.errors?.['passwordMismatch']">
+                           @if (hasError('confirmPassword') && !signupForm.errors?.['passwordMismatch']) {
+                            <div class="error-message">
                                 {{ getErrorMessage('confirmPassword') }}
                             </div>
-                            <div class="error-message" *ngIf="signupForm.errors?.['passwordMismatch'] && f['confirmPassword'].touched">
-                                Passwords do not match
-                            </div>
+                            }
                         </div>
-
-                            
                             <div class="form-check mb-3">
                                 <input 
                                     class="form-check-input" 
@@ -125,9 +131,12 @@
                                 <label class="form-check-label" for="terms">
                                     I have read and agree to the <a href="#">Terms and Conditions</a>
                                 </label>
-                                <div class="error-message" *ngIf="hasError('terms')">
-                                    You must agree to the terms and conditions
-                                </div>
+
+                                @if (hasError('terms')) {
+                                    <div class="error-mesage">
+                                        You must agree to the terms and conditions
+                                    </div>
+                                }
                             </div>
                             
                             <button type="submit" class="btn w-100 mb-3 custom-outline">Sign up</button>

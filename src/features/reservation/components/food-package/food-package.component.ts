@@ -61,7 +61,7 @@ export class FoodPackageComponent implements OnInit, OnDestroy {
    * Subscription to the packages observable
    * Stored for cleanup in ngOnDestroy
    */
-  private packagesSubscription?: Subscription;
+  protected packagesSubscription?: Subscription;
 
   // ==================== CONSTRUCTOR ====================
 
@@ -108,16 +108,16 @@ export class FoodPackageComponent implements OnInit, OnDestroy {
          */
         next: (data) => {
           console.log('✅ Component received packages data:', data);
-          console.log('✅ Number of packages:', data.length);
+          console.log('✅ Number of packages:', data.foodPackages.length);
 
           // Store the fetched packages
-          this.packages = data;
+          this.packages = data.foodPackages;
 
           // Load previously selected packages from localStorage
           const reservationData = JSON.parse(localStorage.getItem('reservationData') || '{}');
           if (reservationData.selectedPackages) {
             this.selectedPackages = reservationData.selectedPackages;
-            
+
             // Mark packages as selected based on saved data
             // This restores the selection state if user comes back
             this.packages.forEach(pkg => {
@@ -333,7 +333,7 @@ export class FoodPackageComponent implements OnInit, OnDestroy {
     localStorage.removeItem('reservationData');
     this.showCancelModal = false;
     this.router.navigate(['/']);
-    
+
     console.log('Reservation cancelled');
   }
 }

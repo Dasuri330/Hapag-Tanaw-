@@ -63,6 +63,7 @@ export class ReserveNowComponent implements OnInit {
       hourEnd: ['', Validators.required],
       minuteEnd: ['', Validators.required],
       numGuests: ['', Validators.required],
+      specificGuestCount: [''], // New field for specific guest count
       specialOccasion: [''],
       specialRequests: ['']
     });
@@ -72,6 +73,7 @@ export class ReserveNowComponent implements OnInit {
     this.minDate = today.toISOString().split('T')[0];
 
     this.setupTimeValidation();
+    this.setupGuestValidation(); // Setup validation for guest count
   }
 
   // Custom phone validator
@@ -85,6 +87,23 @@ export class ReserveNowComponent implements OnInit {
     this.reservationForm.get('minuteStart')?.valueChanges.subscribe(() => this.updateTimeDisplay());
     this.reservationForm.get('hourEnd')?.valueChanges.subscribe(() => this.updateTimeDisplay());
     this.reservationForm.get('minuteEnd')?.valueChanges.subscribe(() => this.updateTimeDisplay());
+  }
+
+  // Setup validation for guest count
+  setupGuestValidation(): void {
+    this.reservationForm.get('numGuests')?.valueChanges.subscribe(value => {
+      const specificGuestControl = this.reservationForm.get('specificGuestCount');
+      
+      if (value === '10 or more Guests') {
+        // Make specificGuestCount required and set minimum value to 10
+        specificGuestControl?.setValidators([Validators.required, Validators.min(10)]);
+      } else {
+        // Clear validators and value when not "10 or more Guests"
+        specificGuestControl?.clearValidators();
+        specificGuestControl?.setValue('');
+      }
+      specificGuestControl?.updateValueAndValidity();
+    });
   }
 
   updateTimeDisplay(): void {
@@ -185,6 +204,12 @@ export class ReserveNowComponent implements OnInit {
       return;
     }
 
+    // Determine the final guest count
+    let finalGuestCount = this.reservationForm.value.numGuests;
+    if (this.reservationForm.value.numGuests === '10 or more Guests') {
+      finalGuestCount = `${this.reservationForm.value.specificGuestCount} Guests`;
+    }
+
     const formData = {
       fullName: this.reservationForm.value.fullName,
       email: this.reservationForm.value.email,
@@ -192,7 +217,7 @@ export class ReserveNowComponent implements OnInit {
       date: this.reservationForm.value.date,
       timeStart: `${this.reservationForm.value.hourStart}:${this.reservationForm.value.minuteStart} ${this.selectedPeriodStart}`,
       timeEnd: `${this.reservationForm.value.hourEnd}:${this.reservationForm.value.minuteEnd} ${this.selectedPeriodEnd}`,
-      numGuests: this.reservationForm.value.numGuests,
+      numGuests: finalGuestCount,
       specialOccasion: this.reservationForm.value.specialOccasion || '',
       specialRequests: this.reservationForm.value.specialRequests || ''
     };

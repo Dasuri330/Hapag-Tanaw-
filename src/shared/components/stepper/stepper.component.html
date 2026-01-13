@@ -1,20 +1,22 @@
-<div class="container mt-0 mb-4">
-  <div class="d-flex justify-content-center align-items-center stepper">
+<nav aria-label="Reservation progress" class="container mt-0 mb-4">
+  <ol class="d-flex justify-content-center align-items-center stepper list-unstyled mb-0">
     @for (step of steps; track step.number; let last = $last) {
-      <!-- Step Circle -->
-      <div class="step" 
-           [class.active]="currentStep === step.number && (step.number !== 4 || !isConfirmed)"
-           [class.completed]="currentStep > step.number || (step.number === 4 && isConfirmed)">
-        <div class="step-circle">{{ step.number }}</div>
+      <!-- Step Item -->
+      <li class="step" 
+          [class.active]="currentStep === step.number && (step.number !== 4 || !isConfirmed)"
+          [class.completed]="currentStep > step.number || (step.number === 4 && isConfirmed)"
+          [attr.aria-current]="currentStep === step.number ? 'step' : null">
+        <div class="step-circle" aria-hidden="true">{{ step.number }}</div>
         <small>{{ step.label }}</small>
-      </div>
+      </li>
 
       <!-- Step Line (not after last step) -->
       @if (!last) {
-        <div class="step-line" 
-             [class.active]="currentStep > step.number || (step.number === 4 && isConfirmed)">
-        </div>
+        <li class="step-line" 
+            [class.active]="currentStep > step.number || (step.number === 4 && isConfirmed)"
+            aria-hidden="true">
+        </li>
       }
     }
-  </div>
-</div>
+  </ol>
+</nav>

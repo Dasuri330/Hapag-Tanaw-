@@ -10,11 +10,11 @@ import { SectionNavbarComponent, SectionNavItem } from '../../shared/components/
 import { MenuService, MenuSection } from '../../shared/components/services/menu.service';
 
 @Component({
-  selector: 'app-menu', 
-  standalone: true,     
+  selector: 'app-menu',
+  standalone: true,
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.css'],
-  imports: [CommonModule, SectionNavbarComponent], 
+  imports: [CommonModule, SectionNavbarComponent],
 })
 export class MenuComponent implements AfterViewInit, OnInit, OnDestroy {
 
@@ -29,7 +29,7 @@ export class MenuComponent implements AfterViewInit, OnInit, OnDestroy {
 
   // Section navigation items
   sectionNavItems: SectionNavItem[] = [];
-  
+
   // Reserve button config
   reserveButton = {
     label: 'Reserve Now',
@@ -63,13 +63,13 @@ export class MenuComponent implements AfterViewInit, OnInit, OnDestroy {
           console.log('Data length:', data.length);
 
           this.menuSections = data;   // Save data
-          
+
           // Create section nav items from menu sections
           this.sectionNavItems = data.map(section => ({
             label: section.title,
             sectionId: section.id
           }));
-          
+
           this.isLoading = false;     // Stop loading
 
           console.log('After update - isLoading:', this.isLoading);

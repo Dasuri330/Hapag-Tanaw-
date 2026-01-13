@@ -4,11 +4,11 @@ import { Router } from '@angular/router';
 import { WarningModalComponent } from '../../../../shared/components/modals/warning-modal/warning-modal-components/warning-modal.component';
 import { AlaCarteService, MenuItem, SelectedItem, MenuSection } from '../../../../shared/components/services/ala-carte.service';
 import { Subscription } from 'rxjs';
-
+import { CurrencyFormatPipe } from '../../../../shared/components/pipes/currency-format.pipe';
 @Component({
   selector: 'app-custom-menu',
   standalone: true,
-  imports: [CommonModule, WarningModalComponent],
+  imports: [CommonModule, WarningModalComponent, CurrencyFormatPipe],
   templateUrl: './custom-menu.component.html',
   styleUrl: './custom-menu.component.css',
 })

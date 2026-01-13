@@ -231,6 +231,32 @@
               }
             </div>
 
+      <!--Additional input field when "10 or more Guests" is selected-->
+        @if (reservationForm.get('numGuests')?.value === '10 or more Guests') {
+          <div class="mt-3">
+            <label class="form-label" for="specificGuestCount">
+              <i class="bi bi-people-fill"></i> Please specify exact number of guests <span class="text-danger">*</span>
+            </label>
+            <input 
+              type="number" 
+              class="form-control" 
+              formControlName="specificGuestCount"
+              placeholder="Enter exact number (minimum 10)"
+              min="10"
+              [class.is-invalid]="reservationForm.get('specificGuestCount')?.invalid && reservationForm.get('specificGuestCount')?.touched">
+            @if (reservationForm.get('specificGuestCount')?.invalid && reservationForm.get('specificGuestCount')?.touched) {
+              <div class="invalid-feedback">
+                @if (reservationForm.get('specificGuestCount')?.hasError('required')) {
+                  Please enter the specific number of guests.
+                }
+                @if (reservationForm.get('specificGuestCount')?.hasError('min')) {
+                  Number of guests must be at least 10.
+                }
+              </div>
+            }
+          </div>
+        }
+
             <!--special occasion-->
             <div class="mb-3">
               <label class="form-label" for="specialOccasion">Special Occasion</label>

@@ -24,8 +24,9 @@
 }
 
 .modal-icon {
-    color: #ff9800;
+    color: #D27D2D;
     margin-bottom: 1.5rem;
+    font-size: 3rem;
 }
 
 h2 {
@@ -60,13 +61,13 @@ p {
     min-width: 150px;
 }
 
-.btn-primary {
-    background: #007bff;
+.custom-btn {
+    background: #D27D2D;
     color: white;
 }
 
-.btn-primary:hover {
-    background: #0056b3;
+.custom-btn:hover {
+    background: #CC5500;
     transform: translateY(-2px);
     box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
 }

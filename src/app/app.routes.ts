@@ -1,6 +1,6 @@
 import { Routes } from '@angular/router';
 import { HomeComponent } from '../features/home/home.component';
-import { AboutComponent } from '../features/about/about.component';
+import { AboutComponent } from '../features/about-c/about.component';
 import { MenuComponent } from '../features/menu/menu.component';
 import { ContactComponent } from '../features/contact/contact.component';
 import { ReserveNowComponent } from '../features/reservation/components/reserve-now/reserve-now.component';
@@ -16,7 +16,10 @@ import { FAQsComponents } from '../features/faqs/faqs.component';
 
 export const routes: Routes = [
     { path: '', component: HomeComponent },
-    { path: 'about', component: AboutComponent },
+    { 
+        path: '', 
+        loadChildren: () => import('../features/about/about-module').then(m => m.AboutModule)
+    },
     { path: 'menu', component: MenuComponent },
     { path: 'contact', component: ContactComponent },
     { path: 'reserve-now', component: ReserveNowComponent },

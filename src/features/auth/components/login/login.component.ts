@@ -1,12 +1,13 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
+import { AuthService } from '../../../../shared/components/services/auth.service';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
@@ -14,10 +15,12 @@ export class LoginComponent {
   loginForm: FormGroup;
   submitted = false;
   showPassword = false;
+  errorMessage = '';
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    private authService: AuthService
   ) {
     this.loginForm = this.fb.group({
       email: ['', [Validators.required, Validators.email]],
@@ -66,6 +69,7 @@ export class LoginComponent {
   // Submit form
   onSubmit(): void {
     this.submitted = true;
+    this.errorMessage = '';
 
     // Mark all fields as touched to show validation errors
     Object.keys(this.loginForm.controls).forEach(key => {
@@ -73,36 +77,33 @@ export class LoginComponent {
     });
 
     if (this.loginForm.invalid) {
+      this.errorMessage = 'Please fill in all required fields correctly';
       return;
     }
 
-    const loginData = {
-      email: this.loginForm.value.email,
-      password: this.loginForm.value.password
-    };
+    const { email, password } = this.loginForm.value;
 
-    console.log('Login attempt:', loginData);
+    // Use AuthService to verify credentials
+    const result = this.authService.login(email, password);
 
-    // TODO: Replace this with actual authentication service
-    // For now, simulate successful login
-    if (loginData.email && loginData.password) {
-      alert('Login successful!');
+    if (result.success) {
+      alert(`Welcome back, ${result.user?.firstName}!`);
+      // Navigate to reservation page after successful login
       this.router.navigate(['/home']);
     } else {
-      alert('Invalid credentials');
+      this.errorMessage = result.message;
+      alert(result.message);
     }
   }
 
   // Social login methods (to be implemented later)
   loginWithGoogle(): void {
     console.log('Logging in with Google...');
-    // TODO: Implement Google OAuth
     alert('Google login will be implemented here');
   }
 
   loginWithFacebook(): void {
     console.log('Logging in with Facebook...');
-    // TODO: Implement Facebook OAuth
     alert('Facebook login will be implemented here');
   }
 }

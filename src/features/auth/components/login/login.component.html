@@ -1,10 +1,10 @@
 <main class="main-container">
-    <img src="assets/food-in-table.jpg" 
+    <img src="assets/image/food-in-table.jpg" 
          class="background-image"
          alt="Background">
     <div class="bg-overlay"></div>
     
-    <div class="container-fluid d-flex justify-content-center align-items-center py-3">
+    <div class="container-fluid d-flex justify-content-center align-items-center py-5">
         <div class="card shadow-lg p-0">
             <div class="row g-0">
                 <div class="col-md-5 p-5 d-flex flex-column justify-content-center">
@@ -32,9 +32,12 @@
                                     [class.is-invalid]="hasError('email')"
                                     [class.is-valid]="f['email'].touched && f['email'].valid"
                                     formControlName="email">
-                                <div class="error-message" *ngIf="hasError('email')">
-                                    {{ getErrorMessage('email') }}
-                                </div>
+
+                                @if (hasError ('email')) {
+                                    <div class="error-message">
+                                        {{ getErrorMessage('email') }}
+                                    </div>
+                                }
                             </div>
                             
                             <div class="mb-3">
@@ -55,9 +58,12 @@
                                         }">
                                     </i>
                                 </div>
-                                <div class="error-message" *ngIf="hasError('password')">
-                                    {{ getErrorMessage('password') }}
-                                </div>
+
+                                @if (hasError ('password')) {
+                                    <div class="error-message">
+                                        {{ getErrorMessage ('password') }}
+                                    </div>
+                                }
                             </div>
                             
                             <div class="text-end mb-3">

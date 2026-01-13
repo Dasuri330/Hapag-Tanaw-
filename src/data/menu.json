@@ -4,31 +4,31 @@
         "title": "Starters",
         "items": [
             {
-                "image": "assets/shanghai.jpg",
+                "image": "assets/image/shanghai.jpg",
                 "title": "Shanghai rolls",
                 "description": "Deep-fried spring rolls with ground pork and vegetables.",
                 "price": "150"
             },
             {
-                "image": "assets/ukoy1.jpg",
+                "image": "assets/image/ukoy1.jpg",
                 "title": "Ukoy",
                 "description": "Crispy shrimp and vegetable fritters with vinegar dipping sauce.",
                 "price": "370"
             },
             {
-                "image": "assets/t1.jpg",
+                "image": "assets/image/t1.jpg",
                 "title": "Tokwa at Baboy",
                 "description": "Fried tofu and pork in savory soy-vinegar sauce with onions and chili.",
                 "price": "280"
             },
             {
-                "image": "assets/chicharon.png",
+                "image": "assets/image/chicharon.png",
                 "title": "Chicharon Bulaklak",
                 "description": "Crispy deep-fried pork intestines served with spicy vinegar.",
                 "price": "238"
             },
             {
-                "image": "assets/kinilaw.png",
+                "image": "assets/image/kinilaw.png",
                 "title": "Kinilaw",
                 "description": "Fresh fish ceviche marinated in vinegar, calamansi, and spices.",
                 "price": "400"
@@ -40,31 +40,31 @@
         "title": "Breakfast",
         "items": [
             {
-                "image": "assets/tapsilog.jpg",
+                "image": "assets/image/tapsilog.jpg",
                 "title": "Tapsilog",
                 "description": "Beef tapa with fried rice and egg, a classic Filipino breakfast.",
                 "price": "120"
             },
             {
-                "image": "assets/longsilog.jpg",
+                "image": "assets/image/longsilog.jpg",
                 "title": "Longsilog",
                 "description": "Sweet longganisa sausage with fried rice and egg.",
                 "price": "120"
             },
             {
-                "image": "assets/pandesal.jpg",
+                "image": "assets/image/pandesal.jpg",
                 "title": "Pandesal",
                 "description": "Soft and fluffy Filipino bread rolls, perfect for breakfast.",
                 "price": "50"
             },
             {
-                "image": "assets/daing na bangus.jpg",
+                "image": "assets/image/daing na bangus.jpg",
                 "title": "Daing na Bangus",
                 "description": "Fried marinated milkfish with fried rice and egg.",
                 "price": "250"
             },
             {
-                "image": "assets/champorado.jpg",
+                "image": "assets/image/champorado.jpg",
                 "title": "Champorado",
                 "description": "Sweet chocolate rice porridge topped with milk and sugar.",
                 "price": "100"
@@ -76,31 +76,31 @@
         "title": "Lunch",
         "items": [
             {
-                "image": "assets/adobo-pork.jpg",
+                "image": "assets/image/adobo-pork.jpg",
                 "title": "Pork Adobo",
                 "description": "Tender pork in savory soy-vinegar sauce with garlic and bay leaves.",
                 "price": "210"
             },
             {
-                "image": "assets/bipstik.png",
+                "image": "assets/image/bipstik.png",
                 "title": "Bistek Tagalog",
                 "description": "Beef strips in soy-citrus marinade with caramelized onions.",
                 "price": "200"
             },
             {
-                "image": "assets/bulalo 1.png",
+                "image": "assets/image/bulalo 1.png",
                 "title": "Bulalo",
                 "description": "Beef shank soup with bone marrow, corn, and vegetables.",
                 "price": "470"
             },
             {
-                "image": "assets/mechado canva 1.png",
+                "image": "assets/image/mechado canva 1.png",
                 "title": "Mechado",
                 "description": "Beef stew in tomato sauce with potatoes and bell peppers.",
                 "price": "278"
             },
             {
-                "image": "assets/sisig.png",
+                "image": "assets/image/sisig.png",
                 "title": "Sisig",
                 "description": "Sizzling chopped pork with onions, chili, and calamansi.",
                 "price": "180"
@@ -112,31 +112,31 @@
         "title": "Dinner",
         "items": [
             {
-                "image": "assets/lechon 1.png",
+                "image": "assets/image/lechon 1.png",
                 "title": "Lechon Kawali",
                 "description": "Crispy deep-fried pork belly with liver sauce.",
                 "price": "480"
             },
             {
-                "image": "assets/pares.png",
+                "image": "assets/image/pares.png",
                 "title": "Beef Pares",
                 "description": "Braised beef in sweet-savory sauce served with garlic fried rice.",
                 "price": "200"
             },
             {
-                "image": "assets/la1.jpg",
+                "image": "assets/image/la1.jpg",
                 "title": "Laing",
                 "description": "Taro leaves cooked in creamy coconut milk with chili and shrimp paste.",
                 "price": "280"
             },
             {
-                "image": "assets/karekare.jpg",
+                "image": "assets/image/karekare.jpg",
                 "title": "Kare-Kare",
                 "description": "Oxtail and vegetables in rich peanut sauce with bagoong.",
                 "price": "350"
             },
             {
-                "image": "assets/roasted inasal.jpg",
+                "image": "assets/image/roasted inasal.jpg",
                 "title": "Chicken Inasal",
                 "description": "Grilled marinated chicken with annatto oil and calamansi.",
                 "price": "420"
@@ -148,31 +148,31 @@
         "title": "Drinks",
         "items": [
             {
-                "image": "assets/sago gulaman.jpg",
+                "image": "assets/image/sago gulaman.jpg",
                 "title": "Sago at Gulaman",
                 "description": "Sweet tapioca pearls and jelly drink with brown sugar syrup.",
                 "price": "120"
             },
             {
-                "image": "assets/calamansi juice.jpg",
+                "image": "assets/image/calamansi juice.jpg",
                 "title": "Calamansi Juice",
                 "description": "Freshly squeezed Philippine lime juice, sweet and tangy.",
                 "price": "120"
             },
             {
-                "image": "assets/mango juice.jpg",
+                "image": "assets/image/mango juice.jpg",
                 "title": "Mango Juice",
                 "description": "Sweet and tropical fresh mango juice.",
                 "price": "120"
             },
             {
-                "image": "assets/watermelon juice.jpg",
+                "image": "assets/image/watermelon juice.jpg",
                 "title": "Watermelon Juice",
                 "description": "Fresh and refreshing watermelon juice.",
                 "price": "120"
             },
             {
-                "image": "assets/buko juice.jpg",
+                "image": "assets/image/buko juice.jpg",
                 "title": "Buko Juice",
                 "description": "Fresh young coconut water, naturally sweet and hydrating.",
                 "price": "120"
