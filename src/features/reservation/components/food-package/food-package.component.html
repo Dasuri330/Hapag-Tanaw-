@@ -40,7 +40,8 @@
         </div>
        }
 
-        @if (packagesSubscription && !packagesSubscription.closed) {
+        @if (isLoading) {
+          <div class="d-flex justify-content-center align-items-center p-5"></div>
            <div class="spinner-border" role="status" >
             <span class="visually-hidden">Loading...</span>
           </div>
