@@ -1,36 +1,39 @@
 import { Routes } from '@angular/router';
-import { HomeComponent } from '../features/home/home.component';
-import { AboutComponent } from '../features/about-c/about.component';
-import { MenuComponent } from '../features/menu/menu.component';
-import { ContactComponent } from '../features/contact/contact.component';
-import { ReserveNowComponent } from '../features/reservation/components/reserve-now/reserve-now.component';
-import { FoodPackageComponent } from '../features/reservation/components/food-package/food-package.component';
-import { CustomMenuComponent } from '../features/reservation/components/custom-menu/custom-menu.component';
-import { PaymentComponent } from '../features/payment/components/payment/payment.component';
-import { GcashComponent } from '../features/payment/components/gcash/gcash.component';
-import { MayaComponent } from '../features/payment/components/maya/maya.component';
-import { ConfirmComponent } from '../features/reservation/components/confirm/confirm.component';
-import { SignUpComponent } from '../features/auth/components/sign-up/sign-up.component';
-import { LoginComponent } from '../features/auth/components/login/login.component';
 import { FAQsComponents } from '../features/faqs/faqs.component';
 
 export const routes: Routes = [
-    { path: '', component: HomeComponent },
-    { 
-        path: '', 
+    {
+        path: '',
+        loadChildren: () => import('../features/home/home-module').then(m => m.HomeModule)
+    },
+    {
+        path: '',
         loadChildren: () => import('../features/about/about-module').then(m => m.AboutModule)
     },
-    { path: 'menu', component: MenuComponent },
-    { path: 'contact', component: ContactComponent },
-    { path: 'reserve-now', component: ReserveNowComponent },
-    { path: 'food-package', component: FoodPackageComponent },
-    { path: 'custom-menu', component: CustomMenuComponent },
-    { path: 'payment', component: PaymentComponent },
-    { path: 'gcash', component: GcashComponent },
-    { path: 'maya', component: MayaComponent },
-    { path: 'confirm', component: ConfirmComponent },
-    { path: 'sign-up', component: SignUpComponent },
-    { path: 'login', component: LoginComponent },
-    { path: 'faqs', component: FAQsComponents },
+    {
+        path: '',
+        loadChildren: () => import('../features/menu/menu-module').then(m => m.MenuModule)
+    },
+    {
+        path: '',
+        loadChildren: () => import('../features/contact/contact-module').then(m => m.ContactModule)
+    },
+    {
+        path: '',
+        loadChildren: () => import('../features/payment/components/payment/payment-module').then(m => m.PaymentModule)
+    },
+    {
+        path: '',
+        loadChildren: () => import('../features/reservation/components/reserve-now/reserve-now/reserve-now-module').then(m => m.ReserveNowModule)
+    },
+    {
+        path: '',
+        loadChildren: () => import('../features/auth/components/auth/auth-module').then(m => m.AuthModule)
+    },
+    {
+        path: '',
+        loadChildren: () => import('../features/faqs/faqs/faqs-module').then(m => m.FaqsModule)
+    },
+
     { path: '**', redirectTo: '' }
 ];

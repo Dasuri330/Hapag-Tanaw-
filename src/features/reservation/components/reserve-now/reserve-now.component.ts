@@ -93,7 +93,7 @@ export class ReserveNowComponent implements OnInit {
   setupGuestValidation(): void {
     this.reservationForm.get('numGuests')?.valueChanges.subscribe(value => {
       const specificGuestControl = this.reservationForm.get('specificGuestCount');
-      
+
       if (value === '10 or more Guests') {
         // Make specificGuestCount required and set minimum value to 10
         specificGuestControl?.setValidators([Validators.required, Validators.min(10)]);

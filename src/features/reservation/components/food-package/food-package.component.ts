@@ -74,15 +74,15 @@ export class FoodPackageComponent implements OnInit, OnDestroy {
           // Hide loading spinner
           this.isLoading = false;
 
-          console.log('✅ Packages loaded successfully');
+          console.log('Packages loaded successfully');
 
           // Force Angular to update the view
           this.cdr.detectChanges();
-          console.log('✅ Change detection triggered');
+          console.log('Change detection triggered');
         },
 
         error: (error) => {
-          console.error('❌ Error loading food packages:', error);
+          console.error('Error loading food packages:', error);
 
           // Hide spinner even on error
           this.isLoading = false;
@@ -90,18 +90,17 @@ export class FoodPackageComponent implements OnInit, OnDestroy {
           // Update view
           this.cdr.detectChanges();
 
-          // TODO: Could show error message to user
-          // alert('Failed to load packages. Please refresh the page.');
+
         },
 
-   
+
         complete: () => {
-          console.log('✅ Packages subscription completed');
+          console.log('Packages subscription completed');
         }
       });
   }
 
- 
+
   ngOnDestroy(): void {
     if (this.packagesSubscription) {
       this.packagesSubscription.unsubscribe();
@@ -162,7 +161,7 @@ export class FoodPackageComponent implements OnInit, OnDestroy {
     }, 0);
   }
 
- 
+
   proceedToPayment(): void {
     // Validation: At least one package must be selected
     if (this.selectedPackages.length === 0) {

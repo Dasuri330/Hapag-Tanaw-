@@ -17,6 +17,12 @@
     transform: scale(0.97);
 }
 
+textarea {
+    resize: none;
+    outline: none;
+    box-shadow: none;
+}
+
 /* Headers */
 .header-orange {
     background-color: #D27D2D;

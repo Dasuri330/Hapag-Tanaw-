@@ -1,11 +1,11 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { AboutComponent } from './about-c/about.component';
+import { ConfirmComponent } from '../confirm.component';
 
-const routes: Routes = [{ path: 'about', component: AboutComponent }];
+const routes: Routes = [{ path: 'confirm', component: ConfirmComponent }];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
   exports: [RouterModule]
 })
-export class AboutRoutingModule { }
+export class ConfirmRoutingModule { }

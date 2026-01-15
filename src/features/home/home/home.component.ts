@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router, RouterModule, RouterLink } from '@angular/router';
-import { AuthService } from '../../shared/components/services/auth.service';
-import { AuthModalComponent } from '../../shared/components/modals/auth-modal/auth-modal.component/auth-modal.component';
+import { AuthService } from '../../../shared/components/services/auth.service';
+import { AuthModalComponent } from '../../../shared/components/modals/auth-modal/auth-modal.component/auth-modal.component';
 
 @Component({
   selector: 'app-home',
