@@ -1,10 +1,15 @@
 <div class="app-container">
-  <app-navbar *ngIf="!isAuthPage()"></app-navbar>
+  
+  @if (!isAuthPage()) {
+    <app-navbar></app-navbar>
+  }
   
   <main>
     <router-outlet></router-outlet>
   </main>
-
-  <app-footer *ngIf="!isAuthPage()"></app-footer>
+  
+  @if (!isAuthPage()) {
+  <app-footer></app-footer>
+  }
 </div>
 
