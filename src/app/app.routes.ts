@@ -1,5 +1,4 @@
 import { Routes } from '@angular/router';
-import { FAQsComponents } from '../features/faqs/faqs.component';
 
 export const routes: Routes = [
     {
@@ -20,19 +19,19 @@ export const routes: Routes = [
     },
     {
         path: '',
-        loadChildren: () => import('../features/payment/components/payment/payment-module').then(m => m.PaymentModule)
+        loadChildren: () => import('../features/payment/components/payment/payment.module').then(m => m.PaymentModule)
     },
     {
         path: '',
-        loadChildren: () => import('../features/reservation/components/reserve-now/reserve-now/reserve-now-module').then(m => m.ReserveNowModule)
+        loadChildren: () => import('../features/reservation/components/reserve-now/reserve-now-module').then(m => m.ReserveNowModule)
     },
     {
         path: '',
-        loadChildren: () => import('../features/auth/components/auth/auth-module').then(m => m.AuthModule)
+        loadChildren: () => import('../features/auth//components/auth-module').then(m => m.AuthModule)
     },
     {
         path: '',
-        loadChildren: () => import('../features/faqs/faqs/faqs-module').then(m => m.FaqsModule)
+        loadChildren: () => import('../features/faqs/faqs-module').then(m => m.FaqsModule)
     },
 
     { path: '**', redirectTo: '' }

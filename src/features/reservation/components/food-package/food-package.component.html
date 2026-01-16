@@ -12,9 +12,9 @@
     <!--reservation form area-->
     <div class="container-fluid reservation-bg pt-3 pb-5">
       <!--Stepper-->
-         <app-stepper [currentStep]="currentStep"></app-stepper>
+      <app-stepper [currentStep]="currentStep"></app-stepper>
 
-       <!--form header-->
+      <!--form header-->
       <div class="container reservation-header text-start py-3 rounded-top-4">
         <h3 class="mb-0"><span class="title text-white p-3">Choose your Food Package(s)</span></h3>
       </div>
@@ -22,33 +22,33 @@
       <!--form container-->
       <div class="container custom-container rounded-bottom shadow-lg">
         
-      <!-- selected summary -->
-       @if (selectedPackages.length > 0) {
-        <div class="selected-summary">
-          <div class="summary-content p-2 mt-1">
-            <div class="summary-left">
-              <strong>Selected:</strong>
-              <span class="selected-items">
-                {{ getSelectedTitles() }}
-
-              </span>
-            </div>
-            <div class="summary-right">
-              Total: ₱ {{ getTotalPrice().toLocaleString() }}
+        <!-- selected summary -->
+        @if (selectedPackages().length > 0) {
+          <div class="selected-summary">
+            <div class="summary-content p-2 mt-1">
+              <div class="summary-left">
+                <strong>Selected:</strong>
+                <span class="selected-items">
+                  {{ getSelectedTitles() }}
+                </span>
+              </div>
+              <div class="summary-right">
+                Total: ₱ {{ getTotalPrice().toLocaleString() }}
+              </div>
             </div>
           </div>
-        </div>
-       }
+        }
 
-        @if (isLoading) {
-          <div class="d-flex justify-content-center align-items-center p-5"></div>
-           <div class="spinner-border" role="status" >
-            <span class="visually-hidden">Loading...</span>
+        @if (isLoading()) {
+          <div class="d-flex justify-content-center align-items-center p-5">
+            <div class="spinner-border" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div>
           </div>
         }
     
         <!--food package cards-->
-        @for (package of packages; track package.title; let last = $last) {
+        @for (package of packages(); track package.title; let last = $last) {
           <div class="package-content" 
                [class.mb-3]="!last"
                [class.mb-4]="last"
@@ -89,37 +89,36 @@
           </div>
         }
 
-      <!--button group-->
-      <div class="d-flex justify-content-between gap-3 px-4 pb-3 pt-3">
-        <div class="d-flex gap-2">
-          <button
-            type="button"
-            class="btn p-3 btn-back-package"
-            (click)="onBack()"><i class="bi bi-chevron-left"></i> Back 
-          </button>
+        <!--button group-->
+        <div class="d-flex justify-content-between gap-3 px-4 pb-3 pt-3">
+          <div class="d-flex gap-2">
+            <button
+              type="button"
+              class="btn p-3 btn-back-package"
+              (click)="onBack()"><i class="bi bi-chevron-left"></i> Back 
+            </button>
 
-          <button class="btn btn-danger p-3" type="button" (click)="onCancel()">
-            Cancel <i class="bi bi-x-lg"></i>
+            <button class="btn btn-danger p-3" type="button" (click)="onCancel()">
+              Cancel <i class="bi bi-x-lg"></i>
+            </button>
+          </div>
+
+          <button 
+            class="btn btn-success p-3 btn-proceed-package" 
+            type="button" 
+            (click)="proceedToPayment()"
+            [disabled]="selectedPackages().length === 0">
+            Proceed to Payment <i class="bi bi-arrow-right"></i>
           </button>
         </div>
-
-        <button 
-          class="btn btn-success p-3 btn-proceed-package" 
-          type="button" 
-          (click)="proceedToPayment()"
-          [disabled]="selectedPackages.length === 0">
-          Proceed to Payment <i class="bi bi-arrow-right"></i>
-        </button>
-
-       </div>
       </div>
-     </div>
-   </section>
- </main>
+    </div>
+  </section>
+</main>
 
 <!-- Cancel Confirmation Modal (Warning Modal) -->
 <app-warning-modal
-  [show]="showCancelModal"
+  [show]="showCancelModal()"
   title="Warning"
   message="Are you sure you want to cancel? Your changes won't be saved."
   confirmText="Yes"

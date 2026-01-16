@@ -2,12 +2,10 @@ import { Component, AfterViewInit, ElementRef, HostListener, OnInit, OnDestroy, 
 import { RouterLink } from "@angular/router";
 import { CommonModule } from "@angular/common";
 import { Subscription } from 'rxjs';
-
-// Import the new section navbar component
-import { SectionNavbarComponent, SectionNavItem } from '../../../shared/components/section-navbar/section-navbar.component';
+import { SectionNavbarComponent, SectionNavItem } from '../../shared/components/section-navbar/section-navbar.component';
 
 // Service that fetches menu data
-import { MenuService, MenuSection } from '../../../shared/components/services/menu.service';
+import { MenuService, MenuSection } from '../../shared/components/services/menu.service';
 
 @Component({
   selector: 'app-menu',

@@ -1,9 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
-import { WarningModalComponent } from '../../../../../shared/components/modals/warning-modal/warning-modal-components/warning-modal.component';
-import { StepperComponent } from '../../../../../shared/components/stepper/stepper.component';
-
+import { WarningModalComponent } from '../../../../shared/components/modals/warning-modal/warning-modal-components/warning-modal.component';
+import { StepperComponent } from '../../../../shared/components/stepper/stepper.component';
 interface PaymentMethod {
   id: string;
   title: string;

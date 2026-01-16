@@ -1,13 +1,13 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { ConfirmRoutingModule } from './confirm-routing-module';
+import { CustomMenuRoutingModule } from './custom-menu-routing.module';
 
 
 @NgModule({
   declarations: [],
   imports: [
     CommonModule,
-    ConfirmRoutingModule
+    CustomMenuRoutingModule
   ]
 })
-export class ConfirmModule { }
+export class CustomMenuModule { }

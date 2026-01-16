@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { PaymentComponent } from './payment/payment.component';
+import { PaymentComponent } from './payment.component';
 import { GcashComponent } from '../gcash/gcash.component';
 import { MayaComponent } from '../maya/maya.component';
 

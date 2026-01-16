@@ -1,0 +1,54 @@
+{
+    "faqs": [
+        {
+            "id": 1,
+            "question": "What is Hapag Tanaw?",
+            "answer": "Hapag Tanaw is a classic Filipino restaurant with a modern vibe, offering timeless comfort dishes inspired by family traditions and home-cooked flavors."
+        },
+        {
+            "id": 2,
+            "question": "Where are you located?",
+            "answer": "We are located in <strong>San Jose Del Monte Bulacan.</strong>"
+        },
+        {
+            "id": 3,
+            "question": "What are your operating hours?",
+            "answer": "We are open <strong>Monday to Sunday, 10:00 AM - 9:00 PM.</strong>"
+        },
+        {
+            "id": 4,
+            "question": "Do you accept reservations?",
+            "answer": "Yes! You may reserve a table by contacting us through our <strong>Facebook page, phone number</strong>, or by visiting the restaurant."
+        },
+        {
+            "id": 5,
+            "question": "Do you offer takeout or delivery?",
+            "answer": "Yes, we offer takeout. Delivery will depend on partner services in your area."
+        },
+        {
+            "id": 6,
+            "question": "What type of food do you serve?",
+            "answer": "We serve a wide selection of classic Filipino favorites such as <strong>kare-kare, sisig, bistek, bulalo, mechado, inasal</strong>, and more. We also offer refreshing beverages and Filipino-inspired desserts."
+        },
+        {
+            "id": 7,
+            "question": "Are your dishes MSG-free?",
+            "answer": "All dishes are prepared the traditional way using fresh ingredients. If you have dietary concerns, feel free to ask our staff."
+        },
+        {
+            "id": 8,
+            "question": "Do you cater for events?",
+            "answer": "Yes! We cater for small gatherings, celebrations, and family events. You may contact us for rates and available packages."
+        },
+        {
+            "id": 9,
+            "question": "Is parking available?",
+            "answer": "Yes, we have designated parking spaces for diners."
+        },
+        {
+            "id": 10,
+            "question": "Do you accept digital payments?",
+            "answer": "Yes, we accept <strong>GCash, Maya</strong>, and cash payments."
+        }
+    ]
+}

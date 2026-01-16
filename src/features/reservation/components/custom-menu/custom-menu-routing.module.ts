@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { CustomMenuComponent } from '../custom-menu.component';
+import { CustomMenuComponent } from './custom-menu.component';
 
 const routes: Routes = [{ path: 'custom-menu', component: CustomMenuComponent }];
 
