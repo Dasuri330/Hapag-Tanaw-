@@ -211,65 +211,73 @@
             </div>
 
             <!--number of guests-->
-            <div class="mb-3 mt-4">
-              <label class="form-label" for="numGuests">
-                <i class="bi bi-people"></i> Number of Guests <span class="text-danger">*</span>
-              </label>
-              <select 
-                class="form-select" 
-                formControlName="numGuests"
-                [class.is-invalid]="reservationForm.get('numGuests')?.invalid && reservationForm.get('numGuests')?.touched">
-                <option value="" disabled>Select number of guests</option>
-                @for (guest of guestOptions; track guest) {
-                  <option [value]="guest">{{guest}}</option>
-                }
-              </select>
-              @if (reservationForm.get('numGuests')?.invalid && reservationForm.get('numGuests')?.touched) {
-                <div class="invalid-feedback">
-                  Please select number of guests.
+        <div class="mb-3 mt-4">
+          <label class="form-label" for="numGuests">
+            <i class="bi bi-people"></i> Number of Guests <span class="text-danger">*</span>
+          </label>
+          <input 
+            type="number" 
+            class="form-control" 
+            id="numGuests"
+            formControlName="numGuests"
+            placeholder="Enter number of guests"
+            min="1"
+            max="40"
+            [class.is-invalid]="reservationForm.get('numGuests')?.invalid && reservationForm.get('numGuests')?.touched">
+          @if (reservationForm.get('numGuests')?.invalid && reservationForm.get('numGuests')?.touched) {
+            <div class="invalid-feedback">
+              @if (reservationForm.get('numGuests')?.errors?.['required']) {
+                Please enter number of guests.
+              }
+              @if (reservationForm.get('numGuests')?.errors?.['min']) {
+                Minimum of 1 guest required.
+              }
+              @if (reservationForm.get('numGuests')?.errors?.['max']) {
+                Maximum of 40 guests allowed.
+              }
+            </div>
+          }
+        </div>
+
+
+            <!--special occasion-->
+            <div class="mb-3">
+              <label class="form-label" for="specialOccasion">Special Occasion</label>
+              <textarea 
+                id="specialOccasion" 
+                class="form-control" 
+                formControlName="specialOccasion" 
+                rows="4"
+                maxlength="100"
+                [class.is-invalid]="reservationForm.get('specialOccasion')?.invalid && reservationForm.get('specialOccasion')?.touched">
+              </textarea>
+              <small class="text-muted">{{ reservationForm.get('specialOccasion')?.value?.length || 0 }}/100 characters</small>
+              @if (reservationForm.get('specialOccasion')?.invalid && reservationForm.get('specialOccasion')?.touched) {
+                <div class="invalid-feedback d-block">
+                  Maximum of 100 characters allowed.
                 </div>
               }
             </div>
-
-      <!--Additional input field when "10 or more Guests" is selected-->
-        @if (reservationForm.get('numGuests')?.value === '10 or more Guests') {
-          <div class="mt-3">
-            <label class="form-label" for="specificGuestCount">
-              <i class="bi bi-people-fill"></i> Please specify exact number of guests <span class="text-danger">*</span>
-            </label>
-            <input 
-              type="number" 
-              class="form-control" 
-              formControlName="specificGuestCount"
-              placeholder="Enter exact number (minimum 10)"
-              min="10"
-              [class.is-invalid]="reservationForm.get('specificGuestCount')?.invalid && reservationForm.get('specificGuestCount')?.touched">
-            @if (reservationForm.get('specificGuestCount')?.invalid && reservationForm.get('specificGuestCount')?.touched) {
-              <div class="invalid-feedback">
-                @if (reservationForm.get('specificGuestCount')?.hasError('required')) {
-                  Please enter the specific number of guests.
-                }
-                @if (reservationForm.get('specificGuestCount')?.hasError('min')) {
-                  Number of guests must be at least 10.
-                }
-              </div>
-            }
-          </div>
-        }
-
-            <!--special occasion-->
-              <div class="mb-3">
-                <label class="form-label" for="specialOccasion">Special Occasion</label>
-                <textarea id="specialOccasion" class="form-control" formControlName="specialOccasion" rows="4"></textarea>
-              </div>
-
 
             <!-- special requests/dietary restrictions -->
             <div class="mb-3">
               <label class="form-label" for="specialRequests">
                 Special Requests or Dietary Restrictions
               </label>
-              <textarea id="specialRequests" class="form-control" formControlName="specialRequests" rows="4"></textarea>
+              <textarea 
+                id="specialRequests" 
+                class="form-control" 
+                formControlName="specialRequests" 
+                rows="4"
+                maxlength="100"
+                [class.is-invalid]="reservationForm.get('specialRequests')?.invalid && reservationForm.get('specialRequests')?.touched">
+              </textarea>
+              <small class="text-muted">{{ reservationForm.get('specialRequests')?.value?.length || 0 }}/100 characters</small>
+              @if (reservationForm.get('specialRequests')?.invalid && reservationForm.get('specialRequests')?.touched) {
+                <div class="invalid-feedback d-block">
+                  Maximum of 100 characters allowed.
+                </div>
+              }
             </div>
 
             <!--buttons-->

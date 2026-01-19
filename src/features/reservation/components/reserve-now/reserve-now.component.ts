@@ -6,6 +6,7 @@ import { AlertModalComponent } from '../../../../shared/components/modals/alert-
 import { WarningModalComponent } from '../../../../shared/components/modals/warning-modal/warning-modal-components/warning-modal.component';
 import { StepperComponent } from '../../../../shared/components/stepper/stepper.component';
 
+
 @Component({
   selector: 'app-reserve-now',
   standalone: true,
@@ -62,10 +63,9 @@ export class ReserveNowComponent implements OnInit {
       minuteStart: ['', Validators.required],
       hourEnd: ['', Validators.required],
       minuteEnd: ['', Validators.required],
-      numGuests: ['', Validators.required],
-      specificGuestCount: [''], // New field for specific guest count
-      specialOccasion: [''],
-      specialRequests: ['']
+      numGuests: ['', [Validators.required, Validators.min(1), Validators.max(40)]],
+      specialOccasion: ['', Validators.maxLength(100)],
+      specialRequests: ['', Validators.maxLength(100)]
     });
 
     // Set minimum date
@@ -73,7 +73,6 @@ export class ReserveNowComponent implements OnInit {
     this.minDate = today.toISOString().split('T')[0];
 
     this.setupTimeValidation();
-    this.setupGuestValidation(); // Setup validation for guest count
   }
 
   // Custom phone validator
@@ -89,22 +88,6 @@ export class ReserveNowComponent implements OnInit {
     this.reservationForm.get('minuteEnd')?.valueChanges.subscribe(() => this.updateTimeDisplay());
   }
 
-  // Setup validation for guest count
-  setupGuestValidation(): void {
-    this.reservationForm.get('numGuests')?.valueChanges.subscribe(value => {
-      const specificGuestControl = this.reservationForm.get('specificGuestCount');
-
-      if (value === '10 or more Guests') {
-        // Make specificGuestCount required and set minimum value to 10
-        specificGuestControl?.setValidators([Validators.required, Validators.min(10)]);
-      } else {
-        // Clear validators and value when not "10 or more Guests"
-        specificGuestControl?.clearValidators();
-        specificGuestControl?.setValue('');
-      }
-      specificGuestControl?.updateValueAndValidity();
-    });
-  }
 
   updateTimeDisplay(): void {
     const hourStart = this.reservationForm.get('hourStart')?.value;

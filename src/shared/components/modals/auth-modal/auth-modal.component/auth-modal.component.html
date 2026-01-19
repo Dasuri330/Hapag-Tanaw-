@@ -5,15 +5,16 @@
     </div>
     
     <h2>Oops! You don't have an account</h2>
-    <p>Please create an account first to make a reservation.</p>
+    <p>Please create or log in an account first to make a reservation.</p>
     
     <div class="modal-actions">
-      <button class="btn custom-btn" (click)="onOkay()">
-        Create Account
-      </button>
-      <button class="btn btn-secondary" (click)="onClose()">
-        Cancel
-      </button>
+      @for (button of buttons; track button.label) {
+        <button 
+          [ngClass]="['btn', button.class]" 
+          (click)="button.action()">
+          {{ button.label }}
+        </button>
+      }
     </div>
   </div>
 </div>
