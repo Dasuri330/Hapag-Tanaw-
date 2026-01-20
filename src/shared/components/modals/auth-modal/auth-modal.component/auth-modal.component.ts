@@ -38,7 +38,7 @@ export class AuthModalComponent {
   }
 
   onSignUp() {
-    this.router.navigate(['/signup']);
+    this.router.navigate(['/sign-up']);
     this.onClose();
   }
 

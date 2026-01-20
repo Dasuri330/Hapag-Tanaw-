@@ -177,6 +177,8 @@ button:disabled {
 
 }
 
+
+
 .form-control.is-invalid {
     border-color: #dc3545;
 }
@@ -201,6 +203,20 @@ button:disabled {
 .form-control[type="password"] {
     padding-right: 5rem;
     /* give extra space for eye + validation icons */
+}
+
+.form-check-input {
+    border: 2px solid #ADADAD;
+}
+
+.form-check-input:focus {
+    border-color: #000;
+    box-shadow: none;
+}
+
+.form-check-input:checked {
+    background-color: #000;
+    border-color: #000;
 }
 
 @media (min-width: 1200px) {

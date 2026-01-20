@@ -168,3 +168,11 @@
         </div>
     </div>
 </main>
+
+<app-sign-up-modal
+  [show]="showModal()"
+  [isSuccess]="modalIsSuccess()"
+  [message]="modalMessage()"
+  [userName]="modalUserName()"
+  (close)="onModalClose()">
+</app-sign-up-modal>

@@ -1,24 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, signal} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule, AbstractControl, ValidationErrors } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../../shared/components/services/auth.service';
+import { SignUpModalComponent } from '../../../../shared/components/modals/sign-up-modal/sign-up-modal.component/sign-up-modal.component';
 
 @Component({
   selector: 'app-signup',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, SignUpModalComponent],
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent {
+onClose() {
+throw new Error('Method not implemented.');
+}
+isSuccess: any;
+userName: any;
+message: any;
+onBackdropClick($event: PointerEvent) {
+throw new Error('Method not implemented.');
+}
   signupForm: FormGroup;
   submitted = false;
   errorMessage = '';
 
+  showModal = signal(false);
+  modalIsSuccess = signal(true);
+  modalMessage = signal('');
+  modalUserName = signal('');
+
   // password visibility
   showPassword = false;
   showConfirmPassword = false;
+show: any;
 
   constructor(
     private fb: FormBuilder,
@@ -135,14 +151,26 @@ export class SignUpComponent {
     const result = this.authService.signup(formData);
 
     if (result.success) {
-      alert(`Account created successfully! Welcome, ${formData.firstName}!`);
-      // Navigate to reservation page after successful signup
-      this.router.navigate(['/login']);
-    } else {
-      this.errorMessage = result.message;
-      alert(result.message);
-    }
+    this.modalIsSuccess.set(true);
+    this.modalUserName.set(formData.firstName);
+    this.showModal.set(true);
+  } else {
+    this.errorMessage = result.message;
+    this.modalIsSuccess.set(false);
+    this.modalMessage.set(result.message);
+    this.showModal.set(true);
   }
+}
+
+//close modal handler
+onModalClose(): void {
+  this.showModal.set(false);
+
+//navigate to login if signup was successful
+if (this.modalIsSuccess()) {
+  this.router.navigate(['/login']);
+}
+}
 
   // social login methods will be later implemented.
   signUpWithGoogle(): void {

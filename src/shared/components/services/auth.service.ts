@@ -18,7 +18,7 @@ export class AuthService {
   public currentUser$: Observable<User | null>;
 
   constructor() {
-    // ⬅️ Current user from sessionStorage (clears on browser close)
+    //  Current user from sessionStorage (clears on browser close)
     const storedUser = sessionStorage.getItem('currentUser');
     this.currentUserSubject = new BehaviorSubject<User | null>(
       storedUser ? JSON.parse(storedUser) : null
@@ -34,7 +34,7 @@ export class AuthService {
     return !!this.currentUserValue;
   }
 
-  // ⬅️ Registered users stay in localStorage (persistent)
+  // Registered users stay in localStorage (persistent)
   private getAllUsers(): User[] {
     const users = localStorage.getItem('registeredUsers');
     return users ? JSON.parse(users) : [];
@@ -65,13 +65,13 @@ export class AuthService {
       token: this.generateToken()
     };
 
-    // ⬅️ Save to localStorage (persistent)
+    //  Save to localStorage (persistent)
     users.push(newUser);
     this.saveAllUsers(users);
 
     const { password, ...userWithoutPassword } = newUser;
 
-    // ⬅️ Save current user to sessionStorage (temporary)
+    // Save current user to sessionStorage (temporary)
     sessionStorage.setItem('currentUser', JSON.stringify(userWithoutPassword));
     this.currentUserSubject.next(userWithoutPassword);
 
@@ -102,7 +102,7 @@ export class AuthService {
 
     const { password: _, ...userWithoutPassword } = user;
 
-    // ⬅️ Save to sessionStorage (clears on browser close)
+    // Save to sessionStorage (clears on browser close)
     sessionStorage.setItem('currentUser', JSON.stringify(userWithoutPassword));
     this.currentUserSubject.next(userWithoutPassword);
 

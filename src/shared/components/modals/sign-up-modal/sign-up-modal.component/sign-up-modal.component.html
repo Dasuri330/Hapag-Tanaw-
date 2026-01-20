@@ -1,0 +1,32 @@
+@if (show) {
+  <div class="modal-backdrop" (click)="onBackdropClick($event)">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header" [ngClass]="isSuccess ? 'success-header' : 'error-header'">
+          <h5 class="modal-title">
+            @if (isSuccess) {
+              <i class="bi bi-check-circle-fill me-2"></i>Success!
+            } @else {
+              <i class="bi bi-exclamation-triangle-fill me-2"></i>Error
+            }
+          </h5>
+          <button type="button" class="btn-close" (click)="onClose()"></button>
+        </div>
+        <div class="modal-body">
+          @if (isSuccess) {
+            <p class="mb-2">Account created successfully!</p>
+            <p class="mb-0">Welcome, <strong>{{ userName }}</strong>!</p>
+          } @else {
+            <p class="mb-0">{{ message }}</p>
+          }
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn custom-btn" (click)="onClose()">
+            {{ isSuccess ? 'Go to Login' : 'Close' }}
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+}
+

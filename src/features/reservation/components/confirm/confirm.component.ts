@@ -279,12 +279,65 @@ export class ConfirmComponent implements OnInit {
       this.router.navigate(['/reserve']);
       return;
     }
+    
+    this.saveReservationToHistory(data);
 
     // UPDATE: Set currentStep to 5 to turn the stepper green
     this.currentStep = 5;
     this.isConfirmed = true;
     this.showSuccessModal = true;
   }
+
+  private saveReservationToHistory(data: ReservationData) {
+  // Get current user from sessionStorage
+  const currentUserString = sessionStorage.getItem('currentUser');
+  if (!currentUserString) {
+    console.error('User not logged in');
+    return;
+  }
+
+  const currentUser = JSON.parse(currentUserString);
+  
+  // Create user-specific reservations key
+  const userReservationsKey = `reservations_${currentUser.email}`;
+  
+  // Get existing reservations for this user
+  const existingReservationsString = localStorage.getItem(userReservationsKey);
+  const existingReservations = existingReservationsString 
+    ? JSON.parse(existingReservationsString) 
+    : [];
+
+  // Create new reservation object
+  const newReservation = {
+    id: Date.now().toString(),
+    fullName: data.fullName,
+    email: data.email,
+    phoneNumber: data.phoneNumber,
+    date: data.date,
+    timeStart: data.timeStart,
+    timeEnd: data.timeEnd,
+    numGuests: data.numGuests,
+    specialOccasion: data.specialOccasion || '',
+    specialRequests: data.specialRequests || '',
+    foodPackage: data.foodPackage,
+    packagePrice: data.packagePrice,
+    paymentMethod: data.paymentMethod,
+    referenceNumber: data.referenceNumber,
+    selectedItems: data.selectedItems || [],
+    totalAmount: data.totalAmount,
+    createdAt: new Date().toISOString(),
+    status: 'confirmed'
+  };
+
+  // Add to array
+  existingReservations.push(newReservation);
+
+  // Save back to localStorage
+  localStorage.setItem(userReservationsKey, JSON.stringify(existingReservations));
+  
+  console.log('✅ Reservation saved to history:', newReservation);
+  console.log('📋 Total reservations:', existingReservations.length);
+}
 
   goBack() {
     this.router.navigate(['/payment']);
