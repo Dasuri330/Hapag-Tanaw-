@@ -26,17 +26,17 @@
             </a>
           </li>
           <li class="nav-item mx-3">
-            <a class="nav-link" routerLink="/about" routerLinkActive="active">
+            <a class="nav-link" routerLink="/main/about" routerLinkActive="active">
               About
             </a>
           </li>
           <li class="nav-item mx-3">
-            <a class="nav-link" routerLink="/menu" routerLinkActive="active">
+            <a class="nav-link" routerLink="/main/menu" routerLinkActive="active">
               Menu
             </a>
           </li>
           <li class="nav-item mx-3">
-            <a class="nav-link" routerLink="/contact" routerLinkActive="active">
+            <a class="nav-link" routerLink="/main/contact" routerLinkActive="active">
               Contact
             </a>
           </li>
@@ -106,7 +106,7 @@
           <!-- Show login link if not logged in -->
             @if (!isLoggedIn) {
               <li class="nav-item">
-                <a class="nav-link" routerLink="/login">
+                <a class="nav-link" routerLink="/auth/login">
                   <i class="bi bi-person-fill fs-4 user-icon"></i>
                 </a>
               </li>

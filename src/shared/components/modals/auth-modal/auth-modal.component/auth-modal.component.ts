@@ -38,12 +38,12 @@ export class AuthModalComponent {
   }
 
   onSignUp() {
-    this.router.navigate(['/sign-up']);
+    this.router.navigate(['/auth/sign-up']);
     this.onClose();
   }
 
   onLogin() {
-    this.router.navigate(['/login']);
+    this.router.navigate(['/auth/login']);
     this.onClose();
   }
 

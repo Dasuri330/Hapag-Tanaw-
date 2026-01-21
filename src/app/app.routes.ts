@@ -1,38 +1,18 @@
 import { Routes } from '@angular/router';
+import { AuthComponent } from 'features/auth/auth.component';
+import { MainComponent } from 'features/main/main.component';
 
 export const routes: Routes = [
     {
-        path: '',
-        loadChildren: () => import('../features/home/home-module').then(m => m.HomeModule)
+        path: 'auth',
+        component: AuthComponent,
+        loadChildren: () => import('../features/auth/auth-module').then(m => m.AuthModule)
     },
     {
-        path: '',
-        loadChildren: () => import('../features/about/about-module').then(m => m.AboutModule)
+        path: 'main',
+        component: MainComponent, 
+        loadChildren: () => import('../features/main/main.module').then(m => m.MainModule)
     },
-    {
-        path: '',
-        loadChildren: () => import('../features/menu/menu-module').then(m => m.MenuModule)
-    },
-    {
-        path: '',
-        loadChildren: () => import('../features/contact/contact-module').then(m => m.ContactModule)
-    },
-    {
-        path: '',
-        loadChildren: () => import('../features/payment/components/payment/payment.module').then(m => m.PaymentModule)
-    },
-    {
-        path: '',
-        loadChildren: () => import('../features/reservation/components/reserve-now/reserve-now-module').then(m => m.ReserveNowModule)
-    },
-    {
-        path: '',
-        loadChildren: () => import('../features/auth//components/auth-module').then(m => m.AuthModule)
-    },
-    {
-        path: '',
-        loadChildren: () => import('../features/faqs/faqs-module').then(m => m.FaqsModule)
-    },
-
-    { path: '**', redirectTo: '' }
+    { path: '', redirectTo: 'main', pathMatch: 'full' },
+    { path: '**', redirectTo: 'main' }
 ];

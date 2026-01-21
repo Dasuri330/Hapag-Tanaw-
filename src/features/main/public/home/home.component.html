@@ -1,0 +1,51 @@
+<main>
+  <section class="hero-section">
+    <div class="container-fluid p-5 text-dark shadow-5 mt-n1">
+      <div class="row align-items-center">
+
+        <div class="col-12 col-lg-6">
+          <h1>Savor the Past,<br>Taste the Present</h1>
+
+          <hr class="w-75 w-lg-50 ms-0 custom-hr">
+
+          <p>
+            Welcome to the Hapag Tanaw a place where<br>
+            Filipino tradition meets modern taste.
+          </p>
+
+          <div class="d-flex flex-row gap-3 mt-2">
+            <!-- Changed from <a> to <button> with click handler -->
+            <button (click)="onReserveNowClick($event)" class="btn btn-lg btn-custom">
+              Reserve Now
+            </button>
+            <a routerLink="/main/faqs" class="btn btn-lg btn-custom">
+              FAQs
+            </a>
+          </div>
+        </div>
+
+        <div class="col-12 col-lg-6 mt-4 mt-lg-0">
+          <div class="row g-3 food-images">
+            <div class="col-6">
+              <img src="/assets/image/bipstik.png" alt="bistek" class="rounded">
+            </div>
+            <div class="col-6">
+              <img src="/assets/image/adobo-pork.jpg" alt="adobo" class="rounded">
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+</main>
+
+@if (showAuthModal) {
+  <app-auth-modal
+  (close)="closeAuthModal()"
+  (goToSignup)="goToSignup()">
+</app-auth-modal>
+}
+
+
+

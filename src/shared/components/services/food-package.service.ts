@@ -32,26 +32,26 @@ export class FoodPackageService {
 
   getFoodPackages(): Observable<FoodPackageResponse> {
     console.log('Fetching food packages from: data/food-package.json');
-    
+
     return this.http.get<FoodPackageResponse>('data/food-package.json').pipe(
       // Extract the foodPackages array from the response
       map(response => {
         console.log('Raw response:', response);
         return response;
       }),
-      
+
       // Log successful data retrieval
       tap(packages => {
         console.log('Food packages received successfully:', packages);
         console.log('Number of packages:', packages.foodPackages.length);
       }),
-      
+
       // Handle errors
       catchError(error => {
         console.error('Error fetching food packages:', error);
         console.error('Error status:', error.status);
         console.error('Error message:', error.message);
-        
+
         // Return empty array on error
         return of();
       })
