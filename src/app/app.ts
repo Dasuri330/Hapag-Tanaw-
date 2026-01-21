@@ -7,7 +7,7 @@ import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
 
 @Component({
   selector: 'app-root',
-  imports: [RouterOutlet, NavbarComponent, FooterComponent, FontAwesomeModule, CommonModule],
+  imports: [RouterOutlet, FontAwesomeModule, CommonModule],
   templateUrl: './app.html',
   styleUrl: './app.css'
 })
