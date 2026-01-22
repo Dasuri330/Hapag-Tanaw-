@@ -87,7 +87,7 @@ export class LoginComponent {
     const result = this.authService.login(email, password);
 
     if (result.success) {
-      alert(`Welcome back, ${result.user?.firstName}!`);
+
       // Navigate to reservation page after successful login
       this.router.navigate(['/home']);
     } else {
