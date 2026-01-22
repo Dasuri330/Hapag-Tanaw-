@@ -80,3 +80,9 @@
     </div>
   </form>
 </div>
+
+<app-login-error-modal
+  [show]="showErrorModal"
+  [message]="errorMessage"
+  (close)="closeErrorModal()">
+</app-login-error-modal>

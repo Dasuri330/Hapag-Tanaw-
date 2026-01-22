@@ -1,0 +1,132 @@
+/* not-found.component.css */
+.page-bg {
+    position: fixed;
+    inset: 0;
+    background-image: url('/assets/image/food-in-table.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    z-index: -2;
+}
+
+.page-overlay {
+    position: fixed;
+    inset: 0;
+    background-color: rgba(0, 0, 0, 0.45);
+    /* adjust opacity */
+    z-index: -1;
+}
+
+
+.not-found-container {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    position: relative;
+    z-index: 1;
+}
+
+.not-found-content {
+    text-align: center;
+    background: white;
+    padding: 3rem 2rem;
+    border-radius: 16px;
+    box-shadow: 0 10px 40px rgba(0, 0, 0, 0.2);
+    max-width: 500px;
+    width: 100%;
+}
+
+.error-code {
+    font-size: 8rem;
+    font-weight: 900;
+    margin: 0;
+    background: linear-gradient(135deg, #D27D2D);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    background-clip: text;
+    line-height: 1;
+}
+
+.error-title {
+    font-size: 2rem;
+    font-weight: 700;
+    margin: 1rem 0;
+
+}
+
+.error-message {
+    font-size: 1.125rem;
+    color: #718096;
+    margin-bottom: 2rem;
+}
+
+.button-group {
+    display: flex;
+    gap: 1rem;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.btn {
+    padding: 0.75rem 1.5rem;
+    border-radius: 8px;
+    font-size: 1rem;
+    font-weight: 600;
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.5rem;
+    transition: all 0.3s ease;
+    border: 2px solid transparent;
+    cursor: pointer;
+}
+
+.btn-primary {
+    background: linear-gradient(135deg, #D27D2D);
+    color: white;
+    border: none;
+}
+
+.btn-primary:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
+}
+
+.btn-outline {
+    background: #D27D2D;
+    color: white;
+
+}
+
+.bg-wrapper {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+}
+
+.btn-outline:hover {
+    background: #D27D2D;
+    color: white;
+    transform: translateY(-2px);
+}
+
+@media (max-width: 576px) {
+    .error-code {
+        font-size: 5rem;
+    }
+
+    .error-title {
+        font-size: 1.5rem;
+    }
+
+    .button-group {
+        flex-direction: column;
+    }
+
+    .btn {
+        width: 100%;
+        justify-content: center;
+    }
+}

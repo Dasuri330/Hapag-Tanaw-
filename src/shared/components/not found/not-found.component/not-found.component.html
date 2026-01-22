@@ -1,0 +1,21 @@
+<div class="page-bg"></div>
+<div class="page-overlay"></div>
+
+<div class="not-found-container">
+  <div class="not-found-content">
+    <h1 class="error-code">404</h1>
+    <h2 class="error-title">Page Not Found</h2>
+    <p class="error-message">
+      Oops! The page you're looking for doesn't exist.
+    </p>
+
+    <div class="button-group">
+      <button class="btn btn-primary" (click)="goHome()">
+        <i class="bi bi-house-door"></i> Go to Home
+      </button>
+      <a routerLink="/main/menu" class="btn btn-outline">
+        <i class="bi bi-book"></i> View Menu
+      </a>
+    </div>
+  </div>
+</div>

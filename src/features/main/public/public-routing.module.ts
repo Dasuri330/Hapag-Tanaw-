@@ -7,19 +7,19 @@ const routes: Routes = [
         loadChildren: () => import('./home/home-module').then(m => m.HomeModule)
     },
     {
-        path: '',
+        path: 'about',
         loadChildren: () => import('./about/about-module').then(m => m.AboutModule)
     },
     {
-        path: '',
+        path: 'menu',
         loadChildren: () => import('./menu/menu-module').then(m => m.MenuModule)
     },
     {
-        path: '',
+        path: 'contact',
         loadChildren: () => import('./contact/contact-module').then(m => m.ContactModule)
     },
     {
-        path: '',
+        path: 'faqs',
         loadChildren: () => import('./faqs/faqs-module').then(m => m.FaqsModule)
     },
 ];

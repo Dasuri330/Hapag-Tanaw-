@@ -86,14 +86,14 @@ export class CustomMenuComponent implements OnInit, OnDestroy {
   changeMethod(): void {
     this.selectedPackages = [];
     localStorage.removeItem('selectedPackages');
-    this.router.navigate(['/food-package']);
+    this.router.navigate(['/main/secure/reservation/food-package']);
   }
 
   // Same as changeMethod
   onBack(): void {
     this.selectedPackages = [];
     localStorage.removeItem('selectedPackages');
-    this.router.navigate(['/food-package']);
+    this.router.navigate(['/main/secure/reservation/food-package']);
   }
 
   // Show cancel modal
@@ -129,7 +129,7 @@ export class CustomMenuComponent implements OnInit, OnDestroy {
     reservationData.currentStep = 3;
 
     localStorage.setItem('reservationData', JSON.stringify(reservationData));
-    this.router.navigate(['/payment']);
+    this.router.navigate(['/main/secure/reservation/payment']);
   }
 
   // Add or remove item

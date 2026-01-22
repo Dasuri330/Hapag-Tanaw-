@@ -1,0 +1,22 @@
+@if (show) {
+  <div class="modal-backdrop" (click)="onBackdropClick($event)">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header error-header">
+          <h5 class="modal-title">
+            <i class="bi bi-exclamation-triangle-fill me-2"></i>Login Error
+          </h5>
+          <button type="button" class="btn-close" (click)="onClose()"></button>
+        </div>
+        <div class="modal-body">
+          <p class="mb-0">{{ message }}</p>
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-primary" (click)="onClose()">
+            OK
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+}

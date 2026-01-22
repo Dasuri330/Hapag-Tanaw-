@@ -3,11 +3,12 @@ import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators, ReactiveFormsModule } from '@angular/forms';
 import { Router, RouterLink } from '@angular/router';
 import { AuthService } from '../../../../shared/components/services/auth.service';
+import { LoginErrorModalComponent } from '@shared/components/modals/login-error-modal/login-error-modal-component/login-error-modal.component/login-error-modal.component';
 
 @Component({
   selector: 'app-login',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, RouterLink],
+  imports: [CommonModule, ReactiveFormsModule, RouterLink, LoginErrorModalComponent],
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css']
 })
@@ -16,6 +17,12 @@ export class LoginComponent {
   submitted = false;
   showPassword = false;
   errorMessage = '';
+  showErrorModal = false
+
+  closeErrorModal(): void {
+    this.showErrorModal = false;
+    this.errorMessage = '';
+  }
 
   constructor(
     private fb: FormBuilder,
@@ -89,10 +96,11 @@ export class LoginComponent {
     if (result.success) {
 
       // Navigate to reservation page after successful login
-      this.router.navigate(['/home']);
+      this.router.navigate(['/main']);
     } else {
-      this.errorMessage = result.message;
-      alert(result.message);
+      this.showErrorModal = true;
+      this.errorMessage = result.message
+
     }
   }
 
