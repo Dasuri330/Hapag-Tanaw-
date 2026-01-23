@@ -31,7 +31,7 @@ export class FoodPackageComponent {
     { initialValue: null }
   );
 
-  // Writable signal for packages (so we can update the UI)
+  // Writable signal for packages 
   packages = signal<FoodPackage[]>([]);
 
   // Computed loading state (true while packagesData is still null)

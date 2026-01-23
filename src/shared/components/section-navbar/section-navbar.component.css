@@ -20,6 +20,9 @@
     box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
+.action-link {
+    cursor: pointer;
+}
 .section-navbar .nav-link {
     color: black !important;
     font-weight: 500;

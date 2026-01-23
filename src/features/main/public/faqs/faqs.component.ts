@@ -1,16 +1,14 @@
 import { Component } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { CommonModule } from '@angular/common';
-import { Observable, map } from 'rxjs';
+import { Observable } from 'rxjs';
+import { FaqsService } from '@shared/components/services/faqs';
+import { FAQ } from '@shared/components/model/faqs-model';
 
-interface FAQ {
-  id: number;
-  question: string;
-  answer: string;
-}
 
 @Component({
   selector: 'app-faqs',
+  standalone: true,
   imports: [CommonModule],
   templateUrl: './faqs.component.html',
   styleUrl: './faqs.component.css',
@@ -18,9 +16,7 @@ interface FAQ {
 export class FAQsComponents {
   faqs$: Observable<FAQ[]>;
 
-  constructor(private http: HttpClient) {
-    this.faqs$ = this.http.get<{ faqs: FAQ[] }>('/data/faqs.json').pipe(
-      map(data => data.faqs)
-    );
+  constructor(private http: HttpClient, private faqsService: FaqsService) {
+    this.faqs$ = this.faqsService.getFaqs();
   }
 }

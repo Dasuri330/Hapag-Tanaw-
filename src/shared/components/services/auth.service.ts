@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable } from 'rxjs';
 
+// User interface
 export interface User {
   id: string;
   firstName: string;
@@ -11,11 +12,11 @@ export interface User {
 }
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root' // make service available app-wide
 })
 export class AuthService {
-  private currentUserSubject: BehaviorSubject<User | null>;
-  public currentUser$: Observable<User | null>;
+  private currentUserSubject: BehaviorSubject<User | null>; // holds current user
+  public currentUser$: Observable<User | null>;  // observable for components
 
   constructor() {
     //  Current user from sessionStorage (clears on browser close)
@@ -25,11 +26,11 @@ export class AuthService {
     );
     this.currentUser$ = this.currentUserSubject.asObservable();
   }
-
+  // Get current user value
   public get currentUserValue(): User | null {
     return this.currentUserSubject.value;
   }
-
+  // Check if user is logged in
   isAuthenticated(): boolean {
     return !!this.currentUserValue;
   }
@@ -39,16 +40,16 @@ export class AuthService {
     const users = localStorage.getItem('registeredUsers');
     return users ? JSON.parse(users) : [];
   }
-
+ // Save users to localStorage
   private saveAllUsers(users: User[]): void {
     localStorage.setItem('registeredUsers', JSON.stringify(users));
   }
-
+// Check if email is already registered
   emailExists(email: string): boolean {
     const users = this.getAllUsers();
     return users.some(user => user.email.toLowerCase() === email.toLowerCase());
   }
-
+// Register a new user
   signup(userData: Omit<User, 'id' | 'token'>): { success: boolean; message: string } {
     if (this.emailExists(userData.email)) {
       return {

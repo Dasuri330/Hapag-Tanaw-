@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { FontAwesomeModule } from '@fortawesome/angular-fontawesome';
+
 import {
   faPhone,
   faEnvelope,
@@ -13,7 +13,7 @@ import {
 
 @Component({
   selector: 'app-contact',
-  imports: [FontAwesomeModule],
+  standalone: false,
   templateUrl: './contact.component.html',
   styleUrl: './contact.component.css',
 })

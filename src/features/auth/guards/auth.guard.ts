@@ -11,6 +11,6 @@ export const authGuard = () => {
   }
 
   // Redirect to home if not authenticated
-  router.navigate(['/']);
+  router.navigate(['/404']);
   return false;
 };

@@ -31,7 +31,7 @@ export class MenuComponent implements AfterViewInit, OnInit, OnDestroy {
   // Reserve button config
   reserveButton = {
     label: 'Reserve Now',
-    routerLink: '/reserve-now'
+    routerLink: '/reservation'
   };
 
   // To unsubscribe later when component is destroyed
