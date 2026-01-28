@@ -5,7 +5,8 @@ import { Router, RouterModule } from '@angular/router';
 import { AlertModalComponent } from '../../../../shared/components/modals/alert-modal/alert-modal.component/alert-modal.component';
 import { WarningModalComponent } from '../../../../shared/components/modals/warning-modal/warning-modal-components/warning-modal.component';
 import { StepperComponent } from '../../../../shared/components/stepper/stepper.component';
-
+import { TimeOptionsService } from '../../../../shared/components/services/time-options.service';
+import { ReservationStorageService } from '../../../../shared/components/services/reservation-storage.service';
 @Component({
   selector: 'app-reserve-now',
   standalone: true,
@@ -21,6 +22,7 @@ import { StepperComponent } from '../../../../shared/components/stepper/stepper.
   styleUrl: './reserve-now.component.css',
 })
 export class ReserveNowComponent implements OnInit {
+
   reservationForm!: FormGroup;
   currentStep = 1;
 
@@ -35,71 +37,6 @@ export class ReserveNowComponent implements OnInit {
   displayTimeRange = '-- : -- -- → -- : -- --';
   timeRangeBorderColor = '#D27D2D';
 
-  // Start time
-  getHourOptions(period: 'AM' | 'PM'): string[] {
-    if (period === 'AM') {
-      return ['10', '11'];
-    } else {
-      return ['12', '01', '02', '03', '04', '05', '06', '07', '08', '09'];
-    }
-  }
-
-  getMinuteOptions(hours: string, period: 'AM' | 'PM'): string[] {
-    if(hours === '09' && period === 'PM') {
-      return ['00'];
-    }
-    return ['00', '15', '30', '45'];
-  }
-
-  // End time
-  getEndHourOptions(startHour: string, startPeriod: 'AM' | 'PM', endPeriod: 'AM' | 'PM'): string[] {
-    const allHoursAM = ['10', '11', '12'];
-    const allHoursPM = ['12', '01', '02', '03', '04', '05', '06', '07', '08', '09'];
-
-    // If end period is AM
-    if (endPeriod === 'AM') {
-      if (startPeriod === 'AM') {
-        return allHoursAM.filter(h => {
-          const hourNum = h === '12' ? 12 : parseInt(h);
-          const startNum = startHour === '12' ? 12 : parseInt(startHour);
-          return hourNum >= startNum;
-        });
-      }
-      // If start was PM, no valid AM end times
-      return [];
-    }
-    // If end period is PM
-    else {
-      // If start was AM, allow all PM hours
-      if (startPeriod === 'AM') {
-        return allHoursPM;
-      }
-      // If start was PM, only allow hours greater than or equal to start hour
-      return allHoursPM.filter(h => {
-        const hourNum = h === '12' ? 0 : parseInt(h);
-        const startNum = startHour === '12' ? 0 : parseInt(startHour);
-        return hourNum >= startNum;
-      });
-    }
-  }
-
-  getEndMinuteOptions(startHour: string, startMinute: string, startPeriod: 'AM' | 'PM', endHour: string, endPeriod: 'AM' | 'PM'): string[] {
-    const minutes = ['00', '15', '30', '45'];
-
-    // Same hour and same period - must be at least 15 minutes later
-    if (endHour === startHour && startPeriod === endPeriod) {
-      const startMinInt = parseInt(startMinute);
-      return minutes.filter(m => parseInt(m) > startMinInt);
-    }
-
-    // 9 PM can only be 00 minutes (closing time)
-    if(endHour === '09' && endPeriod === 'PM') {
-      return ['00'];
-    }
-
-    // Different hours - all minutes available
-    return minutes;
-  }
 
   minDate: string = '';
   showValidationModal = false;
@@ -109,12 +46,14 @@ export class ReserveNowComponent implements OnInit {
 
   constructor(
     private fb: FormBuilder,
-    private router: Router
+    private router: Router,
+    public timeService: TimeOptionsService,
+    private reservationStorage: ReservationStorageService
   ) { }
 
   ngOnInit(): void {
     // Clear previous reservation data on page load
-    localStorage.removeItem('reservationData');
+    this.reservationStorage.clearReservation();
 
     // Initialize form
     this.reservationForm = this.fb.group({
@@ -239,7 +178,7 @@ export class ReserveNowComponent implements OnInit {
   selectPeriodEnd(period: 'AM' | 'PM'): void {
     // Check if there are valid end hours available
     const startHour = this.reservationForm.get('hourStart')?.value;
-    const availableHours = this.getEndHourOptions(startHour, this.selectedPeriodStart, period);
+    const availableHours = this.timeService.getEndHourOptions(startHour, this.selectedPeriodStart, period);
 
     // If no valid hours available, show warning modal
     if (startHour && availableHours.length === 0) {
@@ -289,7 +228,7 @@ export class ReserveNowComponent implements OnInit {
     };
 
     // if the form is valid it will proceed to next page
-    localStorage.setItem('reservationData', JSON.stringify(formData));
+    this.reservationStorage.saveReservation(formData);
     this.router.navigate(['/main/secure/reservation/food-package']);
   }
 
@@ -307,7 +246,7 @@ export class ReserveNowComponent implements OnInit {
 
   confirmCancel(): void {
     this.showCancelModal = false;
-    localStorage.removeItem('reservationData');
+    this.reservationStorage.clearReservation();
     this.router.navigate(['/']);
   }
 }

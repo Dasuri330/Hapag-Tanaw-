@@ -28,11 +28,11 @@
               <label class="form-label" for="fullName">
                 <i class="bi bi-person"></i> Full Name <span class="text-danger">*</span>
               </label>
-              <input 
-                type="text" 
-                class="form-control" 
+              <input
+                type="text"
+                class="form-control"
                 [class.is-invalid]="reservationForm.get('fullName')?.invalid && reservationForm.get('fullName')?.touched"
-                formControlName="fullName" 
+                formControlName="fullName"
                 placeholder="Juan Dela Cruz">
               @if (reservationForm.get('fullName')?.invalid && reservationForm.get('fullName')?.touched) {
                 <div class="invalid-feedback">
@@ -46,11 +46,11 @@
               <label class="form-label" for="email">
                 <i class="bi bi-envelope"></i> Email Address <span class="text-danger">*</span>
               </label>
-              <input 
-                type="email" 
-                class="form-control" 
+              <input
+                type="email"
+                class="form-control"
                 [class.is-invalid]="reservationForm.get('email')?.invalid && reservationForm.get('email')?.touched"
-                formControlName="email" 
+                formControlName="email"
                 placeholder="juandelacruz@gmail.com">
               @if (reservationForm.get('email')?.invalid && reservationForm.get('email')?.touched) {
                 <div class="invalid-feedback">
@@ -64,11 +64,11 @@
                   <label class="form-label" for="phoneNumber">
                     <i class="bi bi-telephone"></i> Phone Number <span class="text-danger">*</span>
                   </label>
-                  <input 
-                    type="tel" 
-                    class="form-control" 
+                  <input
+                    type="tel"
+                    class="form-control"
                     [class.is-invalid]="reservationForm.get('phoneNumber')?.invalid && reservationForm.get('phoneNumber')?.touched"
-                    formControlName="phoneNumber" 
+                    formControlName="phoneNumber"
                     placeholder="09123456789">
                   @if (reservationForm.get('phoneNumber')?.invalid && reservationForm.get('phoneNumber')?.touched) {
                     <div class="invalid-feedback">
@@ -82,9 +82,9 @@
               <label class="form-label" for="date">
                 <i class="bi bi-calendar"></i> Date <span class="text-danger">*</span>
               </label>
-              <input 
-                type="date" 
-                class="form-control" 
+              <input
+                type="date"
+                class="form-control"
                 [class.is-invalid]="reservationForm.get('date')?.invalid && reservationForm.get('date')?.touched"
                 formControlName="date"
                 [min]="minDate">
@@ -116,12 +116,12 @@
                     <div class="time-inputs d-flex align-items-end gap-2">
                       <div class="time-input-group d-flex flex-column">
                         <label class="form-label">Hour</label>
-                        <select 
-                          class="form-select" 
+                        <select
+                          class="form-select"
                           formControlName="hourStart"
                           [class.is-invalid]="reservationForm.get('hourStart')?.invalid && reservationForm.get('hourStart')?.touched">
                           <option value="">--</option>
-                          @for (hour of getHourOptions(selectedPeriodStart); track hour) {
+                          @for (hour of timeService.getHourOptions(selectedPeriodStart); track hour) {
                             <option [value]="hour">{{hour}}</option>
                           }
                         </select>
@@ -129,28 +129,28 @@
                       <div class="time-separator align-self-center">:</div>
                       <div class="time-input-group d-flex flex-column">
                         <label class="form-label">Min</label>
-                        <select 
-                          class="form-select" 
+                        <select
+                          class="form-select"
                           formControlName="minuteStart"
                           [class.is-invalid]="reservationForm.get('minuteStart')?.invalid && reservationForm.get('minuteStart')?.touched">
                           <option value="">--</option>
-                         @for (minute of getMinuteOptions(reservationForm.get('hourStart')?.value, selectedPeriodStart); track minute) {
+                         @for (minute of timeService.getMinuteOptions(reservationForm.get('hourStart')?.value, selectedPeriodStart); track minute) {
                             <option [value]="minute">{{minute}}</option>
                          }
                         </select>
                       </div>
                     </div>
                     <div class="period-selector mt-2">
-                      <button 
-                        type="button" 
-                        class="period-btn" 
+                      <button
+                        type="button"
+                        class="period-btn"
                         [class.active]="selectedPeriodStart === 'AM'"
                         (click)="selectPeriodStart('AM')">
                         <i class="bi bi-sunrise-fill me-1"></i> AM
                       </button>
-                      <button 
-                        type="button" 
-                        class="period-btn" 
+                      <button
+                        type="button"
+                        class="period-btn"
                         [class.active]="selectedPeriodStart === 'PM'"
                         (click)="selectPeriodStart('PM')">
                         <i class="bi bi-sunset-fill me-1"></i> PM
@@ -164,12 +164,12 @@
                     <div class="time-inputs d-flex align-items-end gap-2">
                       <div class="time-input-group d-flex flex-column">
                         <label class="form-label">Hour</label>
-                        <select 
-                          class="form-select" 
+                        <select
+                          class="form-select"
                           formControlName="hourEnd"
                           [class.is-invalid]="reservationForm.get('hourEnd')?.invalid && reservationForm.get('hourEnd')?.touched">
                           <option value="">--</option>
-                         @for (hour of getEndHourOptions(reservationForm.get('hourStart')?.value, selectedPeriodStart, selectedPeriodEnd); track hour) {
+                         @for (hour of timeService.getEndHourOptions(reservationForm.get('hourStart')?.value, selectedPeriodStart, selectedPeriodEnd); track hour) {
                             <option [value]="hour">{{hour}}</option>
                          }
                         </select>
@@ -177,16 +177,16 @@
                       <div class="time-separator align-self-center">:</div>
                       <div class="time-input-group d-flex flex-column">
                         <label class="form-label">Min</label>
-                        <select 
-                          class="form-select" 
+                        <select
+                          class="form-select"
                           formControlName="minuteEnd"
                           [class.is-invalid]="reservationForm.get('minuteEnd')?.invalid && reservationForm.get('minuteEnd')?.touched">
                           <option value="">--</option>
-                          @for( minute of getEndMinuteOptions(
-                            reservationForm.get('hourStart')?.value, 
-                            reservationForm.get('minuteStart')?.value, 
+                          @for( minute of timeService.getEndMinuteOptions(
+                            reservationForm.get('hourStart')?.value,
+                            reservationForm.get('minuteStart')?.value,
                             selectedPeriodStart,
-                            reservationForm.get('hourEnd')?.value, 
+                            reservationForm.get('hourEnd')?.value,
                             selectedPeriodEnd
                           ); track minute) {
                             <option [value]="minute">{{minute}}</option>
@@ -195,16 +195,16 @@
                       </div>
                     </div>
                     <div class="period-selector mt-2">
-                      <button 
-                        type="button" 
-                        class="period-btn" 
+                      <button
+                        type="button"
+                        class="period-btn"
                         [class.active]="selectedPeriodEnd === 'AM'"
                         (click)="selectPeriodEnd('AM')">
                         <i class="bi bi-sunrise-fill me-1"></i> AM
                       </button>
-                      <button 
-                        type="button" 
-                        class="period-btn" 
+                      <button
+                        type="button"
+                        class="period-btn"
                         [class.active]="selectedPeriodEnd === 'PM'"
                         (click)="selectPeriodEnd('PM')">
                         <i class="bi bi-sunset-fill me-1"></i> PM
@@ -221,9 +221,9 @@
           <label class="form-label" for="numGuests">
             <i class="bi bi-people"></i> Number of Guests <span class="text-danger">*</span>
           </label>
-          <input 
-            type="number" 
-            class="form-control" 
+          <input
+            type="number"
+            class="form-control"
             id="numGuests"
             formControlName="numGuests"
             placeholder="Enter number of guests"
@@ -249,10 +249,10 @@
             <!--special occasion-->
             <div class="mb-3">
               <label class="form-label" for="specialOccasion">Special Occasion</label>
-              <textarea 
-                id="specialOccasion" 
-                class="form-control" 
-                formControlName="specialOccasion" 
+              <textarea
+                id="specialOccasion"
+                class="form-control"
+                formControlName="specialOccasion"
                 rows="4"
                 maxlength="100"
                 [class.is-invalid]="reservationForm.get('specialOccasion')?.invalid && reservationForm.get('specialOccasion')?.touched">
@@ -270,10 +270,10 @@
               <label class="form-label" for="specialRequests">
                 Special Requests or Dietary Restrictions
               </label>
-              <textarea 
-                id="specialRequests" 
-                class="form-control" 
-                formControlName="specialRequests" 
+              <textarea
+                id="specialRequests"
+                class="form-control"
+                formControlName="specialRequests"
                 rows="4"
                 maxlength="100"
                 [class.is-invalid]="reservationForm.get('specialRequests')?.invalid && reservationForm.get('specialRequests')?.touched">

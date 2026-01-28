@@ -15,20 +15,20 @@ export class AuthModalComponent {
 
   buttons = [
     {
-      label: 'Cancel',
+      label: 'Back',
       class: 'btn-secondary',
       action: () => this.onClose()
     },
-    {
-      label: 'Sign Up',
-      class: 'custom-btn',
-      action: () => this.onSignUp()
-    },
-    {
-      label: 'Log In',
-      class: 'custom-btn',
-      action: () => this.onLogin()
-    },
+    // {
+    //   label: 'Sign Up',
+    //   class: 'custom-btn',
+    //   action: () => this.onSignUp()
+    // },
+    // {
+    //   label: 'Log In',
+    //   class: 'custom-btn',
+    //   action: () => this.onLogin()
+    // },
   ];
 
   constructor(private router: Router) { }
@@ -37,17 +37,17 @@ export class AuthModalComponent {
     this.close.emit();
   }
 
-  onSignUp() {
-    this.router.navigate(['/auth/sign-up']);
-    this.onClose();
-  }
+  // onSignUp() {
+  //   this.router.navigate(['/auth/sign-up']);
+  //   this.onClose();
+  // }
 
-  onLogin() {
-    this.router.navigate(['/auth/login']);
-    this.onClose();
-  }
+  // onLogin() {
+  //   this.router.navigate(['/auth/login']);
+  //   this.onClose();
+  // }
 
-  onOkay() {
-    this.goToSignup.emit();
-  }
+  // onOkay() {
+  //   this.goToSignup.emit();
+  // }
 }
