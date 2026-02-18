@@ -122,16 +122,27 @@ export class CustomMenuComponent implements OnInit, OnDestroy {
     this.saveToLocalStorage();
 
     const reservationData = JSON.parse(localStorage.getItem('reservationData') || '{}');
-    reservationData.foodPackage = 'À La Carte';
+
+    // Preserve previously selected packages
+    const existingPackages = reservationData.selectedPackages || [];
+    const existingPackageNames = existingPackages.map((p: any) => p.title);
+    const existingPackagePrice = existingPackages.reduce((total: number, p: any) => total + (p.priceValue || 0), 0);
+
+    // Combine package names with À La Carte
+    const allNames = [...existingPackageNames, 'À La Carte'];
+    reservationData.foodPackage = allNames.join(', ');
+
+    // Save à la carte items
     reservationData.selectedItems = this.selectedPackages;
     reservationData.totalAmount = this.getTotalAmount();
-    reservationData.packagePrice = this.getTotalAmount();
+
+    // Combine prices: existing packages + à la carte items
+    reservationData.packagePrice = existingPackagePrice + this.getTotalAmount();
     reservationData.currentStep = 3;
 
     localStorage.setItem('reservationData', JSON.stringify(reservationData));
     this.router.navigate(['/main/secure/reservation/payment']);
-  }
-
+}
   // Add or remove item
   toggleItem(item: MenuItem): void {
     const index = this.selectedPackages.findIndex(
@@ -182,6 +193,16 @@ export class CustomMenuComponent implements OnInit, OnDestroy {
     }
   }
 
+  getSectionIcon(sectionId: string): string {
+  const icons: { [key: string]: string } = {
+    'Appetizers': 'bi bi-egg-fried',
+    'Mains': 'bi bi-star-fill',
+    'Sides': 'bi bi-layers-fill',
+    'Desserts': 'bi bi-cake2-fill',
+    'Drinks': 'bi bi-cup-straw'
+  };
+  return icons[sectionId] || 'bi bi-egg-fried';
+}
   // Price of one item
   getItemTotal(item: SelectedItem): number {
     return parseFloat(item.price) * item.quantity;

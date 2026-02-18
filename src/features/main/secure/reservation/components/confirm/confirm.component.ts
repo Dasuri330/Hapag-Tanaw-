@@ -29,6 +29,7 @@ interface ReservationData {
   paymentMethod?: string;
   referenceNumber?: string;
   selectedItems?: SelectedItem[];
+  selectedPackages?: any[];
   totalAmount?: number;
 }
 
@@ -120,7 +121,7 @@ export class ConfirmComponent implements OnInit {
     this.loadReservationData();
   }
 
-  loadReservationData() {
+ loadReservationData() {
     const data: ReservationData = JSON.parse(
       localStorage.getItem('reservationData') || '{}'
     );
@@ -139,11 +140,20 @@ export class ConfirmComponent implements OnInit {
 
     this.selectedPackage = data.foodPackage || '-';
 
-    // Check if Ala Carte order
-    if (data.foodPackage === 'Ala Carte' && data.selectedItems) {
+    // Check if order includes À La Carte items
+    const hasAlaCarteItems = data.selectedItems && data.selectedItems.length > 0;
+    const hasPackages = data.selectedPackages && data.selectedPackages.length > 0;
+
+    if (hasAlaCarteItems) {
       this.isAlaCarteOrder = true;
-      this.selectedItems = data.selectedItems;
-      this.packagePrice = `₱ ${this.formatPrice(data.totalAmount || 0)}`;
+      this.selectedItems = data.selectedItems!;
+
+      // Combine package price + à la carte total
+      const packageTotal = hasPackages ? Number(data.packagePrice) || 0 : 0;
+      const alaCarteTotal = data.totalAmount || 0;
+      const grandTotal = packageTotal + alaCarteTotal;
+
+      this.packagePrice = `₱ ${this.formatPrice(grandTotal)}`;
     } else {
       this.isAlaCarteOrder = false;
       this.packagePrice = data.packagePrice
@@ -153,7 +163,7 @@ export class ConfirmComponent implements OnInit {
 
     this.paymentMethod = data.paymentMethod || '-';
     this.referenceNumber = data.referenceNumber || '-';
-  }
+}
 
   getItemTotal(item: SelectedItem): number {
     return parseFloat(item.price) * item.quantity;

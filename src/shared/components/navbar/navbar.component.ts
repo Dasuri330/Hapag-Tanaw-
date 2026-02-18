@@ -1,8 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, HostListener, ElementRef } from '@angular/core';
 import { RouterLink, RouterLinkActive, Router } from '@angular/router';
 import { CommonModule } from '@angular/common';
 import { AuthService, User } from '../../../shared/components/services/auth.service';
 import { LogoutComponent } from '../modals/logout-modal/logout/logout-modal.component';
+
 interface UserData {
   fullName: string;
   email: string;
@@ -23,7 +24,7 @@ interface Reservation {
   standalone: true,
   imports: [RouterLink, RouterLinkActive, CommonModule, LogoutComponent],
   templateUrl: './navbar.component.html',
-  styleUrl: './navbar.component.css'
+  styleUrl: './navbar.component.css',
 })
 export class NavbarComponent implements OnInit {
   isLoggedIn = false;
@@ -34,16 +35,28 @@ export class NavbarComponent implements OnInit {
 
   constructor(
     private router: Router,
-    private authService: AuthService
-  ) { }
+    private authService: AuthService,
+    private elementRef: ElementRef,
+  ) {}
 
   ngOnInit() {
     this.checkLoginStatus();
 
     // Subscribe to auth changes
-    this.authService.currentUser$.subscribe(user => {
+    this.authService.currentUser$.subscribe((user) => {
       this.updateUserData(user);
     });
+  }
+
+  // Listen for clicks anywhere in the document to close dropdown when clicking outside
+  @HostListener('document:click', ['$event'])
+  onDocumentClick(event: MouseEvent): void {
+    const clickedInside = this.elementRef.nativeElement.contains(event.target);
+
+    // If click is outside the component and dropdown is open, close it
+    if (!clickedInside && this.showDropdown) {
+      this.showDropdown = false;
+    }
   }
 
   checkLoginStatus() {
@@ -57,7 +70,6 @@ export class NavbarComponent implements OnInit {
       this.userData = {
         fullName: `${user.firstName} ${user.lastName}`,
         email: user.email,
-
       };
 
       console.log('User is logged in:', this.userData);
@@ -113,6 +125,14 @@ export class NavbarComponent implements OnInit {
   // Close modal without logout
   closeLogoutModal() {
     this.showLogoutModal = false;
+  }
+
+  closeNavbar() {
+    const navbarCollapse = document.getElementById('main-nav');
+    if (navbarCollapse?.classList.contains('show')) {
+      const toggler = document.querySelector('.navbar-toggler') as HTMLElement;
+      toggler?.click();
+    }
   }
 
   // Confirm logout

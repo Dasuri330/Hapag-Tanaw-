@@ -1,77 +1,82 @@
 <main>
   <section class="reservation-section">
-   <!--main banner-->
-    <div class="container-fluid reservation-header cstm-rsrvtn text-center py-4 gcash-header">
-      <h3>
-        <span class="title">Reserve Your Table</span><br />
-        <span class="subtitle">
-          Timeless Filipino flavors, beautifully reimagined
-        </span>
+    <!--header-->
+    <div class="container-fluid page-header text-center py-4">
+      <h3 class="mb-0">
+        <span class="title">Reserve Your Table</span><br>
+        <span class="subtitle">Timeless Filipino flavors, beautifully reimagined</span>
       </h3>
     </div>
+
     <div class="container-fluid reservation-bg pt-3 pb-5">
-   <!--stepper-->
-        <app-stepper [currentStep]="currentStep"></app-stepper>
+      <!--stepper-->
+      <app-stepper [currentStep]="currentStep"></app-stepper>
 
-      <!--payment header-->
-      <div class="container reservation-header text-start py-3 rounded-top-4 gcash-payment-header">
-        <h3 class="mb-0">
-          <span class="title text-white p-3">Payment Method</span>
-        </h3>
-      </div>
+      <!--form wrapper-->
+      <div class="form-wrapper">
 
-      <!--form container-->
-      <div class="container shadow-lg rounded-top-0 gcash-form-container">
-
-        <!--method container-->
-        <div class="d-flex justify-content-between align-items-center p-4">
-          <h4 class="mb-0">Gcash</h4>
-
-          <button
-            type="button"
-            class="btn btn-outline btn-sm shadow-lg change-method-btn"
-            (click)="changeMethod()">Change Method
+        <!--section header-->
+        <div class="section-header">
+          <span class="header-title">Payment Method</span>
+          <button type="button" class="btn-change-method" (click)="changeMethod()">
+            <i class="bi bi-arrow-left-right me-1"></i> Change Method
           </button>
         </div>
 
-        <!--form-->
         <form (ngSubmit)="submitPayment()">
 
-          <!--gcash logo-->
-          <div class="text-center">
-            <img
-              src="assets/image/gcashnobg.png"
-              class="img-fluid gcash-logo"
-              width="350"
-              alt="GCash Logo"/>
+          <!-- Card 1: Payment Method + QR + Instructions -->
+          <div class="section-card section-card-top">
+            <!-- Method Badge -->
+            <div class="method-badge">
+              <img src="assets/image/gcashnobg.png" class="gcash-logo" alt="GCash Logo">
+              <div class="method-badge-info">
+                <h6>GCash</h6>
+                <span><i class="bi bi-check-circle-fill me-1"></i>Selected payment method</span>
+              </div>
+            </div>
+
+            <!-- QR + Instructions Side by Side -->
+            <div class="qr-section">
+              <div class="qr-wrap">
+                <div class="qr-image-container">
+                  <img src="assets/image/QR.jpg" class="img-fluid rounded" alt="GCash QR">
+                </div>
+                <span class="qr-label">Scan to pay via GCash</span>
+              </div>
+
+              <div class="instructions-wrap">
+                <div class="instructions-title"><i class="bi bi-list-ol"></i> How to Pay</div>
+                <div class="instruction-step">
+                  <div class="step-number">1</div>
+                  <div class="step-text-instruction">Open your <strong>GCash app</strong> on your mobile device.</div>
+                </div>
+                <div class="instruction-step">
+                  <div class="step-number">2</div>
+                  <div class="step-text-instruction">Tap <strong>"Pay QR"</strong> or scan the QR code using the app.</div>
+                </div>
+                <div class="instruction-step">
+                  <div class="step-number">3</div>
+                  <div class="step-text-instruction">Enter the amount to pay and <strong>confirm the payment</strong>.</div>
+                </div>
+                <div class="instruction-step">
+                  <div class="step-number">4</div>
+                  <div class="step-text-instruction">Confirm Payment <strong>30% Deposit</strong>.</div>
+                </div>
+                <div class="instruction-step">
+                  <div class="step-number">5</div>
+                  <div class="step-text-instruction">Save the <strong>receipt or screenshot</strong> for reference.</div>
+                </div>
+              </div>
+            </div>
           </div>
 
-          <!--qr code-->
-          <div class="text-center gcash-qr-container">
-            <img
-              src="assets/image/QR.jpg"
-              class="img-fluid rounded"
-              width="180"
-              alt="GCash QR"/>
-          </div>
-
-          <div class="d-flex justify-content-center align-items-center flex-column mt-2">
-            <p class="text-emp">QR Code will appear here</p>
-            <ol class="gcash-instructions">
-              <li>Open your GCash app on your mobile device.</li>
-              <li>Tap "Pay QR" or scan the QR code using the app.</li>
-              <li>Enter the amount to pay and confirm the payment.</li>
-              <li>Confirm Payment 30% Deposit.</li>
-              <li>Save the receipt or screenshot for reference.</li>
-            </ol>
-          </div>
-
-          <!--reference number-->
-          <div class="p-3">
-            <label class="form-label">
-              Reference Number <span class="text-danger">*</span>
+          <!-- Card 2: Reference Number -->
+          <div class="section-card">
+            <div class="section-tag"><i class="bi bi-hash"></i> Reference Number</div>
+            <label class="field-label">
+              <i class="bi bi-receipt"></i> GCash Reference Number <span class="required">*</span>
             </label>
-
             <input
               type="text"
               class="form-control"
@@ -81,54 +86,52 @@
               maxlength="13"
               pattern="[0-9]{13}"
               placeholder="Enter reference number"
-              (input)="onReferenceInput()"/>
-
-              @if (referenceNumber && referenceNumber.length !== 13) {
-                <div class="text-danger mt-1">
-                  Reference number must be exactly 13 digits
-                </div>
-              }
+              (input)="onReferenceInput()">
+            @if (referenceNumber && referenceNumber.length !== 13) {
+              <div class="text-danger mt-1" style="font-size: 0.82rem;">
+                Reference number must be exactly 13 digits
+              </div>
+            }
+            <small class="field-hint">
+              <i class="bi bi-info-circle me-1"></i>You can find this in your GCash transaction history
+            </small>
           </div>
 
-          <div class="container p-4 shadow-lg rounded-3 my-3">
-            <h5 class="policy">Payment Policy</h5>
-            <ul>
-              <li>A 30% deposit is required to confirm your reservation</li>
-              <li>Full payment can be settled upon arrival or through your chosen method</li>
-              <li>Cancellations made 48 hours before the reservation date are fully refundable</li>
+          <!-- Payment Policy -->
+          <div class="policy-card">
+            <div class="policy-header">
+              <div class="policy-icon"><i class="bi bi-shield-check"></i></div>
+              <h6>Payment Policy</h6>
+            </div>
+            <ul class="policy-list">
+              <li><i class="bi bi-check-circle-fill"></i> A 30% deposit is required to confirm your reservation</li>
+              <li><i class="bi bi-check-circle-fill"></i> Full payment can be settled upon arrival or through your chosen method</li>
+              <li><i class="bi bi-check-circle-fill"></i> Cancellations made 48 hours before the reservation date are fully refundable</li>
             </ul>
           </div>
 
-          <!--buttons-->
-          <div class="d-flex justify-content-between gap-3 px-2 pb-3 pt-3">
+          <!-- Action Bar -->
+          <div class="action-bar">
             <div class="d-flex gap-2">
-              <button
-                type="button"
-                class="btn btn-primary p-3 btn-back-gcash"
-                (click)="goBack()">
-              <i class="bi bi-chevron-left"></i> Back 
+              <button type="button" class="btn-back" (click)="goBack()">
+                <i class="bi bi-chevron-left"></i> Back
               </button>
-             <button
-              type="button"
-              class="btn btn-danger p-3"
-              (click)="showCancelModal = true">
-              Cancel <i class="bi bi-x-lg"></i>
-            </button>
+              <button type="button" class="btn-cancel-outline" (click)="showCancelModal = true">
+                <i class="bi bi-x-lg"></i> Cancel
+              </button>
             </div>
-          <button
-          type="submit"
-          class="btn btn-custom p-3"
-          [disabled]="!isValidReference()">
-          Next <i class="bi bi-chevron-right"></i>
-        </button>
-      </div>
+            <button type="submit" class="btn-next" [disabled]="!isValidReference()">
+              Next <i class="bi bi-arrow-right"></i>
+            </button>
+          </div>
+
         </form>
       </div>
     </div>
   </section>
 </main>
 
-<!-- Cancel Confirmation Modal (Warning Modal) -->
+<!-- Cancel Modal -->
 <app-warning-modal
   [show]="showCancelModal"
   title="Warning"

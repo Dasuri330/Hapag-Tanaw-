@@ -2,164 +2,308 @@
 <main>
   <section class="reservation-section">
     <!--Page Header-->
-    <div class="container-fluid reservation-header text-center py-4 custom-container">
+    <div class="container-fluid page-header text-center py-4">
       <h3 class="mb-0">
-        <span class="title">Reserve Your Table</span><br>
+        <span class="title">Reserve Your Table</span><br />
         <span class="subtitle">Timeless Filipino flavors, beautifully reimagined</span>
       </h3>
     </div>
 
     <div class="container-fluid reservation-bg pt-3 pb-5">
+      <!--stepper-->
+      <app-stepper [currentStep]="currentStep"></app-stepper>
 
-   <!--stepper-->
-        <app-stepper [currentStep]="currentStep"></app-stepper>
+      <!--form wrapper-->
+      <div class="form-wrapper">
+        <!--section header-->
+        <div class="section-header">
+          <span class="header-title">Review your reservation</span>
+        </div>
 
-      <!--Section Title-->
-      <div class="container reservation-header text-start py-3 rounded-top-4 section-title-header">
-        <h3 class="mb-0"><span class="title text-white p-3">Review your reservation</span></h3>
-      </div>
-
-      <!--Reservation Summary Container-->
-      <div class="container rounded-bottom shadow-lg reservation-summary-container">
-
-        <!--Customer information-->
+        <!-- Card 1: Customer Information -->
         @if (!showCustomerInfoEdit) {
-          <div class="summary-section mb-3 p-3 rounded shadow-sm bg-white">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <h5 class="fw-bold mb-0">Customer Information</h5>
-              <button class="btn btn-link p-0 text-primary edit-btn" (click)="editCustomerInfo()">
-                <i class="bi bi-pencil-square fs-5"></i>
+          <div class="section-card section-card-top">
+            <div class="card-header-row">
+              <div class="section-tag">
+                <i class="bi bi-person-circle"></i> Customer Information
+              </div>
+              <button class="btn-edit" (click)="editCustomerInfo()">
+                <i class="bi bi-pencil"></i> Edit
               </button>
             </div>
-            <div class="summary-item mb-3"><span class="summary-label">Full Name</span><span class="summary-value">{{summaryName}}</span></div>
-            <div class="summary-item mb-3"><span class="summary-label">Email Address</span><span class="summary-value">{{summaryEmail}}</span></div>
-            <div class="summary-item mb-3"><span class="summary-label">Phone Number</span><span class="summary-value">{{summaryPhone}}</span></div>
-            <div class="summary-item mb-3"><span class="summary-label">Number of Guests</span><span class="summary-value">{{summaryGuests}}</span></div>
-            <div class="summary-item mb-3"><span class="summary-label">Special Occasion</span><span class="summary-value">{{summaryOccasion}}</span></div>
-            <div class="summary-item mb-3"><span class="summary-label">Special Requests or Dietary Restrictions</span><span class="summary-value">{{summaryRequests}}</span></div>
+            <div class="summary-grid">
+              <div class="summary-field">
+                <div class="summary-label"><i class="bi bi-person"></i> Full Name</div>
+                <div class="summary-value">{{ summaryName }}</div>
+              </div>
+              <div class="summary-field">
+                <div class="summary-label"><i class="bi bi-envelope"></i> Email Address</div>
+                <div class="summary-value">{{ summaryEmail }}</div>
+              </div>
+              <div class="summary-field">
+                <div class="summary-label"><i class="bi bi-phone"></i> Phone Number</div>
+                <div class="summary-value">{{ summaryPhone }}</div>
+              </div>
+              <div class="summary-field">
+                <div class="summary-label"><i class="bi bi-people"></i> Number of Guests</div>
+                <div class="summary-value">{{ summaryGuests }}</div>
+              </div>
+              <div class="summary-field">
+                <div class="summary-label"><i class="bi bi-star"></i> Special Occasion</div>
+                <div
+                  class="summary-value"
+                  [class.empty]="!summaryOccasion || summaryOccasion === '-'"
+                >
+                  {{ summaryOccasion || '—' }}
+                </div>
+              </div>
+              <div class="summary-field">
+                <div class="summary-label"><i class="bi bi-chat-text"></i> Requests / Dietary</div>
+                <div
+                  class="summary-value"
+                  [class.empty]="!summaryRequests || summaryRequests === '-'"
+                >
+                  {{ summaryRequests || '—' }}
+                </div>
+              </div>
+            </div>
           </div>
         }
 
-        <!--edit mode-->
-          @if (showCustomerInfoEdit) {
-          <div class="summary-section mb-3 p-3 rounded shadow-sm bg-white">
-            <div class="mb-2"><h5 class="fw-bold mb-3">Edit Customer Information</h5></div>
-            <label for="fullName" class="full-name mb-2 text-muted">Full Name:</label>
-            <input type="text" id="fullName" [(ngModel)]="editName" placeholder="Full Name" class="form-control mb-2">
-            <label for="Email" class="email mb-2 text-muted">Email:</label>
-            <input type="email" [(ngModel)]="editEmail" placeholder="Email Address" class="form-control mb-2">
-            <label for="Phone Number" class="phone-number mb-2 text-muted">Phone Number:</label>
-            <input type="text" [(ngModel)]="editPhone" placeholder="Phone Number" class="form-control mb-2">
-            <label for="Number of Guests" class="number-of-guests mb-2 text-muted">Number of Guests:</label>
-            <input type="number" [(ngModel)]="editGuests" placeholder="Number of Guests" class="form-control mb-2">
-            <label for="Special Occasion" class="special-occasion mb-2 text-muted">Special Occasion:</label>
-            <input type="text" [(ngModel)]="editOccasion" placeholder="Special Occasion" class="form-control mb-2">
-            <label for="Special Requests or Dietary Restrictions" class="full-name mb-2 text-muted">Special Requests or Dietary Restrictions:</label>
-            <input type="text" [(ngModel)]="editRequests" placeholder="Special Requests or Dietary Restrictions" class="form-control mb-2">
-            <button class="btn me-2 custom-btn" (click)="saveCustomerInfo()">Save</button>
-            <button class="btn btn-secondary" (click)="cancelEditCustomerInfo()">Cancel</button>
+        <!-- Customer Info Edit Mode -->
+        @if (showCustomerInfoEdit) {
+          <div class="section-card section-card-top">
+            <div class="card-header-row">
+              <div class="section-tag">
+                <i class="bi bi-pencil-square"></i> Edit Customer Information
+              </div>
+            </div>
+            <div class="edit-grid">
+              <div class="edit-field">
+                <label class="field-label">Full Name</label>
+                <input
+                  type="text"
+                  [(ngModel)]="editName"
+                  placeholder="Full Name"
+                  class="form-control"
+                />
+              </div>
+              <div class="edit-field">
+                <label class="field-label">Email</label>
+                <input
+                  type="email"
+                  [(ngModel)]="editEmail"
+                  placeholder="Email Address"
+                  class="form-control"
+                />
+              </div>
+              <div class="edit-field">
+                <label class="field-label">Phone Number</label>
+                <input
+                  type="text"
+                  [(ngModel)]="editPhone"
+                  placeholder="Phone Number"
+                  class="form-control"
+                />
+              </div>
+              <div class="edit-field">
+                <label class="field-label">Number of Guests</label>
+                <input
+                  type="number"
+                  [(ngModel)]="editGuests"
+                  placeholder="Number of Guests"
+                  class="form-control"
+                />
+              </div>
+              <div class="edit-field">
+                <label class="field-label">Special Occasion</label>
+                <input
+                  type="text"
+                  [(ngModel)]="editOccasion"
+                  placeholder="Special Occasion"
+                  class="form-control"
+                />
+              </div>
+              <div class="edit-field">
+                <label class="field-label">Requests / Dietary</label>
+                <input
+                  type="text"
+                  [(ngModel)]="editRequests"
+                  placeholder="Special Requests or Dietary Restrictions"
+                  class="form-control"
+                />
+              </div>
+            </div>
+            <div class="edit-actions">
+              <button class="btn-save" (click)="saveCustomerInfo()">
+                <i class="bi bi-check-lg"></i> Save
+              </button>
+              <button class="btn-cancel-edit" (click)="cancelEditCustomerInfo()">Cancel</button>
+            </div>
           </div>
         }
 
-        <!--Reservation Details Section-->
-       @if (!showReservationDetailsEdit) {
-          <div class="summary-section mb-3 p-3 rounded shadow-sm bg-white">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <h5 class="fw-bold mb-0">Reservation Details</h5>
-              <button class="btn btn-link p-0 text-primary edit-btn" (click)="editReservationDetails()">
-                <i class="bi bi-pencil-square fs-5"></i>
+        <!-- Card 2: Reservation Details -->
+        @if (!showReservationDetailsEdit) {
+          <div class="section-card">
+            <div class="card-header-row">
+              <div class="section-tag">
+                <i class="bi bi-calendar-event"></i> Reservation Details
+              </div>
+              <button class="btn-edit" (click)="editReservationDetails()">
+                <i class="bi bi-pencil"></i> Edit
               </button>
             </div>
-            <div class="summary-item mb-3"><span class="summary-label">Date</span><span class="summary-value">{{detailsDate}}</span></div>
-            <div class="summary-item mb-3"><span class="summary-label">Time</span><span class="summary-value">{{detailsTime}}</span></div>
+            <div class="summary-grid">
+              <div class="summary-field">
+                <div class="summary-label"><i class="bi bi-calendar3"></i> Date</div>
+                <div class="summary-value">{{ detailsDate }}</div>
+              </div>
+              <div class="summary-field">
+                <div class="summary-label"><i class="bi bi-clock"></i> Time</div>
+                <div class="summary-value">{{ detailsTime }}</div>
+              </div>
+            </div>
           </div>
         }
 
-        <!--edit mode-->
-         @if (showReservationDetailsEdit) {
-          <div class="summary-section mb-3 p-3 rounded shadow-sm bg-white">
-            <div class="mb-2"><h5 class="fw-bold mb-0">Edit Reservation Details</h5></div>
-            <label for="Date:" class="full-name mb-2 text-muted">Date:</label>
-            <input type="date" [(ngModel)]="editDate" class="form-control mb-2">
-            <label for="Start-Time:" class="full-name mb-2 text-muted">Start Time:</label>
-            <input type="time" [(ngModel)]="editTimeStart" class="form-control mb-2">
-            <label for="End-Time:" class="full-name mb-2 text-muted">End-Time:</label>
-            <input type="time" [(ngModel)]="editTimeEnd" class="form-control mb-2">
-            <button class="btn me-2 custom-btn" (click)="saveReservationDetails()">Save</button>
-            <button class="btn btn-secondary" (click)="cancelEditReservationDetails()">Cancel</button>
-          </div>
-        }
-
-        <!-- Food Package Section -->
-           @if (!showFoodPackageEdit) {
-          <div class="summary-section mb-3 p-3 rounded shadow-sm bg-white">
-            <div class="d-flex justify-content-between align-items-center mb-2">
-              <h5 class="fw-bold mb-0">Food Package</h5>
-              <button class="btn btn-link p-0 text-primary edit-btn" (click)="editFoodPackage()">
-                <i class="bi bi-pencil-square fs-5"></i>
+        <!-- Reservation Details Edit Mode -->
+        @if (showReservationDetailsEdit) {
+          <div class="section-card">
+            <div class="card-header-row">
+              <div class="section-tag">
+                <i class="bi bi-pencil-square"></i> Edit Reservation Details
+              </div>
+            </div>
+            <div class="edit-grid">
+              <div class="edit-field">
+                <label class="field-label">Date</label>
+                <input type="date" [(ngModel)]="editDate" class="form-control" />
+              </div>
+              <div class="edit-field">
+                <label class="field-label">Start Time</label>
+                <input type="time" [(ngModel)]="editTimeStart" class="form-control" />
+              </div>
+              <div class="edit-field">
+                <label class="field-label">End Time</label>
+                <input type="time" [(ngModel)]="editTimeEnd" class="form-control" />
+              </div>
+            </div>
+            <div class="edit-actions">
+              <button class="btn-save" (click)="saveReservationDetails()">
+                <i class="bi bi-check-lg"></i> Save
+              </button>
+              <button class="btn-cancel-edit" (click)="cancelEditReservationDetails()">
+                Cancel
               </button>
             </div>
-            <div class="summary-item mb-3">
-              <span class="summary-label">Selected Package</span>
-              <span class="summary-value">{{selectedPackage}}</span>
+          </div>
+        }
+
+        <!-- Card 3: Food Package -->
+        @if (!showFoodPackageEdit) {
+          <div class="section-card">
+            <div class="card-header-row">
+              <div class="section-tag"><i class="bi bi-basket"></i> Food Package</div>
+              <button class="btn-edit" (click)="editFoodPackage()">
+                <i class="bi bi-pencil"></i> Edit
+              </button>
             </div>
-            <div class="summary-item mb-3">
-              <span class="summary-label">Package Price</span>
-              <span class="summary-value">{{packagePrice}}</span>
+            <div class="summary-grid">
+              <div class="summary-field">
+                <div class="summary-label"><i class="bi bi-box-seam"></i> Selected Package</div>
+                <div class="summary-value">{{ selectedPackage }}</div>
+              </div>
+              <div class="summary-field">
+                <div class="summary-label"><i class="bi bi-tag"></i> Package Price</div>
+                <div class="summary-value highlight">{{ packagePrice }}</div>
+              </div>
             </div>
           </div>
         }
 
-        <!--edit mode-->
+        <!-- Food Package Edit Mode -->
         @if (showFoodPackageEdit) {
-          <div class="summary-section mb-3 p-3 rounded shadow-sm bg-white">
-            <div class="mb-2"><h5 class="fw-bold mb-0">Edit Food Package</h5></div>
-            <label for="Food-Package:" class="full-name mb-2 text-muted">Food Package:</label>
-            <input type="text" [(ngModel)]="editPackage" (input)="onPackageInput()" class="form-control mb-2" placeholder="Package Name">
-            <div class="mb-2">
-              <span class="text-muted">Price: ₱{{autoPrice}}</span>
+          <div class="section-card">
+            <div class="card-header-row">
+              <div class="section-tag"><i class="bi bi-pencil-square"></i> Edit Food Package</div>
             </div>
-            <button class="btn me-2 custom-btn" (click)="saveFoodPackage()">Save</button>
-            <button class="btn btn-secondary" (click)="cancelEditFoodPackage()">Cancel</button>
+            <div class="edit-grid">
+              <div class="edit-field">
+                <label class="field-label">Food Package</label>
+                <input
+                  type="text"
+                  [(ngModel)]="editPackage"
+                  (input)="onPackageInput()"
+                  class="form-control"
+                  placeholder="Package Name"
+                />
+              </div>
+              <div class="edit-field">
+                <label class="field-label">Price</label>
+                <div class="summary-value highlight">₱{{ autoPrice }}</div>
+              </div>
+            </div>
+            <div class="edit-actions">
+              <button class="btn-save" (click)="saveFoodPackage()">
+                <i class="bi bi-check-lg"></i> Save
+              </button>
+              <button class="btn-cancel-edit" (click)="cancelEditFoodPackage()">Cancel</button>
+            </div>
           </div>
         }
 
-
-        <!--payment section-->
-        <div class="summary-section mb-3 p-3 rounded shadow-sm bg-white">
-          <h5 class="fw-bold mb-2">Payment Method</h5>
-          <div class="summary-item mb-3">
-            <span class="summary-label">Payment Method</span>
-            <span class="summary-value">{{paymentMethod}}</span>
+        <!-- Card 4: Payment Method -->
+        <div class="section-card">
+          <div class="card-header-row">
+            <div class="section-tag"><i class="bi bi-credit-card"></i> Payment Method</div>
           </div>
-          <div class="summary-item mb-3">
-            <span class="summary-label">Reference Number</span>
-            <span class="summary-value">{{referenceNumber}}</span>
+          <div class="summary-grid">
+            <div class="summary-field">
+              <div class="summary-label"><i class="bi bi-wallet2"></i> Method</div>
+              <div class="summary-value">{{ paymentMethod }}</div>
+            </div>
+            <div class="summary-field">
+              <div class="summary-label"><i class="bi bi-receipt"></i> Reference Number</div>
+              <div class="summary-value">{{ referenceNumber }}</div>
+            </div>
           </div>
         </div>
 
-        <!--Important Notice-->
-        <div class="m-3 p-3 rounded-3 border-start custom-border-start">
-          <h4 class="customh4">Important Notice</h4>
-          <ul>
-            <li>Please arrive 10 minutes before your reservation time</li>
-            <li>Reservations are held for 15 minutes after scheduled time</li>
-            <li>Cancellations must be made 48 hours in advance for full refund</li>
+        <!-- Important Notice -->
+        <div class="notice-card">
+          <div class="notice-header">
+            <div class="notice-icon"><i class="bi bi-info-circle"></i></div>
+            <h6>Important Notice</h6>
+          </div>
+          <ul class="notice-list">
+            <li>
+              <i class="bi bi-check-circle-fill"></i> Please arrive 10 minutes before your
+              reservation time
+            </li>
+            <li>
+              <i class="bi bi-check-circle-fill"></i> Reservations are held for 15 minutes after
+              scheduled time
+            </li>
+            <li>
+              <i class="bi bi-check-circle-fill"></i> Cancellations must be made 48 hours in advance
+              for full refund
+            </li>
           </ul>
         </div>
 
-        <!--button group-->
-        <div class="d-flex gap-2 p-3">
-          <button type="button" class="btn btn-primary p-3 btn-back" (click)="goBack()">
-            <i class="bi bi-chevron-left"></i> Back
-          </button>
-
-          <button type="button" class="btn btn-danger p-3" (click)="onCancel()">
-            Cancel <i class="bi bi-x-lg"></i>
-          </button>
-          
-          <button type="submit" class="btn btn-success p-3 ms-auto btn-confirm" (click)="confirmReservation()">
-            Confirm Reservation
+        <!-- Action Bar -->
+        <div class="action-bar">
+          <div class="btn-group-left">
+            <button type="button" class="btn-back" (click)="goBack()">
+              <i class="bi bi-chevron-left"></i> Back
+            </button>
+            <button type="button" class="btn-cancel-outline" (click)="onCancel()">
+              <i class="bi bi-x-lg"></i> Cancel
+            </button>
+          </div>
+          <button type="button" class="btn-confirm" (click)="confirmReservation()">
+            <i class="bi bi-check-lg"></i> Confirm Reservation
           </button>
         </div>
       </div>
@@ -167,10 +311,8 @@
   </section>
 </main>
 
-<!-- Reusable Modals -->
-<app-invalid-package-modal
-  [show]="showInvalidPackageModal"
-  (close)="closeInvalidPackageModal()">
+<!-- Modals -->
+<app-invalid-package-modal [show]="showInvalidPackageModal" (close)="closeInvalidPackageModal()">
 </app-invalid-package-modal>
 
 <app-warning-modal
@@ -184,11 +326,9 @@
   cancelButtonClass="btn-secondary"
   messageClass="modal-body-large"
   (confirm)="confirmCancel()"
-  (cancel)="closeCancelModal()">
+  (cancel)="closeCancelModal()"
+>
 </app-warning-modal>
 
-<app-success-modal
-  [show]="showSuccessModal"
-  [email]="summaryEmail"
-  (goHome)="goToHome()">
+<app-success-modal [show]="showSuccessModal" [email]="summaryEmail" (goHome)="goToHome()">
 </app-success-modal>

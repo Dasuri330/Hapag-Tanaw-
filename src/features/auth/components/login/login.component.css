@@ -14,6 +14,7 @@
 
 .forgot-password-link {
   font-size: 0.9rem;
+  color: #D27D2D;
 }
 
 .password-toggle-icon {
@@ -29,6 +30,7 @@
   color: #000;
   transition: background-color 0.2s ease, color 0.2s ease;
 }
+
 
 .black-outline:hover {
   background-color: #000;
@@ -53,6 +55,7 @@
 
 .signup {
   text-decoration: underline;
+  color: #D27D2D;
 }
 
 .google-color {
@@ -106,25 +109,25 @@ button:disabled {
     padding: 1rem !important;
     border-radius: 10px !important;
   }
-  
+
   .btn {
     font-size: 0.9rem;
     padding: 0.5rem 1rem;
   }
-  
+
   .social-btn {
     font-size: 0.75rem;
     padding: 0.4rem 0.3rem;
   }
-  
+
   .social-btn i {
     font-size: 1rem;
   }
-  
+
   .form-control {
     font-size: 0.9rem;
   }
-  
+
   .error-message {
     font-size: 0.75rem;
   }
@@ -134,18 +137,18 @@ button:disabled {
   .form-container {
     padding: 0.75rem !important;
   }
-  
+
   .btn {
     font-size: 0.85rem;
     padding: 0.4rem 0.8rem;
   }
-  
+
   .row.g-2 .col-6 {
     flex: 0 0 100%;
     max-width: 100%;
     margin-bottom: 0.5rem;
   }
-  
+
   .row.g-2 .col-6:last-child {
     margin-bottom: 0;
   }

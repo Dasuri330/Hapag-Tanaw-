@@ -1,4 +1,4 @@
-/* Navbar - transparent background */
+/* Navbar */
 .navbar {
   background-color: rgba(210, 125, 45, 0.8);
   position: relative;
@@ -6,14 +6,14 @@
 }
 
 .navbar-brand {
-  color: #D27D2D !important;
-  font-family: "Montserrat Alternates", sans-serif;
+  color: #d27d2d !important;
+  font-family: 'Montserrat Alternates', sans-serif;
   font-weight: 800;
 }
 
 .navbar-brand:hover,
 .navbar-brand:focus {
-  color: #D27D2D !important;
+  color: #d27d2d !important;
   text-decoration: none;
 }
 
@@ -25,16 +25,18 @@
 .nav-link.active {
   text-decoration: underline;
   text-decoration-thickness: 2px;
-  text-decoration-color: #D27D2D;
+  text-decoration-color: #d27d2d;
   text-underline-offset: 4px;
   font-weight: 500;
 }
 
 /* User Icon */
 .user-icon {
-  color: #D27D2D;
+  color: #d27d2d;
   cursor: pointer;
-  transition: transform 0.2s ease, color 0.2s ease;
+  transition:
+    transform 0.2s ease,
+    color 0.2s ease;
 }
 
 .user-icon:hover {
@@ -48,22 +50,20 @@
   z-index: 10000;
 }
 
-/* Dropdown Menu - SOLID background */
+/* Dropdown Menu */
 .dropdown-menu {
   position: absolute;
   right: 0;
   top: 100%;
   margin-top: 0.5rem;
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
-  border: 2px solid #D27D2D;
+  border: 2px solid #d27d2d;
   border-radius: 8px;
   z-index: 1000;
   display: none;
   background-color: #ffffff !important;
   max-height: 500px;
-  /* Limit total height */
   overflow: visible;
-  /* Hide overflow on main container */
   opacity: 1 !important;
 }
 
@@ -72,8 +72,7 @@
   animation: fadeInDown 0.3s ease-out;
 }
 
-
-/* Overlay to close dropdown */
+/* Overlay */
 .dropdown-overlay {
   position: fixed;
   top: 0;
@@ -84,9 +83,9 @@
   background: transparent;
 }
 
-/* User info section - SOLID gradient */
+/* User info section */
 .dropdown-menu .bg-light {
-  background: linear-gradient(135deg, #D27D2D 0%, #b86924 100%) !important;
+  background: linear-gradient(135deg, #d27d2d 0%, #b86924 100%) !important;
   color: white !important;
   opacity: 1 !important;
 }
@@ -100,23 +99,22 @@
   color: rgba(255, 255, 255, 0.9) !important;
 }
 
-/* Reservation cards - SOLID orange background */
+/* Reservation cards */
 .dropdown-menu .bg-light.border.rounded {
-  background-color: #D27D2D !important;
+  background-color: #d27d2d !important;
   border-color: #b86924 !important;
   color: white !important;
   opacity: 1 !important;
 }
 
-/* Reservation card text - white for readability */
 .dropdown-menu .bg-light.border.rounded small {
   color: white !important;
 }
 
 /* Logout button */
 .dropdown-menu .btn-danger {
-  background-color: #D27D2D;
-  border-color: #D27D2D;
+  background-color: #d27d2d;
+  border-color: #d27d2d;
   transition: all 0.3s ease;
 }
 
@@ -127,36 +125,28 @@
   box-shadow: 0 4px 8px rgba(210, 125, 45, 0.3);
 }
 
-/* Icons inside dropdown - white for visibility */
 .dropdown-menu .bi {
   color: white !important;
 }
 
-/* Scrollbar styling */
+/* Scrollbar */
 .reservations-container::-webkit-scrollbar {
   width: 6px;
 }
-
 .reservations-container::-webkit-scrollbar-track {
   background: #f1f1f1;
   border-radius: 10px;
 }
-
 .reservations-container::-webkit-scrollbar-thumb {
-  background: #D27D2D;
+  background: #d27d2d;
   border-radius: 10px;
 }
-
 .reservations-container::-webkit-scrollbar-thumb:hover {
   background: #b86924;
 }
-
-/* Reservations container - scrollable area */
 .reservations-container {
   max-height: 280px;
-  /* Height for ~2 reservation cards */
   overflow-y: auto;
-  /* Enable scroll when content exceeds max-height */
 }
 
 /* Animation */
@@ -165,15 +155,73 @@
     opacity: 0;
     transform: translateY(-15px);
   }
-
   to {
     opacity: 1;
     transform: translateY(0);
   }
 }
 
-/* Header Container */
+/* Header */
 header {
   position: relative;
   z-index: 1040;
+}
+
+@media (min-width: 768px) {
+  .navbar .container-fluid {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+  }
+
+  .navbar-brand {
+    order: 1;
+    flex: none;
+    text-align: left;
+  }
+
+  /* Collapse/nav links fill the middle */
+  .navbar-collapse {
+    order: 2;
+    flex: 1;
+  }
+
+  /* User icon pushed to the far right */
+  .user-nav {
+    order: 3;
+    margin-left: auto;
+  }
+}
+
+/* Mobile View*/
+@media (max-width: 767px) {
+  .navbar .container-fluid {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .user-nav {
+    order: 1;
+    display: flex;
+    align-items: center;
+    margin-right: 12px;
+  }
+  .user-nav .nav-link {
+    padding: 0;
+  }
+  .navbar-toggler {
+    order: 2;
+    margin-right: 4px;
+  }
+  .navbar-brand {
+    order: 3;
+    flex: 1;
+    text-align: center;
+    margin: 0;
+  }
+  .navbar-collapse {
+    order: 4;
+    width: 100%;
+  }
 }

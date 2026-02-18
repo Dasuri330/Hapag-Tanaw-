@@ -1,18 +1,19 @@
 <main class="auth-container">
   <img src="assets/image/food-in-table.jpg" class="background-image" alt="Background">
   <div class="bg-overlay"></div>
-  
+
   <div class="container-fluid d-flex justify-content-center align-items-center py-5">
     <div class="card shadow-lg p-0">
       <div class="row g-0">
-        <!-- Left side - Common designs for both login and signup -->
+        <!-- Left side -->
         <div class="col-md-5 p-5 d-flex flex-column justify-content-center">
+          <div class="left-brand">Hapag Tanaw</div>
           <h1 class="mb-4 main-heading">{{ getTitle() }}</h1>
           <hr class="custom-hr">
           <p>{{ getDescription() }}</p>
         </div>
-        
-        <!-- Right side - Router outlet for login/signup forms -->
+
+        <!-- Right side -->
         <div class="col-md-7 p-4">
           <router-outlet></router-outlet>
         </div>

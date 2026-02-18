@@ -3,62 +3,33 @@
   <!--Navbar area-->
   <nav class="navbar navbar-expand-md bg-white px-4 mt-1">
     <div class="container-fluid position-relative">
-      <!-- Brand -->
-      <a routerLink="/" class="navbar-brand ms-5">
-        Hapag Tanaw
-      </a>
-
       <!--Mobile Toggle-->
-      <button class="navbar-toggler" type="button" data-bs-toggle="collapse"
-        data-bs-target="#main-nav" aria-controls="main-nav"
-        aria-expanded="false" aria-label="Toggle navigation">
+      <button
+        class="navbar-toggler"
+        type="button"
+        data-bs-toggle="collapse"
+        data-bs-target="#main-nav"
+        aria-controls="main-nav"
+        aria-expanded="false"
+        aria-label="Toggle navigation"
+      >
         <span class="navbar-toggler-icon"></span>
       </button>
 
-      <!--Navbar Links-->
-      <div class="collapse navbar-collapse justify-content-center ms-2" id="main-nav">
-        <!--Center Menu-->
-        <ul class="navbar-nav mx-auto">
-          <li class="nav-item mx-3">
-            <a class="nav-link" routerLink="/" routerLinkActive="active" 
-               [routerLinkActiveOptions]="{exact: true}">
-              Home
-            </a>
-          </li>
-          <li class="nav-item mx-3">
-            <a class="nav-link" routerLink="/main/about" routerLinkActive="active">
-              About
-            </a>
-          </li>
-          <li class="nav-item mx-3">
-            <a class="nav-link" routerLink="/main/menu" routerLinkActive="active">
-              Menu
-            </a>
-          </li>
-          <li class="nav-item mx-3">
-            <a class="nav-link" routerLink="/main/contact" routerLinkActive="active">
-              Contact
-            </a>
-          </li>
-        </ul>
-
-        <!--Right User Icon-->
-        <ul class="navbar-nav">
-          @if (isLoggedIn) {
+      <!--User Icon-->
+      <ul class="navbar-nav user-nav">
+        @if (isLoggedIn) {
           <li class="nav-item dropdown">
-            <a class="nav-link position-relative" 
-              (click)="toggleDropdown()" 
-              role="button">
+            <a class="nav-link position-relative" (click)="toggleDropdown()" role="button">
               <i class="bi bi-person-fill fs-4 user-icon"></i>
             </a>
-          </li>
-        }
-   
+
             <!-- Dropdown Menu -->
-            <div class="dropdown-menu dropdown-menu-end p-0" 
-                 [class.show]="showDropdown"
-                 style="min-width: 300px;">
-              
+            <div
+              class="dropdown-menu dropdown-menu-end p-0"
+              [class.show]="showDropdown"
+              style="min-width: 300px"
+            >
               <!-- User Info Section -->
               <div class="p-3 border-bottom bg-light">
                 <h6 class="mb-1">{{ userData?.fullName }}</h6>
@@ -69,30 +40,31 @@
               @if (reservations.length > 0) {
                 <div class="p-3 reservations-container">
                   <h6 class="mb-2">My Reservations</h6>
-                  
-                  @for ( reservation of reservations; track $index) {
+
+                  @for (reservation of reservations; track $index) {
                     <div class="border rounded p-2 mb-2 bg-light">
                       <small class="d-block">
-                        <i class="bi bi-calendar-event me-2"></i> {{ reservation.date}}
-                    </small>
-                    <small class="d-block">
-                      <i class="bi bi-clock me-2"></i> {{ reservation.timeStart}} - {{ reservation.timeEnd}}
-                    </small>
-                    <small class="d-block">
-                      <i class="bi bi-people me-2"></i> {{reservation.numGuests}}
-                    </small>
-                    @if (reservation.specialOccasion) {
-                      <small class="d-block">
-                        <i class="bi bi-star me-2"></i> {{ reservation.specialOccasion}}
+                        <i class="bi bi-calendar-event me-2"></i> {{ reservation.date }}
                       </small>
-                    }
+                      <small class="d-block">
+                        <i class="bi bi-clock me-2"></i> {{ reservation.timeStart }} -
+                        {{ reservation.timeEnd }}
+                      </small>
+                      <small class="d-block">
+                        <i class="bi bi-people me-2"></i> {{ reservation.numGuests }}
+                      </small>
+                      @if (reservation.specialOccasion) {
+                        <small class="d-block">
+                          <i class="bi bi-star me-2"></i> {{ reservation.specialOccasion }}
+                        </small>
+                      }
                     </div>
                   }
                 </div>
               }
 
               @if (reservations.length === 0) {
-                <p class="text-muted mb-0 text-center">No reservations yet</p>
+                <p class="text-muted mb-0 text-center p-3">No reservations yet</p>
               }
 
               <!-- Actions -->
@@ -102,29 +74,73 @@
                 </button>
               </div>
             </div>
+          </li>
+        }
 
-          <!-- Show login link if not logged in -->
-            @if (!isLoggedIn) {
-              <li class="nav-item">
-                <a class="nav-link" routerLink="/auth/login">
-                  <i class="bi bi-person-fill fs-4 user-icon"></i>
-                </a>
-              </li>
-            }
+        @if (!isLoggedIn) {
+          <li class="nav-item">
+            <a class="nav-link" routerLink="/auth/login">
+              <i class="bi bi-person-fill fs-4 user-icon"></i>
+            </a>
+          </li>
+        }
+      </ul>
+
+      <!-- Brand -->
+      <a routerLink="/" class="navbar-brand"> Hapag Tanaw </a>
+
+      <!--Navbar Links-->
+      <div class="collapse navbar-collapse justify-content-center ms-2" id="main-nav">
+        <!--Center Menu-->
+        <ul class="navbar-nav mx-auto">
+          <li class="nav-item mx-3">
+            <a
+              class="nav-link"
+              routerLink="/"
+              routerLinkActive="active"
+              [routerLinkActiveOptions]="{ exact: true }"
+              (click)="closeNavbar()"
+            >
+              Home
+            </a>
+          </li>
+          <li class="nav-item mx-3">
+            <a
+              class="nav-link"
+              routerLink="/main/about"
+              routerLinkActive="active"
+              (click)="closeNavbar()"
+            >
+              About
+            </a>
+          </li>
+          <li class="nav-item mx-3">
+            <a
+              class="nav-link"
+              routerLink="/main/menu"
+              routerLinkActive="active"
+              (click)="closeNavbar()"
+            >
+              Menu
+            </a>
+          </li>
+          <li class="nav-item mx-3">
+            <a
+              class="nav-link"
+              routerLink="/main/contact"
+              routerLinkActive="active"
+              (click)="closeNavbar()"
+            >
+              Contact
+            </a>
+          </li>
         </ul>
       </div>
     </div>
   </nav>
 </header>
 
-<!-- Overlay to close dropdown when clicking outside -->
-@if (showDropdown) {
-  <div class="dropdown-overlay" 
-  (click)="closeDropdown()">
-  </div>
-}
-
-<!-- Cancel Confirmation Modal (Warning Modal) -->
+<!-- Logout Modal -->
 <app-logout
   [show]="showLogoutModal"
   title="Logout"
@@ -135,5 +151,6 @@
   confirmButtonClass="btn-danger"
   cancelButtonClass="btn-secondary"
   (confirm)="confirmLogout()"
-  (cancel)="closeLogoutModal()">
+  (cancel)="closeLogoutModal()"
+>
 </app-logout>
