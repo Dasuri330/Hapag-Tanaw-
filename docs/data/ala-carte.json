@@ -1,0 +1,248 @@
+[
+    {
+        "id": "Appetizers",
+        "title": "Appetizers",
+        "items": [
+            {
+                "image": "assets/image/freshlumpia.jpg",
+                "title": "Fresh Lumpia",
+                "description": "Fresh vegetable spring rolls with sweet peanut sauce.",
+                "price": "180"
+            },
+            {
+                "image": "assets/image/ukoy1.jpg",
+                "title": "Ukoy",
+                "description": "Crispy shrimp and vegetable fritters with vinegar dipping sauce.",
+                "price": "200"
+            },
+            {
+                "image": "assets/image/tokwatbaboy.jpg",
+                "title": "Tokwa at Baboy",
+                "description": "Fried tofu and pork in savory soy-vinegar sauce.",
+                "price": "150"
+            },
+            {
+                "image": "assets/image/calamares.jpg",
+                "title": "Calamares",
+                "description": "Crispy fried squid rings with sweet chili sauce.",
+                "price": "280"
+            },
+            {
+                "image": "assets/image/fishball.png",
+                "title": "Fish Balls",
+                "description": "Deep-fried fish balls with sweet and spicy sauce.",
+                "price": "180"
+            },
+            {
+                "image": "assets/image/chicharonbulaklak.jpg",
+                "title": "Chicharon Bulaklak",
+                "description": "Crispy deep-fried pork intestines with spicy vinegar.",
+                "price": "240"
+            },
+            {
+                "image": "assets/image/dynamite.jpg",
+                "title": "Dynamite",
+                "description": "Cheese-stuffed chili peppers wrapped in spring roll wrapper.",
+                "price": "170"
+            },
+            {
+                "image": "assets/image/lumpiang-shanghai.png",
+                "title": "Lumpiang Shanghai",
+                "description": "Crispy fried spring rolls with ground pork filling.",
+                "price": "150"
+            }
+        ]
+    },
+    {
+        "id": "Sides",
+        "title": "Sides",
+        "items": [
+            {
+                "image": "assets/image/grice.png",
+                "title": "Garlic Rice",
+                "description": "Fragrant rice stir-fried with garlic and butter.",
+                "price": "60"
+            },
+            {
+                "image": "assets/image/javarice.jpg",
+                "title": "Java Rice",
+                "description": "Yellow turmeric-flavored fried rice.",
+                "price": "60"
+            },
+            {
+                "image": "assets/image/steamed rice.jpg",
+                "title": "Steamed Rice",
+                "description": "Perfectly steamed white rice.",
+                "price": "60"
+            },
+            {
+                "image": "assets/image/atchara.jpg",
+                "title": "Atchara",
+                "description": "Pickled green papaya with carrots and bell peppers.",
+                "price": "50"
+            },
+            {
+                "image": "assets/image/tofu.jpg",
+                "title": "Fried Tofu",
+                "description": "Crispy golden fried tofu cubes.",
+                "price": "70"
+            },
+            {
+                "image": "assets/image/fishcrackers.jpg",
+                "title": "Fish Crackers",
+                "description": "Crunchy fish-flavored chips.",
+                "price": "50"
+            },
+            {
+                "image": "assets/image/sideup.jpg",
+                "title": "Fried Egg",
+                "description": "Sunny-side up or over-easy egg.",
+                "price": "50"
+            },
+            {
+                "image": "assets/image/coleslaw.png",
+                "title": "Coleslaw",
+                "description": "Fresh cabbage salad with creamy dressing.",
+                "price": "80"
+            }
+        ]
+    },
+    {
+        "id": "Mains",
+        "title": "Mains",
+        "items": [
+            {
+                "image": "assets/image/sisig.png",
+                "title": "Sisig",
+                "description": "Sizzling chopped pork with onions and chili.",
+                "price": "120"
+            },
+            {
+                "image": "assets/image/caldereta.jpg",
+                "title": "Caldereta",
+                "description": "Rich tomato-based beef stew with vegetables.",
+                "price": "200"
+            },
+            {
+                "image": "assets/image/adobo-pork.jpg",
+                "title": "Pork Adobo",
+                "description": "Tender pork in savory soy-vinegar sauce.",
+                "price": "150"
+            },
+            {
+                "image": "assets/image/chickenadobo.jpg",
+                "title": "Chicken Adobo",
+                "description": "Classic Filipino chicken in soy and vinegar.",
+                "price": "135"
+            },
+            {
+                "image": "assets/image/bulalo.jpg",
+                "title": "Bulalo",
+                "description": "Beef shank soup with bone marrow and vegetables.",
+                "price": "200"
+            },
+            {
+                "image": "assets/image/pakbet.jpg",
+                "title": "Pakbet",
+                "description": "Mixed vegetables with shrimp paste.",
+                "price": "100"
+            },
+            {
+                "image": "assets/image/sinigangnahipon.jpg",
+                "title": "Sinigang na Hipon",
+                "description": "Sour tamarind soup with shrimp and vegetables.",
+                "price": "140"
+            },
+            {
+                "image": "assets/image/crispypata.jpg",
+                "title": "Crispy Pata",
+                "description": "Deep-fried pork leg, crispy outside and tender inside.",
+                "price": "280"
+            }
+        ]
+    },
+    {
+        "id": "Desserts",
+        "title": "Desserts",
+        "items": [
+            {
+                "image": "assets/image/lecheflan.jpg",
+                "title": "Leche Flan",
+                "description": "Creamy caramel custard dessert.",
+                "price": "70"
+            },
+            {
+                "image": "assets/image/halo1.png",
+                "title": "Halo-Halo",
+                "description": "Mixed shaved ice with sweet beans, fruits, and ice cream.",
+                "price": "100"
+            },
+            {
+                "image": "assets/image/bukopandan1.png",
+                "title": "Buko Pandan",
+                "description": "Young coconut and pandan jelly in sweet cream.",
+                "price": "100"
+            },
+            {
+                "image": "assets/image/maisconyelo.jpg",
+                "title": "Mais con Yelo",
+                "description": "Sweet corn with shaved ice and milk.",
+                "price": "100"
+            },
+            {
+                "image": "assets/image/bibingka.jpg",
+                "title": "Bibingka",
+                "description": "Rice cake with butter, sugar, and cheese.",
+                "price": "120"
+            },
+            {
+                "image": "assets/image/majablanca.jpg",
+                "title": "Maja Blanca",
+                "description": "Coconut milk pudding with corn kernels.",
+                "price": "100"
+            },
+            {
+                "image": "assets/image/ube champorado.jpg",
+                "title": "Ube Champorado",
+                "description": "Purple yam chocolate rice porridge.",
+                "price": "150"
+            },
+            {
+                "image": "assets/image/turon.jpg",
+                "title": "Turon",
+                "description": "Fried banana spring rolls with caramelized sugar.",
+                "price": "60"
+            }
+        ]
+    },
+    {
+        "id": "Drinks",
+        "title": "Drinks",
+        "items": [
+            {
+                "image": "assets/image/calamansi juice.jpg",
+                "title": "Calamansi Juice",
+                "description": "Freshly squeezed Philippine lime juice.",
+                "price": "75"
+            },
+            {
+                "image": "assets/image/buko juice.jpg",
+                "title": "Buko Juice",
+                "description": "Fresh young coconut water.",
+                "price": "75"
+            },
+            {
+                "image": "assets/image/sago gulaman.jpg",
+                "title": "Sago at Gulaman",
+                "description": "Sweet tapioca pearls and jelly drink.",
+                "price": "75"
+            },
+            {
+                "image": "assets/image/watermelon juice.jpg",
+                "title": "Watermelon Juice",
+                "description": "Fresh and refreshing watermelon juice.",
+                "price": "120"
+            }
+        ]
+    }
+]
